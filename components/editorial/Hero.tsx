@@ -6,18 +6,20 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* Image side */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-[55%] z-0">
+      <div className="absolute inset-y-0 right-0 w-full md:w-[58%] z-0">
         <div className="relative h-full w-full">
           <Image
             src="/images/mt-hood.jpg"
             alt="Mt. Hood at dawn, viewed from Trillium Lake, Oregon"
             fill
             priority
-            sizes="(max-width: 768px) 100vw, 55vw"
-            className="object-cover grayscale contrast-[1.05] brightness-[0.95]"
+            sizes="(max-width: 768px) 100vw, 58vw"
+            className="object-cover grayscale contrast-[1.08] brightness-[0.92]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-bone)] via-[var(--color-bone)]/40 to-transparent md:from-[var(--color-bone)]/95 md:via-[var(--color-bone)]/35" />
-          <div className="absolute inset-0 bg-[var(--color-bone)]/55 md:bg-transparent" />
+          {/* Bone wash for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-bone)] via-[var(--color-bone)]/55 to-[var(--color-bone)]/10 md:from-[var(--color-bone)] md:via-[var(--color-bone)]/65 md:to-[var(--color-bone)]/0" />
+          {/* Mobile darker overlay */}
+          <div className="absolute inset-0 bg-[var(--color-bone)]/40 md:bg-transparent" />
         </div>
       </div>
 
@@ -52,7 +54,16 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-[var(--color-hairline)]" />
+      {/* Hairline footer with publication metadata */}
+      <div className="relative z-10 border-t border-[var(--color-hairline)]">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.72rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-[family-name:var(--font-mono)] font-medium">
+          <span>Vol. XXVII</span>
+          <span aria-hidden="true" className="text-[var(--color-hairline-strong)]">·</span>
+          <span>Issued from Lake Oswego, Oregon</span>
+          <span aria-hidden="true" className="text-[var(--color-hairline-strong)] hidden md:inline">·</span>
+          <span className="hidden md:inline">Research published since 1998</span>
+        </div>
+      </div>
     </section>
   );
 }

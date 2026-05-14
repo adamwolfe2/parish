@@ -71,28 +71,37 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <form action="/research" method="get" className="mt-10 max-w-md">
-              <label htmlFor="q" className="block text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)] mb-2">
-                Search the archive
-              </label>
-              <div className="relative">
-                <input
-                  id="q"
-                  name="q"
-                  type="search"
-                  defaultValue={q}
-                  placeholder="e.g. Romney IRA, Intel pension, Sondland"
-                  className="w-full bg-transparent border-b border-[var(--color-hairline-strong)] py-2 pr-8 text-[1rem] focus:outline-none focus:border-[var(--color-moss)] transition-colors"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-0 top-1/2 -translate-y-1/2 text-[var(--color-slate)] hover:text-[var(--color-moss)] transition-colors"
-                  aria-label="Search"
-                >
-                  →
-                </button>
-              </div>
-            </form>
+            <div className="mt-10 flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-10">
+              <form action="/research" method="get" className="max-w-md flex-1">
+                <label htmlFor="q" className="block text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)] mb-2">
+                  Search the archive
+                </label>
+                <div className="relative">
+                  <input
+                    id="q"
+                    name="q"
+                    type="search"
+                    defaultValue={q}
+                    placeholder="e.g. Romney IRA, Intel pension, Sondland"
+                    className="w-full bg-transparent border-b border-[var(--color-hairline-strong)] py-2 pr-8 text-[1rem] focus:outline-none focus:border-[var(--color-moss)] transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 text-[var(--color-slate)] hover:text-[var(--color-moss)] transition-colors"
+                    aria-label="Search"
+                  >
+                    →
+                  </button>
+                </div>
+              </form>
+              <Link
+                href="/research/topics"
+                className="link-editorial text-[0.95rem] self-start sm:self-end pb-2"
+              >
+                <span>Browse by topic</span>
+                <span className="arrow" aria-hidden="true">→</span>
+              </Link>
+            </div>
           </FadeIn>
         </div>
       </header>
