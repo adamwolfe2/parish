@@ -4,6 +4,12 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './sanity/schemas';
 import { apiVersion, dataset, projectId } from './sanity/env';
 import { StudioLogo, StudioIcon } from './sanity/lib/studio-icon';
+import { studioTheme } from './sanity/lib/studio-theme';
+import { Welcome } from './sanity/lib/Welcome';
+
+// Only show the Query Playground (Vision tool) to project admins. Bill
+// shouldn't see GROQ debug tooling.
+const ADMIN_EMAILS = new Set(['adamwolfe102@gmail.com']);
 
 export default defineConfig({
   name: 'parish-company',
@@ -12,6 +18,7 @@ export default defineConfig({
   dataset,
   basePath: '/studio',
   icon: StudioIcon,
+  theme: studioTheme,
   studio: {
     components: {
       logo: StudioLogo,
@@ -21,6 +28,8 @@ export default defineConfig({
     structureTool({
       name: 'content',
       title: 'Content',
+      defaultDocumentNode: (S) =>
+        S.document().views([S.view.form()]),
       structure: (S) =>
         S.list()
           .title('Parish & Company')
@@ -38,11 +47,28 @@ export default defineConfig({
               .title('Topics')
               .icon(() => '🏷️')
               .child(S.documentTypeList('topic').title('Topics')),
+            S.divider(),
+            S.listItem()
+              .title('Welcome / how to publish')
+              .icon(() => 'i')
+              .child(
+                S.component(Welcome).title('Welcome')
+              ),
           ]),
     }),
-    visionTool({ defaultApiVersion: apiVersion, title: 'Query playground' }),
+    visionTool({
+      defaultApiVersion: apiVersion,
+      title: 'Query playground',
+      // Hidden from non-admin users via Sanity's access rules below.
+    }),
   ],
   schema: { types: schemaTypes },
+  tools: (prev, { currentUser }) => {
+    if (!currentUser?.email || !ADMIN_EMAILS.has(currentUser.email)) {
+      return prev.filter((t) => t.name !== 'vision');
+    }
+    return prev;
+  },
   document: {
     productionUrl: async (prev, context) => {
       const doc = context.document as { _type?: string; slug?: { current?: string } };
