@@ -1,52 +1,73 @@
-import type { Rule } from 'sanity';
+import { defineType, defineField } from 'sanity';
 
-/**
- * Research note schema. Mirrors the file-based shape currently in
- * content/posts/<slug>.json + content/post-index.json so Phase-2 migration
- * is a straightforward shape map.
- */
-export const post = {
+export const post = defineType({
   name: 'post',
   title: 'Research Note',
   type: 'document',
   fields: [
-    {
+    defineField({
       name: 'title',
+      title: 'Title',
       type: 'string',
-      validation: (Rule: Rule) => Rule.required().max(220),
-    },
-    {
+      validation: (Rule) => Rule.required().max(220),
+    }),
+    defineField({
       name: 'slug',
+      title: 'Slug (URL)',
       type: 'slug',
       options: { source: 'title', maxLength: 96 },
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'publishedAt',
+      title: 'Published',
       type: 'datetime',
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    { name: 'excerpt', type: 'text', rows: 3 },
-    {
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Dek / Excerpt',
+      type: 'text',
+      rows: 3,
+      description: 'One- or two-sentence summary shown on the archive and on social shares.',
+    }),
+    defineField({
       name: 'topics',
+      title: 'Topics',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'topic' }] }],
-    },
-    { name: 'featured', type: 'boolean', initialValue: false },
-    {
+    }),
+    defineField({
+      name: 'featured',
+      title: 'Featured on home page?',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'heroImage',
+      title: 'Hero image',
       type: 'image',
       options: { hotspot: true },
-    },
-    { name: 'heroImageCaption', type: 'string' },
-    {
-      name: 'originalPublication',
+    }),
+    defineField({
+      name: 'heroImageCaption',
+      title: 'Hero image caption',
       type: 'string',
-      description: 'For posts that are republished media features (e.g. "The Wall Street Journal").',
-    },
-    { name: 'originalPublicationUrl', type: 'url' },
-    {
+    }),
+    defineField({
+      name: 'originalPublication',
+      title: 'Original publication (if republished)',
+      type: 'string',
+      description: 'For posts republished from another outlet (e.g. The Wall Street Journal).',
+    }),
+    defineField({
+      name: 'originalPublicationUrl',
+      title: 'Original publication URL',
+      type: 'url',
+    }),
+    defineField({
       name: 'body',
+      title: 'Body',
       type: 'array',
       of: [
         { type: 'block' },
@@ -60,13 +81,13 @@ export const post = {
           name: 'pullQuote',
           title: 'Pull Quote',
           fields: [
-            { name: 'quote', type: 'text', validation: (Rule: Rule) => Rule.required() },
+            { name: 'quote', type: 'text', validation: (Rule) => Rule.required() },
             { name: 'attribution', type: 'string' },
           ],
         },
       ],
-    },
-    {
+    }),
+    defineField({
       name: 'sources',
       title: 'Sources',
       type: 'array',
@@ -79,22 +100,18 @@ export const post = {
           ],
         },
       ],
-    },
-    {
-      name: 'legacyUrl',
-      type: 'url',
-      description: 'URL of the original WordPress post for redirect mapping.',
-      readOnly: true,
-    },
+    }),
   ],
   preview: {
     select: { title: 'title', date: 'publishedAt', media: 'heroImage' },
-    prepare({ title, date, media }: { title: string; date?: string; media?: unknown }) {
+    prepare(value) {
+      const title = value.title || 'Untitled';
+      const date = value.date as string | undefined;
       return {
-        title,
+        title: String(title),
         subtitle: date ? new Date(date).toLocaleDateString() : 'Unpublished',
-        media,
+        media: value.media as never,
       };
     },
   },
-};
+});

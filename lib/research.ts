@@ -58,6 +58,26 @@ function normalize(raw: RawIndexEntry, idx: number): ResearchPost | null {
   return { slug, title, publishedAt, categories, excerpt, url: raw.url };
 }
 
+/**
+ * Async loader that merges Sanity-authored posts with the file-based
+ * archive. Sanity entries win on slug collisions. Use this in route
+ * handlers and pages where async is OK.
+ */
+export async function loadAllPostsAsync(): Promise<ResearchPost[]> {
+  const file = loadAllPosts();
+  try {
+    const { fetchSanityPosts } = await import('@/sanity/lib/research-source');
+    const sanity = await fetchSanityPosts();
+    if (sanity.length === 0) return file;
+    const bySlug = new Map<string, ResearchPost>();
+    for (const p of file) bySlug.set(p.slug, p);
+    for (const p of sanity) bySlug.set(p.slug, p); // Sanity overrides
+    return Array.from(bySlug.values()).sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+  } catch {
+    return file;
+  }
+}
+
 export function loadAllPosts(): ResearchPost[] {
   if (cache) return cache;
   let raw: RawIndexEntry[] = [];

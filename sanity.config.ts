@@ -1,27 +1,34 @@
-/**
- * Sanity Studio configuration — Phase 2.
- *
- * This file is checked in but the Studio is NOT wired into the Next.js app
- * yet. To activate:
- *   1. npm install sanity @sanity/vision @sanity/client next-sanity
- *   2. Set NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET in .env
- *   3. Add app/studio/[[...tool]]/page.tsx (one-line embed)
- *   4. Migrate content from content/posts/*.json with scripts/migrate-to-sanity.mjs (TBD)
- */
-import type { Config } from 'sanity';
+import { defineConfig } from 'sanity';
+import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './sanity/schemas';
+import { apiVersion, dataset, projectId } from './sanity/env';
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
-
-const config: Config = {
+export default defineConfig({
   name: 'parish-company',
   title: 'Parish & Company',
   projectId,
   dataset,
   basePath: '/studio',
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            S.listItem()
+              .title('Research notes')
+              .child(
+                S.documentTypeList('post')
+                  .title('Research notes')
+                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }]),
+              ),
+            S.listItem()
+              .title('Topics')
+              .child(S.documentTypeList('topic').title('Topics')),
+          ]),
+    }),
+    visionTool({ defaultApiVersion: apiVersion }),
+  ],
   schema: { types: schemaTypes },
-  plugins: [],
-};
-
-export default config;
+});
