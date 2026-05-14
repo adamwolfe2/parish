@@ -1,4 +1,9 @@
-type Props = { className?: string; variant?: 'hood' | 'range' | 'ridge' };
+type Props = {
+  className?: string;
+  variant?: 'hood' | 'range' | 'ridge';
+  /** When true, the SVG stretches edge-to-edge (no aspect-ratio preservation). Use for full-width dividers. */
+  stretch?: boolean;
+};
 
 /**
  * Minimal PNW silhouette accents.
@@ -6,17 +11,18 @@ type Props = { className?: string; variant?: 'hood' | 'range' | 'ridge' };
  * - range: rolling Cascade range (no dominant peak)
  * - ridge: distant horizon line, single layer (very subtle)
  */
-export function MountainSilhouette({ className, variant = 'hood' }: Props) {
-  if (variant === 'range') return <RangeRolling className={className} />;
-  if (variant === 'ridge') return <Ridge className={className} />;
-  return <HoodPeak className={className} />;
+export function MountainSilhouette({ className, variant = 'hood', stretch = false }: Props) {
+  const par = stretch ? 'none' : 'xMidYMax slice';
+  if (variant === 'range') return <RangeRolling className={className} par={par} />;
+  if (variant === 'ridge') return <Ridge className={className} par={par} />;
+  return <HoodPeak className={className} par={par} />;
 }
 
-function HoodPeak({ className }: { className?: string }) {
+function HoodPeak({ className, par }: { className?: string; par: string }) {
   return (
     <svg
       viewBox="0 0 600 120"
-      preserveAspectRatio="xMidYMax slice"
+      preserveAspectRatio={par}
       aria-hidden="true"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
@@ -45,11 +51,11 @@ function HoodPeak({ className }: { className?: string }) {
   );
 }
 
-function RangeRolling({ className }: { className?: string }) {
+function RangeRolling({ className, par }: { className?: string; par: string }) {
   return (
     <svg
       viewBox="0 0 600 100"
-      preserveAspectRatio="xMidYMax slice"
+      preserveAspectRatio={par}
       aria-hidden="true"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
@@ -76,11 +82,11 @@ function RangeRolling({ className }: { className?: string }) {
   );
 }
 
-function Ridge({ className }: { className?: string }) {
+function Ridge({ className, par }: { className?: string; par: string }) {
   return (
     <svg
       viewBox="0 0 600 60"
-      preserveAspectRatio="xMidYMax slice"
+      preserveAspectRatio={par}
       aria-hidden="true"
       className={className}
       xmlns="http://www.w3.org/2000/svg"

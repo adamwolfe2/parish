@@ -19,11 +19,17 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[var(--color-mist)]/55 overflow-hidden">
-      {/* PNW silhouette band */}
-      <MountainSilhouette className="pointer-events-none absolute top-0 left-0 right-0 h-20 md:h-28 text-[var(--color-moss)] opacity-[0.16]" />
+    <footer className="relative bg-[var(--color-mist)]/55">
+      {/* PNW silhouette — full-width divider at the very top of the footer */}
+      <div aria-hidden="true" className="relative w-full h-14 md:h-16 overflow-hidden border-t border-[var(--color-hairline)]">
+        <MountainSilhouette
+          variant="range"
+          stretch
+          className="absolute inset-0 w-full h-full text-[var(--color-moss)] opacity-[0.28]"
+        />
+      </div>
 
-      <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 pt-32 md:pt-40 pb-12">
+      <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 pt-12 md:pt-16 pb-12">
         <div className="grid gap-12 md:gap-16 md:grid-cols-12 border-b border-[var(--color-hairline)] pb-12 md:pb-16">
           <div className="md:col-span-5">
             <Link

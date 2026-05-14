@@ -58,7 +58,7 @@ export default function HomePage() {
 
       {/* I — Mission */}
       <section className="relative bg-[var(--color-bone)] overflow-hidden">
-        <MountainSilhouette variant="ridge" className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 md:h-14 text-[var(--color-moss)] opacity-[0.10]" />
+        <MountainSilhouette variant="ridge" stretch className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 md:h-14 text-[var(--color-moss)] opacity-[0.10]" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="i" label="The firm" />
@@ -143,7 +143,7 @@ export default function HomePage() {
 
       {/* III — Founder */}
       <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-bone)] overflow-hidden">
-        <MountainSilhouette variant="range" className="pointer-events-none absolute top-0 left-0 right-0 h-12 md:h-16 text-[var(--color-moss)] opacity-[0.08] rotate-180" />
+        <MountainSilhouette variant="range" stretch className="pointer-events-none absolute top-0 left-0 right-0 h-12 md:h-16 text-[var(--color-moss)] opacity-[0.08] rotate-180" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="iii" label="Founder" />
@@ -240,7 +240,7 @@ export default function HomePage() {
 
       {/* V — Press marks */}
       <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-bone)] overflow-hidden">
-        <MountainSilhouette variant="ridge" className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 md:h-12 text-[var(--color-moss)] opacity-[0.10]" />
+        <MountainSilhouette variant="ridge" stretch className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 md:h-12 text-[var(--color-moss)] opacity-[0.10]" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="v" label="In the press" />
@@ -354,7 +354,7 @@ export default function HomePage() {
 
       {/* VIII — Latest research */}
       <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-bone)] overflow-hidden">
-        <MountainSilhouette variant="range" className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 md:h-20 text-[var(--color-moss)] opacity-[0.12]" />
+        <MountainSilhouette variant="range" stretch className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 md:h-20 text-[var(--color-moss)] opacity-[0.12]" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="viii" label="Latest" />
