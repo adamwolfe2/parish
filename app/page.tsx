@@ -107,9 +107,8 @@ export default function HomePage() {
               </div>
               <div className="md:col-span-5 md:pl-8 md:border-l md:border-[var(--color-hairline-strong)]">
                 <p className="text-[1.05rem] leading-[1.65] text-[var(--color-slate)] max-w-md">
-                  The same investment process is applied across every relationship.
-                  Fees are charged at .75 percent per year with an annual minimum — no
-                  commissions, no kickbacks, no revenue-sharing.
+                  The same disciplined investment process is applied across every
+                  relationship — no commissions, no kickbacks, no revenue-sharing.
                 </p>
               </div>
             </div>
@@ -194,8 +193,7 @@ export default function HomePage() {
               <p className="mt-5 text-[1rem] leading-[1.7] text-[var(--color-slate)] max-w-prose">
                 Clients include exceptionally large portfolios in addition to smaller
                 portfolios, although smaller portfolios are only accepted based upon a strong
-                personal connection or relationship with an existing client. Fees charged are
-                .75 percent per year with an annual minimum.
+                personal connection or relationship with an existing client.
               </p>
 
               <dl className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 border-t border-[var(--color-hairline)] pt-8">
@@ -227,26 +225,17 @@ export default function HomePage() {
           <FadeIn>
             <SectionDivider numeral="iv" label="Fiduciary commitment" className="[&_*]:!text-white/80 [&_span:first-child]:!text-[var(--color-brass)] [&_span.h-px]:!bg-white/30" />
 
-            <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-16 md:items-start">
-              <div className="md:col-span-7">
-                <p className="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.2] italic">
-                  &ldquo;A written guarantee is provided to every client that no fees are
-                  accepted, either directly or indirectly, from any investment company on
-                  any client. Removing such conflicts of interest is a key ingredient to
-                  successful long-term oriented investment.&rdquo;
-                </p>
-              </div>
-              <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/25">
-                <p className="font-[family-name:var(--font-display)] text-[2rem] leading-tight text-white">
-                  .75 percent per year
-                </p>
-                <p className="mt-2 text-[0.95rem] text-white/80 leading-relaxed">
-                  Annual fee with annual minimum.<br />
-                  The only compensation comes from the client.
-                </p>
+            <div className="mt-12 max-w-4xl">
+              <p className="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.2] italic">
+                &ldquo;A written guarantee is provided to every client that no fees are
+                accepted, either directly or indirectly, from any investment company on
+                any client. Removing such conflicts of interest is a key ingredient to
+                successful long-term oriented investment.&rdquo;
+              </p>
+              <div className="mt-10 pt-8 border-t border-white/20">
                 <Link
                   href="/philosophy"
-                  className="mt-6 inline-flex items-center gap-2 text-[0.92rem] font-medium border-b border-white/40 hover:border-white pb-0.5 transition-colors"
+                  className="inline-flex items-center gap-2 text-[0.92rem] font-medium border-b border-white/40 hover:border-white pb-0.5 transition-colors"
                 >
                   <span>Read the full philosophy</span>
                   <span aria-hidden="true">→</span>

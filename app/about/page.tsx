@@ -142,8 +142,7 @@ export default function AboutPage() {
                     especially in this age of mergers. Clients include exceptionally large
                     portfolios in addition to smaller portfolios, although smaller portfolios
                     are only accepted based upon a strong personal connection or relationship
-                    with an existing client. Fees charged are .75 percent per year with an
-                    annual minimum.
+                    with an existing client.
                   </p>
                 </div>
 
@@ -246,8 +245,7 @@ export default function AboutPage() {
               Three categories of clients. One disciplined process.
             </h2>
             <p className="mt-6 max-w-2xl text-[var(--text-lead)] leading-[1.55] text-[var(--color-slate)]">
-              Fees are charged at 0.75% per year with an annual minimum. No fees are accepted
-              from any investment company, either directly or indirectly.
+              The same disciplined investment process is applied across every relationship.
             </p>
           </FadeIn>
 
