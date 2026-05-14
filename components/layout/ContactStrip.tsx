@@ -4,43 +4,57 @@ export function ContactStrip() {
   return (
     <section
       aria-label="Contact"
-      className="bg-[var(--color-basalt)] text-[var(--color-bone)] border-y border-[var(--color-hairline-strong)]"
+      className="bg-[var(--color-bone)] border-y border-[var(--color-hairline)]"
     >
-      <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-12 md:items-end">
+      <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-14 md:py-20">
+        <div className="grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
           <div className="md:col-span-7">
-            <p className="text-[0.72rem] uppercase tracking-[0.15em] text-[var(--color-brass)] font-medium">
-              Inquiries
+            <p className="text-[0.72rem] uppercase tracking-[0.18em] font-medium text-[var(--color-moss)] flex items-center gap-4">
+              <span className="h-px w-10 bg-[var(--color-moss)]" />
+              <span>Inquiries</span>
             </p>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-tight">
+            <h2 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.65rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
               For new business, research inquiries, or media,{' '}
-              <Link href="/contact" className="underline decoration-[var(--color-brass)] underline-offset-4 decoration-1 hover:text-[var(--color-brass)] transition-colors">
+              <Link
+                href="/contact"
+                className="text-[var(--color-moss)] underline decoration-[var(--color-moss)]/40 hover:decoration-[var(--color-moss)] underline-offset-[6px] decoration-1 transition-colors"
+              >
                 contact us directly
               </Link>
               .
             </h2>
           </div>
-          <div className="md:col-span-5 space-y-3 text-[0.95rem]">
-            <p className="flex flex-col">
-              <span className="text-white/55 text-[0.78rem] uppercase tracking-[0.12em]">Phone</span>
-              <a href="tel:+15037265967" className="hover:text-[var(--color-brass)] transition-colors">
-                (503) 726-5967
-              </a>
-            </p>
-            <p className="flex flex-col">
-              <span className="text-white/55 text-[0.78rem] uppercase tracking-[0.12em]">Email</span>
-              <a href="mailto:bill@billparish.com" className="hover:text-[var(--color-brass)] transition-colors">
-                bill@billparish.com
-              </a>
-            </p>
-            <p className="flex flex-col">
-              <span className="text-white/55 text-[0.78rem] uppercase tracking-[0.12em]">Address</span>
-              <span>4949 Meadows Road, Suite 600</span>
-              <span>Lake Oswego, Oregon 97035</span>
-            </p>
+          <div className="md:col-span-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-5 md:gap-6">
+            <ContactItem label="Phone" value="(503) 726-5967" href="tel:+15037265967" />
+            <ContactItem label="Email" value="bill@billparish.com" href="mailto:bill@billparish.com" />
+            <div className="sm:col-span-2 md:col-span-1">
+              <p className="text-[0.72rem] uppercase tracking-[0.14em] font-medium text-[var(--color-slate)] mb-1.5">
+                Office
+              </p>
+              <address className="not-italic text-[0.98rem] leading-[1.5] text-[var(--color-basalt)]">
+                4949 Meadows Road, Suite 600<br />
+                Lake Oswego, Oregon 97035
+              </address>
+            </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ContactItem({ label, value, href }: { label: string; value: string; href: string }) {
+  return (
+    <div>
+      <p className="text-[0.72rem] uppercase tracking-[0.14em] font-medium text-[var(--color-slate)] mb-1.5">
+        {label}
+      </p>
+      <a
+        href={href}
+        className="text-[0.98rem] text-[var(--color-basalt)] hover:text-[var(--color-moss)] transition-colors"
+      >
+        {value}
+      </a>
+    </div>
   );
 }

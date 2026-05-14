@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { MountainSilhouette } from './MountainSilhouette';
 
 const featuredIn = [
   'The New York Times',
@@ -63,7 +64,9 @@ export function Hero() {
       </div>
 
       {/* Press band — earned credibility, not SaaS stats */}
-      <div className="relative z-10 border-t border-white/10 bg-[var(--color-ink)]/70 backdrop-blur-md">
+      <div className="relative z-10 border-t border-white/10 bg-[var(--color-ink)]/75 backdrop-blur-md">
+        {/* Subtle ridge silhouette under the press band */}
+        <MountainSilhouette className="pointer-events-none absolute -top-16 md:-top-20 left-0 right-0 h-16 md:h-20 text-[var(--color-brass)] opacity-[0.18]" />
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-7 md:py-8">
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-10">
             <p className="text-[0.7rem] uppercase tracking-[0.18em] font-medium text-white/55 whitespace-nowrap">

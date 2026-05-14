@@ -221,8 +221,9 @@ export default function HomePage() {
       </section>
 
       {/* IV — Fiduciary commitment */}
-      <section className="bg-[var(--color-moss)] text-white">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
+      <section className="relative bg-[var(--color-moss)] text-white overflow-hidden">
+        <MountainSilhouette className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 md:h-28 text-white opacity-[0.12]" />
+        <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
           <FadeIn>
             <SectionDivider numeral="iv" label="Fiduciary commitment" className="[&_*]:!text-white/80 [&_span:first-child]:!text-[var(--color-brass)] [&_span.h-px]:!bg-white/30" />
 
