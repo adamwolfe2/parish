@@ -20,12 +20,12 @@ export function Footer() {
 
   return (
     <footer className="relative bg-[var(--color-mist)]/55">
-      {/* PNW silhouette — full-width divider at the very top of the footer */}
-      <div aria-hidden="true" className="relative w-full h-14 md:h-16 overflow-hidden border-t border-[var(--color-hairline)]">
+      {/* PNW silhouette — full-width mountain divider at the very top of the footer */}
+      <div aria-hidden="true" className="relative w-full h-24 md:h-32 overflow-hidden border-t border-[var(--color-hairline)]">
         <MountainSilhouette
-          variant="range"
+          variant="hood"
           stretch
-          className="absolute inset-0 w-full h-full text-[var(--color-moss)] opacity-[0.28]"
+          className="absolute inset-0 w-full h-full text-[var(--color-moss)] opacity-[0.30]"
         />
       </div>
 

@@ -6,9 +6,11 @@ type Props = {
 };
 
 /**
- * Minimal PNW silhouette accents.
- * - hood: Mt. Hood-style central peak (default)
- * - range: rolling Cascade range (no dominant peak)
+ * Minimal PNW silhouette accents — all paths use most of the viewbox height
+ * so peaks remain visible even when the SVG is stretched into a thin band.
+ *
+ * - hood: Mt. Hood-style central peak (dominant feature)
+ * - range: rolling Cascade range with multiple peaks across width
  * - ridge: distant horizon line, single layer (very subtle)
  */
 export function MountainSilhouette({ className, variant = 'hood', stretch = false }: Props) {
@@ -21,31 +23,35 @@ export function MountainSilhouette({ className, variant = 'hood', stretch = fals
 function HoodPeak({ className, par }: { className?: string; par: string }) {
   return (
     <svg
-      viewBox="0 0 600 120"
+      viewBox="0 0 600 100"
       preserveAspectRatio={par}
       aria-hidden="true"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
+      {/* Far distant range */}
       <path
-        d="M0 95 L60 80 L110 88 L150 70 L195 82 L240 65 L285 78 L320 70 L380 82 L430 72 L490 85 L540 75 L600 88 L600 120 L0 120 Z"
+        d="M0 70 L50 60 L100 68 L160 50 L210 64 L270 45 L320 58 L380 40 L430 55 L500 38 L560 52 L600 48 L600 100 L0 100 Z"
         fill="currentColor"
-        opacity="0.15"
+        opacity="0.18"
       />
+      {/* Middle range */}
       <path
-        d="M0 110 L40 95 L95 105 L145 88 L185 100 L230 82 L280 95 L325 70 L350 55 L375 70 L420 88 L470 78 L520 92 L600 84 L600 120 L0 120 Z"
+        d="M0 85 L60 70 L120 80 L180 55 L240 72 L300 45 L355 55 L385 30 L420 55 L480 65 L540 50 L600 65 L600 100 L0 100 Z"
         fill="currentColor"
-        opacity="0.28"
+        opacity="0.32"
       />
+      {/* Foreground — Mt. Hood-like dominant peak slightly right of center */}
       <path
-        d="M0 120 L0 112 L55 105 L120 110 L180 100 L240 108 L290 92 L325 50 L360 92 L410 100 L470 92 L520 102 L600 96 L600 120 Z"
+        d="M0 95 L50 88 L110 92 L170 80 L230 90 L290 65 L325 12 L360 65 L420 88 L480 80 L540 90 L600 85 L600 100 L0 100 Z"
         fill="currentColor"
-        opacity="0.55"
+        opacity="0.6"
       />
+      {/* Snow cap */}
       <path
-        d="M315 78 L325 50 L335 78 L330 80 L325 70 L320 80 Z"
+        d="M313 42 L325 12 L337 42 L332 44 L325 28 L319 44 Z"
         fill="currentColor"
-        opacity="0.85"
+        opacity="0.9"
       />
     </svg>
   );
@@ -60,23 +66,23 @@ function RangeRolling({ className, par }: { className?: string; par: string }) {
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Far distance — soft rolling ridges */}
+      {/* Far — light rolling ridges */}
       <path
-        d="M0 75 C 40 68, 70 72, 110 65 S 200 60, 240 64 S 320 58, 380 62 S 470 56, 520 60 S 590 62, 600 60 L 600 100 L 0 100 Z"
+        d="M0 60 L40 52 L90 58 L140 42 L190 56 L235 48 L285 38 L335 50 L380 40 L425 56 L475 44 L520 54 L575 46 L600 52 L600 100 L0 100 Z"
         fill="currentColor"
-        opacity="0.12"
+        opacity="0.22"
       />
-      {/* Middle — multiple gentle peaks */}
+      {/* Middle — bigger peaks */}
       <path
-        d="M0 85 L40 78 L80 82 L130 70 L175 80 L220 72 L265 78 L310 66 L355 76 L395 70 L450 80 L500 72 L555 82 L600 76 L600 100 L0 100 Z"
+        d="M0 80 L45 60 L95 72 L150 48 L210 70 L260 40 L305 58 L355 32 L405 58 L460 38 L510 64 L560 46 L600 62 L600 100 L0 100 Z"
         fill="currentColor"
-        opacity="0.24"
+        opacity="0.38"
       />
-      {/* Foreground rolling */}
+      {/* Foreground — dramatic rolling */}
       <path
-        d="M0 100 L0 92 L50 86 L100 90 L160 82 L220 88 L280 80 L340 86 L400 78 L460 84 L520 80 L580 86 L600 84 L600 100 Z"
+        d="M0 95 L40 75 L100 88 L160 60 L220 82 L280 50 L335 68 L395 42 L450 70 L510 55 L560 78 L600 70 L600 100 L0 100 Z"
         fill="currentColor"
-        opacity="0.42"
+        opacity="0.62"
       />
     </svg>
   );
@@ -92,9 +98,9 @@ function Ridge({ className, par }: { className?: string; par: string }) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M0 60 L0 48 L40 42 L80 46 L130 38 L180 44 L230 36 L290 42 L350 34 L410 40 L470 36 L530 42 L600 38 L600 60 Z"
+        d="M0 50 L40 32 L90 42 L150 22 L210 38 L270 18 L330 32 L390 14 L450 30 L510 20 L570 34 L600 28 L600 60 L0 60 Z"
         fill="currentColor"
-        opacity="0.32"
+        opacity="0.5"
       />
     </svg>
   );
