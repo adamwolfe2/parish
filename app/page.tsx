@@ -214,7 +214,7 @@ export default function HomePage() {
 
       {/* IV — Fiduciary commitment */}
       <section className="relative bg-[var(--color-moss)] text-white overflow-hidden">
-        <MountainSilhouette className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 md:h-28 text-white opacity-[0.12]" />
+        <MountainSilhouette stretch className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 md:h-28 text-white opacity-[0.14]" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
           <FadeIn>
             <SectionDivider numeral="iv" label="Fiduciary commitment" className="[&_*]:!text-white/80 [&_span:first-child]:!text-[var(--color-brass)] [&_span.h-px]:!bg-white/30" />
@@ -283,7 +283,7 @@ export default function HomePage() {
 
       {/* VII — Philosophy preview */}
       <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-mist)]/55 overflow-hidden">
-        <MountainSilhouette className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 md:h-20 text-[var(--color-moss)] opacity-[0.16]" />
+        <MountainSilhouette stretch className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 md:h-20 text-[var(--color-moss)] opacity-[0.18]" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 pt-20 md:pt-24 pb-24 md:pb-28">
           <FadeIn>
             <SectionDivider numeral="vii" label="Philosophy" />
