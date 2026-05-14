@@ -7,7 +7,7 @@ import { cn } from '@/lib/cn';
  */
 export function SectionDivider({ numeral, label, className }: { numeral: string; label: string; className?: string }) {
   return (
-    <div className={cn('flex items-center gap-4', className)}>
+    <div className={cn('inline-flex items-center gap-4', className)}>
       <span className="font-[family-name:var(--font-mono)] text-[0.72rem] tracking-[0.18em] text-[var(--color-moss)] font-medium">
         {numeral}
       </span>

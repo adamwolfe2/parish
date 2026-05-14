@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Hero } from '@/components/editorial/Hero';
 import { PressMarks } from '@/components/editorial/PressMarks';
@@ -146,67 +145,39 @@ export default function HomePage() {
         <MountainSilhouette variant="range" stretch className="pointer-events-none absolute top-0 left-0 right-0 h-12 md:h-16 text-[var(--color-moss)] opacity-[0.08] rotate-180" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <SectionDivider numeral="iii" label="Founder" />
+            <div className="mx-auto max-w-3xl text-center">
+              <SectionDivider numeral="iii" label="Founder" className="justify-center" />
+              <h2 className="mt-8 font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                A 27-year practice grounded in original research.
+              </h2>
+              <p className="mt-7 mx-auto max-w-2xl text-[1.05rem] leading-[1.7] text-[var(--color-basalt)]">
+                Bill Parish is a Registered Investment Adviser, CPA, MBA, and former CFO.
+                His original research has provided the analytical backbone for reporting in
+                The New York Times, The Wall Street Journal, Bloomberg, Barron&rsquo;s,
+                Financial Times, and The Guardian over more than two decades.
+              </p>
+            </div>
           </FadeIn>
 
-          <div className="mt-10 grid gap-12 md:grid-cols-12 md:gap-16 md:items-start">
-            <FadeIn className="md:col-span-5">
-              <div className="relative aspect-[4/5] w-full max-w-md mx-auto overflow-hidden bg-[var(--color-mist)]">
-                <Image
-                  src="/images/bill-parish-portrait.webp"
-                  alt="Bill Parish, founder and principal of Parish & Company LLC"
-                  fill
-                  sizes="(max-width: 768px) 90vw, 38vw"
-                  className="object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--color-ink)]/90 via-[var(--color-ink)]/45 to-transparent p-6 pt-16">
-                  <p className="text-[0.7rem] uppercase tracking-[0.18em] font-medium text-[var(--color-brass)]">
-                    Principal &amp; Founder
-                  </p>
-                  <p className="mt-1 font-[family-name:var(--font-display)] text-[1.5rem] text-white">
-                    Bill Parish
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
+          <FadeIn delay={0.05} className="mt-12">
+            <dl className="mx-auto max-w-4xl grid gap-px bg-[var(--color-hairline-strong)] border border-[var(--color-hairline-strong)] sm:grid-cols-2 lg:grid-cols-4">
+              <FounderCell label="Education" value="MBA · Portland State BA · University of Oregon" />
+              <FounderCell label="Credentials" value="Registered Investment Adviser · CPA" />
+              <FounderCell label="Experience" value="CFO · Senior Analyst · Portfolio Manager" />
+              <FounderCell label="Languages" value="English · Spanish · French · Italian · Russian" />
+            </dl>
+          </FadeIn>
 
-            <FadeIn delay={0.05} className="md:col-span-7">
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.015em] text-[var(--color-basalt)]">
-                A 27-year practice you can actually reach.
-              </h2>
-
-              <p className="mt-7 text-[clamp(1.05rem,1.4vw,1.2rem)] leading-[1.6] text-[var(--color-basalt)] max-w-prose">
-                Choosing Parish &amp; Company provides a more personalized service and level
-                of support. The firm focuses upon investment selection and client relations —
-                providing long-term continuity and stability, especially in this age of
-                mergers.
-              </p>
-
-              <p className="mt-5 text-[1rem] leading-[1.7] text-[var(--color-slate)] max-w-prose">
-                Clients include exceptionally large portfolios in addition to smaller
-                portfolios, although smaller portfolios are only accepted based upon a strong
-                personal connection or relationship with an existing client.
-              </p>
-
-              <dl className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 border-t border-[var(--color-hairline)] pt-8">
-                <Credential label="Education" value="MBA · Portland State University &nbsp;·&nbsp; BA · University of Oregon" />
-                <Credential label="Credentials" value="Registered Investment Adviser &nbsp;·&nbsp; CPA" />
-                <Credential label="Experience" value="Chief Financial Officer &nbsp;·&nbsp; Senior Analyst &nbsp;·&nbsp; Portfolio Manager" />
-                <Credential label="Languages" value="English &nbsp;·&nbsp; Spanish &nbsp;·&nbsp; French &nbsp;·&nbsp; Italian &nbsp;·&nbsp; Russian" />
-              </dl>
-
-              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 bg-[var(--color-moss)] hover:bg-[var(--color-moss-deep)] text-white px-6 py-3 text-[0.95rem] font-medium tracking-tight transition-colors group"
-                >
-                  <span>Read full background</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
-                </Link>
-                <EditorialLink href="/contact">Schedule a conversation</EditorialLink>
-              </div>
-            </FadeIn>
-          </div>
+          <FadeIn delay={0.1} className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 bg-[var(--color-moss)] hover:bg-[var(--color-moss-deep)] text-white px-6 py-3 text-[0.95rem] font-medium tracking-tight transition-colors group"
+            >
+              <span>Read full background</span>
+              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+            </Link>
+            <EditorialLink href="/contact">Schedule a conversation</EditorialLink>
+          </FadeIn>
         </div>
       </section>
 
@@ -382,16 +353,15 @@ export default function HomePage() {
   );
 }
 
-function Credential({ label, value }: { label: string; value: string }) {
+function FounderCell({ label, value }: { label: string; value: string }) {
   return (
-    <div>
-      <dt className="text-[0.7rem] uppercase tracking-[0.14em] text-[var(--color-slate)] font-medium">
+    <div className="bg-[var(--color-bone)] p-6 md:p-7">
+      <dt className="font-[family-name:var(--font-mono)] text-[0.7rem] tracking-[0.15em] text-[var(--color-moss)] font-medium uppercase">
         {label}
       </dt>
-      <dd
-        className="mt-2 text-[0.98rem] text-[var(--color-basalt)] leading-snug"
-        dangerouslySetInnerHTML={{ __html: value }}
-      />
+      <dd className="mt-3 text-[0.95rem] text-[var(--color-basalt)] leading-[1.55]">
+        {value}
+      </dd>
     </div>
   );
 }
