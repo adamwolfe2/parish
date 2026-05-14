@@ -1,0 +1,101 @@
+{
+  "publications": [
+    {
+      "slug": "nyt",
+      "name": "The New York Times",
+      "file": "nyt.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/b/bd/The_New_York_Times_logo.svg",
+      "license": "Public domain (wordmark, pre-1928 typography)"
+    },
+    {
+      "slug": "wsj",
+      "name": "The Wall Street Journal",
+      "file": "wsj.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/4/4a/WSJ_Logo.svg",
+      "license": "Trademark (editorial / nominative fair use)"
+    },
+    {
+      "slug": "bloomberg",
+      "name": "Bloomberg",
+      "file": "bloomberg.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/5/5d/New_Bloomberg_Logo.svg",
+      "license": "Trademark (editorial / nominative fair use)"
+    },
+    {
+      "slug": "barrons",
+      "name": "Barron's",
+      "file": "barrons.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/d/de/Logo_Barron%27s.svg",
+      "license": "Trademark (editorial / nominative fair use)"
+    },
+    {
+      "slug": "ft",
+      "name": "Financial Times",
+      "file": "ft.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/6/68/Financial_Times_masthead.svg",
+      "license": "Trademark (editorial / nominative fair use)"
+    },
+    {
+      "slug": "la-times",
+      "name": "Los Angeles Times",
+      "file": "la-times.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/1/18/Los_Angeles_Times_logo.svg",
+      "license": "Public domain (wordmark, pre-1928 typography)"
+    },
+    {
+      "slug": "the-guardian",
+      "name": "The Guardian",
+      "file": "the-guardian.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/7/75/The_Guardian_2018.svg",
+      "license": "Trademark (editorial / nominative fair use)"
+    },
+    {
+      "slug": "npr",
+      "name": "NPR",
+      "file": "npr.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/1/18/NPR_new_logo.svg",
+      "license": "Trademark (editorial / nominative fair use)"
+    },
+    {
+      "slug": "usa-today",
+      "name": "USA Today",
+      "file": "usa-today.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/f/fe/USA_Today_%282020-01-29%29.svg",
+      "license": "Trademark (editorial / nominative fair use)"
+    },
+    {
+      "slug": "fortune",
+      "name": "Fortune",
+      "file": "fortune.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/7/74/Fortune_magazine_logo_2016.svg",
+      "license": "Trademark (editorial / nominative fair use)"
+    },
+    {
+      "slug": "oregonian",
+      "name": "The Oregonian",
+      "file": "oregonian.svg",
+      "format": "svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/9/96/The_Oregonian_logo.svg",
+      "license": "Public domain / trademark (editorial fair use)"
+    },
+    {
+      "slug": "willamette-week",
+      "name": "Willamette Week",
+      "file": "willamette-week.png",
+      "format": "png",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/6/66/Willamette_Week_logo.png",
+      "license": "Trademark (editorial / nominative fair use)"
+    }
+  ],
+  "missing": []
+}
