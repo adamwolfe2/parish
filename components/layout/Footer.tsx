@@ -19,7 +19,8 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[var(--color-mist)]/55">
+    <footer className="relative bg-[var(--color-mist)]/55" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" className="sr-only">Footer</h2>
       {/* PNW silhouette — full-width mountain divider at the very top of the footer */}
       <div aria-hidden="true" className="relative w-full h-24 md:h-32 overflow-hidden border-t border-[var(--color-hairline)]">
         <MountainSilhouette

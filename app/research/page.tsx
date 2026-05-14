@@ -89,10 +89,10 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
                   />
                   <button
                     type="submit"
-                    className="absolute right-0 top-1/2 -translate-y-1/2 text-[var(--color-slate)] hover:text-[var(--color-moss)] transition-colors"
-                    aria-label="Search"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--color-slate)] hover:text-[var(--color-moss)] transition-colors"
+                    aria-label="Search the archive"
                   >
-                    →
+                    <span aria-hidden="true">→</span>
                   </button>
                 </div>
               </form>
@@ -114,7 +114,7 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
           <div className="flex flex-wrap items-center gap-1.5">
             <Link
               href={buildHref({ topic: undefined, page: undefined })}
-              className={`inline-flex items-center px-3.5 py-1.5 text-[0.82rem] font-medium tracking-tight transition-colors ${
+              className={`inline-flex items-center min-h-[40px] px-3.5 py-2 text-[0.82rem] font-medium tracking-tight transition-colors ${
                 !topic
                   ? 'bg-[var(--color-basalt)] text-[var(--color-bone)]'
                   : 'bg-transparent text-[var(--color-slate)] hover:text-[var(--color-basalt)] hover:bg-[var(--color-mist)]'
@@ -126,7 +126,7 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
               <Link
                 key={c.name}
                 href={buildHref({ topic: c.name, page: undefined })}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[0.82rem] font-medium tracking-tight transition-colors ${
+                className={`inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 text-[0.82rem] font-medium tracking-tight transition-colors ${
                   topic === c.name
                     ? 'bg-[var(--color-basalt)] text-[var(--color-bone)]'
                     : 'bg-transparent text-[var(--color-slate)] hover:text-[var(--color-basalt)] hover:bg-[var(--color-mist)]'
@@ -186,23 +186,35 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
               {/* Pagination */}
               {totalPages > 1 && (
                 <nav className="mt-10 flex items-center justify-between" aria-label="Pagination">
-                  <Link
-                    href={buildHref({ page: pageSafe > 1 ? String(pageSafe - 1) : undefined })}
-                    className={`text-[0.95rem] ${pageSafe === 1 ? 'text-[var(--color-slate)]/40 pointer-events-none' : 'text-[var(--color-slate)] hover:text-[var(--color-basalt)]'}`}
-                    aria-disabled={pageSafe === 1}
-                  >
-                    ← Previous
-                  </Link>
+                  {pageSafe > 1 ? (
+                    <Link
+                      href={buildHref({ page: pageSafe > 2 ? String(pageSafe - 1) : undefined })}
+                      className="inline-flex items-center min-h-[44px] text-[0.95rem] text-[var(--color-slate)] hover:text-[var(--color-basalt)] transition-colors"
+                      rel="prev"
+                    >
+                      <span aria-hidden="true" className="mr-2">←</span>Previous
+                    </Link>
+                  ) : (
+                    <span className="inline-flex items-center min-h-[44px] text-[0.95rem] text-[var(--color-slate)]/40 select-none" aria-hidden="true">
+                      <span className="mr-2">←</span>Previous
+                    </span>
+                  )}
                   <span className="text-[0.9rem] text-[var(--color-slate)] font-[family-name:var(--font-mono)] tabular-nums">
                     Page {pageSafe} of {totalPages}
                   </span>
-                  <Link
-                    href={buildHref({ page: pageSafe < totalPages ? String(pageSafe + 1) : undefined })}
-                    className={`text-[0.95rem] ${pageSafe === totalPages ? 'text-[var(--color-slate)]/40 pointer-events-none' : 'text-[var(--color-slate)] hover:text-[var(--color-basalt)]'}`}
-                    aria-disabled={pageSafe === totalPages}
-                  >
-                    Next →
-                  </Link>
+                  {pageSafe < totalPages ? (
+                    <Link
+                      href={buildHref({ page: String(pageSafe + 1) })}
+                      className="inline-flex items-center min-h-[44px] text-[0.95rem] text-[var(--color-slate)] hover:text-[var(--color-basalt)] transition-colors"
+                      rel="next"
+                    >
+                      Next<span aria-hidden="true" className="ml-2">→</span>
+                    </Link>
+                  ) : (
+                    <span className="inline-flex items-center min-h-[44px] text-[0.95rem] text-[var(--color-slate)]/40 select-none" aria-hidden="true">
+                      Next<span className="ml-2">→</span>
+                    </span>
+                  )}
                 </nav>
               )}
             </div>

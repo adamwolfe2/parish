@@ -68,10 +68,10 @@ export function Hero() {
         <MountainSilhouette className="pointer-events-none absolute -top-14 md:-top-16 left-0 right-0 h-14 md:h-16 text-[var(--color-brass)] opacity-[0.16]" />
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-5 md:py-6">
           <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-8">
-            <p className="text-[0.65rem] uppercase tracking-[0.2em] font-medium text-white/50 whitespace-nowrap">
+            <p className="text-[0.65rem] uppercase tracking-[0.2em] font-medium text-white/70 whitespace-nowrap">
               Featured research in
             </p>
-            <ul className="flex flex-wrap items-center gap-x-6 gap-y-1.5 font-[family-name:var(--font-display)] text-[0.88rem] md:text-[0.92rem] text-white/80">
+            <ul className="flex flex-wrap items-center gap-x-6 gap-y-1.5 font-[family-name:var(--font-display)] text-[0.88rem] md:text-[0.92rem] text-white/90">
               {featuredIn.map((p, i) => (
                 <li key={p} className="flex items-center gap-6">
                   {i > 0 && <span aria-hidden="true" className="text-white/20 hidden md:inline">·</span>}

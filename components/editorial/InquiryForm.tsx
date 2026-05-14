@@ -49,7 +49,11 @@ export function InquiryForm() {
 
   if (status === 'success') {
     return (
-      <div className="border border-[var(--color-hairline-strong)] bg-[var(--color-mist)]/50 p-8">
+      <div
+        role="status"
+        aria-live="polite"
+        className="border border-[var(--color-hairline-strong)] bg-[var(--color-mist)]/50 p-8"
+      >
         <p className="text-[0.72rem] uppercase tracking-[0.15em] font-medium text-[var(--color-moss)]">
           Message received
         </p>
