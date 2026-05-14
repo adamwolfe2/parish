@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Hero } from '@/components/editorial/Hero';
 import { PressMarks } from '@/components/editorial/PressMarks';
@@ -145,39 +146,69 @@ export default function HomePage() {
         <MountainSilhouette variant="range" stretch className="pointer-events-none absolute top-0 left-0 right-0 h-12 md:h-16 text-[var(--color-moss)] opacity-[0.08] rotate-180" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <div className="mx-auto max-w-3xl text-center">
-              <SectionDivider numeral="iii" label="Founder" className="justify-center" />
-              <h2 className="mt-8 font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+            <div className="flex justify-center">
+              <SectionDivider numeral="iii" label="Founder" />
+            </div>
+          </FadeIn>
+
+          <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-14 lg:gap-16 md:items-center">
+            {/* Bill's portrait */}
+            <FadeIn className="md:col-span-5">
+              <figure className="relative mx-auto md:ml-auto md:mr-0 w-full max-w-[340px]">
+                <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)]">
+                  <Image
+                    src="/images/bill-parish-headshot.webp"
+                    alt="Bill Parish, founder of Parish & Company LLC"
+                    fill
+                    sizes="(max-width: 768px) 80vw, 340px"
+                    quality={92}
+                    className="object-cover object-top"
+                    style={{ imageRendering: 'auto' }}
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/55 via-transparent to-transparent" />
+                  <figcaption className="absolute bottom-0 left-0 right-0 p-5 pt-12">
+                    <p className="text-[0.68rem] uppercase tracking-[0.18em] font-medium text-[var(--color-brass)]">
+                      Principal &amp; Founder
+                    </p>
+                    <p className="mt-1 font-[family-name:var(--font-display)] text-[1.35rem] text-white tracking-tight">
+                      Bill Parish
+                    </p>
+                  </figcaption>
+                </div>
+              </figure>
+            </FadeIn>
+
+            {/* Content */}
+            <FadeIn delay={0.05} className="md:col-span-7">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.4rem)] leading-[1.1] tracking-[-0.015em] text-[var(--color-basalt)]">
                 A 27-year practice grounded in original research.
               </h2>
-              <p className="mt-7 mx-auto max-w-2xl text-[1.05rem] leading-[1.7] text-[var(--color-basalt)]">
+              <p className="mt-6 text-[1.05rem] leading-[1.7] text-[var(--color-basalt)] max-w-prose">
                 Bill Parish is a Registered Investment Adviser, CPA, MBA, and former CFO.
                 His original research has provided the analytical backbone for reporting in
                 The New York Times, The Wall Street Journal, Bloomberg, Barron&rsquo;s,
                 Financial Times, and The Guardian over more than two decades.
               </p>
-            </div>
-          </FadeIn>
 
-          <FadeIn delay={0.05} className="mt-12">
-            <dl className="mx-auto max-w-4xl grid gap-px bg-[var(--color-hairline-strong)] border border-[var(--color-hairline-strong)] sm:grid-cols-2 lg:grid-cols-4">
-              <FounderCell label="Education" value="MBA · Portland State BA · University of Oregon" />
-              <FounderCell label="Credentials" value="Registered Investment Adviser · CPA" />
-              <FounderCell label="Experience" value="CFO · Senior Analyst · Portfolio Manager" />
-              <FounderCell label="Languages" value="English · Spanish · French · Italian · Russian" />
-            </dl>
-          </FadeIn>
+              <dl className="mt-9 grid grid-cols-2 gap-x-8 gap-y-5 border-t border-[var(--color-hairline)] pt-7">
+                <Credential label="Education" value="MBA · Portland State BA · University of Oregon" />
+                <Credential label="Credentials" value="Registered Investment Adviser · CPA" />
+                <Credential label="Experience" value="CFO · Senior Analyst · Portfolio Manager" />
+                <Credential label="Languages" value="English · Spanish · French · Italian · Russian" />
+              </dl>
 
-          <FadeIn delay={0.1} className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 bg-[var(--color-moss)] hover:bg-[var(--color-moss-deep)] text-white px-6 py-3 text-[0.95rem] font-medium tracking-tight transition-colors group"
-            >
-              <span>Read full background</span>
-              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
-            </Link>
-            <EditorialLink href="/contact">Schedule a conversation</EditorialLink>
-          </FadeIn>
+              <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 bg-[var(--color-moss)] hover:bg-[var(--color-moss-deep)] text-white px-6 py-3 text-[0.95rem] font-medium tracking-tight transition-colors group"
+                >
+                  <span>Read full background</span>
+                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+                </Link>
+                <EditorialLink href="/contact">Schedule a conversation</EditorialLink>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -353,13 +384,13 @@ export default function HomePage() {
   );
 }
 
-function FounderCell({ label, value }: { label: string; value: string }) {
+function Credential({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-[var(--color-bone)] p-6 md:p-7">
-      <dt className="font-[family-name:var(--font-mono)] text-[0.7rem] tracking-[0.15em] text-[var(--color-moss)] font-medium uppercase">
+    <div>
+      <dt className="font-[family-name:var(--font-mono)] text-[0.68rem] tracking-[0.15em] text-[var(--color-moss)] font-medium uppercase">
         {label}
       </dt>
-      <dd className="mt-3 text-[0.95rem] text-[var(--color-basalt)] leading-[1.55]">
+      <dd className="mt-1.5 text-[0.92rem] text-[var(--color-basalt)] leading-[1.5]">
         {value}
       </dd>
     </div>
