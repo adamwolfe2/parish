@@ -47,7 +47,7 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-[var(--color-brass)] hover:bg-[var(--color-bone)] text-[var(--color-ink)] px-5 py-2.5 text-[0.9rem] font-medium tracking-tight transition-colors group"
+              className="inline-flex items-center gap-2 bg-[var(--color-brass)] hover:bg-[var(--color-bone)] text-[var(--color-ink)] px-5 py-3 text-[0.9rem] min-h-[44px] font-medium tracking-tight transition-colors group"
             >
               <span>Schedule a conversation</span>
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>

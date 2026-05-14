@@ -28,6 +28,15 @@ export function Nav() {
     setMobileOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [mobileOpen]);
+
   return (
     <header
       className={cn(
@@ -75,9 +84,10 @@ export function Nav() {
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            className="md:hidden p-2 -mr-2 text-[var(--color-basalt)]"
-            aria-label="Toggle menu"
+            className="md:hidden p-3 -mr-3 text-[var(--color-basalt)] min-w-[44px] min-h-[44px] inline-flex items-center justify-center"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               {mobileOpen ? (
@@ -94,7 +104,7 @@ export function Nav() {
         </div>
 
         {mobileOpen && (
-          <nav className="md:hidden pb-6 pt-2 border-t border-[var(--color-hairline)]" aria-label="Mobile">
+          <nav id="mobile-nav" className="md:hidden pb-6 pt-2 border-t border-[var(--color-hairline)]" aria-label="Mobile">
             <ul className="space-y-1">
               {items.map((item) => {
                 const active = pathname === item.href || pathname.startsWith(item.href + '/');

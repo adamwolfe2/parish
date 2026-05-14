@@ -66,9 +66,9 @@ export default function ContactPage() {
               <Kicker>By phone or email</Kicker>
               <div className="mt-8 space-y-10">
                 <div>
-                  <h3 className="text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)]">
+                  <p className="text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)]">
                     Phone
-                  </h3>
+                  </p>
                   <a
                     href="tel:+15037265967"
                     className="mt-2 block font-[family-name:var(--font-display)] text-[1.85rem] tracking-tight text-[var(--color-basalt)] hover:text-[var(--color-moss)] transition-colors"
@@ -78,9 +78,9 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)]">
+                  <p className="text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)]">
                     Email
-                  </h3>
+                  </p>
                   <a
                     href="mailto:bill@billparish.com"
                     className="mt-2 block font-[family-name:var(--font-display)] text-[1.5rem] md:text-[1.65rem] tracking-tight text-[var(--color-basalt)] hover:text-[var(--color-moss)] transition-colors break-all"
@@ -90,9 +90,9 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)]">
+                  <p className="text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)]">
                     Office
-                  </h3>
+                  </p>
                   <address className="mt-2 not-italic text-[1.05rem] leading-relaxed text-[var(--color-basalt)]">
                     Parish &amp; Company LLC<br />
                     4949 Meadows Road, Suite 600<br />
