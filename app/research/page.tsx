@@ -59,19 +59,21 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
       <header className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
           <FadeIn>
-            <Kicker>Research</Kicker>
-            <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.5rem,5.5vw,4.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)] max-w-3xl">
-              Original analysis, published since 1998.
-            </h1>
-            <p className="mt-7 max-w-2xl text-[var(--text-lead)] leading-[1.6] text-[var(--color-slate)]">
-              {all.length} research notes on corporate governance, tax policy, pensions,
-              capital markets, and the Pacific Northwest economy. Quoted in tier-one business
-              journalism for more than two decades.
-            </p>
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker className="inline-block">Research</Kicker>
+              <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.15rem,4.2vw,3.5rem)] leading-[1.08] tracking-[-0.02em] text-[var(--color-basalt)]">
+                Original analysis, published since 1998.
+              </h1>
+              <p className="mt-7 mx-auto max-w-2xl text-[var(--text-lead)] leading-[1.6] text-[var(--color-slate)]">
+                {all.length} research notes on corporate governance, tax policy, pensions,
+                capital markets, and the Pacific Northwest economy. Quoted in tier-one
+                business journalism for more than two decades.
+              </p>
+            </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="mt-10 flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-10">
+            <div className="mt-12 flex flex-col sm:flex-row sm:items-end sm:justify-center gap-6 sm:gap-10 max-w-3xl mx-auto">
               <form action="/research" method="get" className="max-w-md flex-1">
                 <label htmlFor="q" className="block text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)] mb-2">
                   Search the archive

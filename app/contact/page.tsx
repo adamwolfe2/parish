@@ -13,12 +13,14 @@ export default function ContactPage() {
   return (
     <article>
       <header className="border-b border-[var(--color-hairline)]">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <Kicker>Contact</Kicker>
-            <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.5rem,5.5vw,4.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)] max-w-3xl">
-              Inquiries from prospective clients, media, and academic researchers are welcomed.
-            </h1>
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker className="inline-block">Contact</Kicker>
+              <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.15rem,4.2vw,3.5rem)] leading-[1.08] tracking-[-0.02em] text-[var(--color-basalt)]">
+                Inquiries from prospective clients, media, and academic researchers are welcomed.
+              </h1>
+            </div>
           </FadeIn>
         </div>
       </header>
