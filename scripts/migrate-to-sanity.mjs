@@ -115,7 +115,19 @@ const slugify = (s) =>
     .slice(0, 64);
 
 const topicIdFor = (name) => `topic-${slugify(name)}`;
-const postIdFor = (slug) => `post-${slug}`;
+// Sanity document IDs are capped at ~128 chars. Long WordPress slugs exceed
+// that, so we hash the tail and keep a readable prefix.
+const postIdFor = (slug) => {
+  const base = `post-${slug}`;
+  if (base.length <= 100) return base;
+  // Stable short hash from the slug (FNV-1a) so re-runs hit the same _id.
+  let h = 0x811c9dc5;
+  for (let i = 0; i < slug.length; i++) {
+    h ^= slug.charCodeAt(i);
+    h = (h * 0x01000193) >>> 0;
+  }
+  return `${base.slice(0, 88)}-${h.toString(16)}`;
+};
 
 // ---------- step 1: gather distinct topics ----------
 const topicNames = new Set();
