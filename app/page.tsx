@@ -100,19 +100,9 @@ export default function HomePage() {
           <FadeIn>
             <SectionDivider numeral="ii" label="Services" />
 
-            <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
-              <div className="md:col-span-7">
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.02em] text-[var(--color-basalt)]">
-                  Three categories of clients. One disciplined process.
-                </h2>
-              </div>
-              <div className="md:col-span-5 md:pl-8 md:border-l md:border-[var(--color-hairline-strong)]">
-                <p className="text-[1.05rem] leading-[1.65] text-[var(--color-slate)] max-w-md">
-                  The same disciplined investment process is applied across every
-                  relationship — no commissions, no kickbacks, no revenue-sharing.
-                </p>
-              </div>
-            </div>
+            <h2 className="mt-8 font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)] max-w-3xl">
+              Three categories of clients. One disciplined process — applied across every relationship.
+            </h2>
           </FadeIn>
 
           <FadeIn delay={0.05} className="mt-12">
@@ -268,23 +258,15 @@ export default function HomePage() {
             <FadeIn>
               <SectionDivider numeral="vi" label="Notable research" />
 
-              <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
-                <div className="md:col-span-7">
-                  <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.02em] text-[var(--color-basalt)]">
-                    Stories that broke wider.
-                  </h2>
-                </div>
-                <div className="md:col-span-5 md:pl-8 md:border-l md:border-[var(--color-hairline-strong)]">
-                  <p className="text-[1.05rem] leading-[1.65] text-[var(--color-slate)] max-w-md">
-                    A selection of research that drove tier-one journalism. The analytical
-                    backbone behind major reporting.
-                  </p>
-                  <EditorialLink href="/research" className="mt-5">Browse the archive</EditorialLink>
-                </div>
+              <div className="mt-8 flex flex-wrap items-end justify-between gap-x-12 gap-y-4">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)] max-w-2xl">
+                  Original analysis cited across tier-one journalism.
+                </h2>
+                <EditorialLink href="/research">Browse the archive</EditorialLink>
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.05} className="mt-12">
+            <FadeIn delay={0.05} className="mt-10">
               <ul className="border-y border-[var(--color-hairline-strong)]">
                 {featured.map((post) => (
                   <li key={post.slug}>
@@ -377,22 +359,15 @@ export default function HomePage() {
           <FadeIn>
             <SectionDivider numeral="viii" label="Latest" />
 
-            <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
-              <div className="md:col-span-7">
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.02em] text-[var(--color-basalt)]">
-                  Most recent notes.
-                </h2>
-              </div>
-              <div className="md:col-span-5 md:pl-8 md:border-l md:border-[var(--color-hairline-strong)]">
-                <p className="text-[1.05rem] leading-[1.65] text-[var(--color-slate)] max-w-md">
-                  Reverse chronological. The full archive lives in research.
-                </p>
-                <EditorialLink href="/research" className="mt-5">View all research</EditorialLink>
-              </div>
+            <div className="mt-8 flex flex-wrap items-end justify-between gap-x-12 gap-y-4">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)] max-w-2xl">
+                Most recent notes.
+              </h2>
+              <EditorialLink href="/research">View all research</EditorialLink>
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.05} className="mt-12">
+          <FadeIn delay={0.05} className="mt-10">
             <ul className="border-y border-[var(--color-hairline-strong)]">
               {latest.map((post) => (
                 <li key={post.slug}>
