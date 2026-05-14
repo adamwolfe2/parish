@@ -76,6 +76,19 @@ body {
   color: var(--color-bone);
 }
 
+/* Accessible focus ring — keyboard users only, never on mouse click */
+:focus-visible {
+  outline: 2px solid var(--color-moss);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* But never on buttons that have explicit hover/active states */
+button:focus-visible,
+[role='button']:focus-visible {
+  outline-offset: 2px;
+}
+
 /* Editorial prose styles for long-form content */
 .prose-editorial {
   font-size: var(--text-body);

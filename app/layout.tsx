@@ -73,8 +73,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={[organizationSchema, personSchema]} />
       </head>
       <body className="min-h-screen flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-[var(--color-basalt)] focus:text-[var(--color-bone)] focus:px-4 focus:py-2 focus:text-[0.9rem] focus:font-medium"
+        >
+          Skip to content
+        </a>
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <ContactStrip />
         <Footer />
         <Plausible />

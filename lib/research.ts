@@ -129,6 +129,28 @@ export function getPostBySlug(slug: string): ResearchPost | null {
   return loadAllPosts().find((p) => p.slug === slug) || null;
 }
 
+export function getAdjacentPosts(slug: string): { previous: ResearchPost | null; next: ResearchPost | null } {
+  const posts = loadAllPosts();
+  const idx = posts.findIndex((p) => p.slug === slug);
+  if (idx === -1) return { previous: null, next: null };
+  // Newest first in array, so "previous" (older) is at higher idx
+  return {
+    next: idx > 0 ? posts[idx - 1] : null,
+    previous: idx < posts.length - 1 ? posts[idx + 1] : null,
+  };
+}
+
+/**
+ * Estimate reading time from a body HTML or plain text string.
+ * Uses 220 words/min — relaxed pace for substantive analysis.
+ */
+export function estimateReadingMinutes(html?: string, text?: string): number {
+  const source = text || (html ? html.replace(/<[^>]+>/g, ' ') : '');
+  if (!source) return 0;
+  const words = source.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 220));
+}
+
 export function formatPostDate(iso: string): string {
   if (!iso) return '';
   const d = new Date(iso);
