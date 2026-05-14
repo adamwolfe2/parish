@@ -87,6 +87,21 @@ export function getLatestPosts(limit = 6): ResearchPost[] {
   return loadAllPosts().slice(0, limit);
 }
 
+export function getFeaturedPosts(): ResearchPost[] {
+  try {
+    const file = path.join(process.cwd(), 'content', 'featured-research.json');
+    if (!fs.existsSync(file)) return [];
+    const data = JSON.parse(fs.readFileSync(file, 'utf8')) as { slugs?: string[] };
+    const all = loadAllPosts();
+    const map = new Map(all.map((p) => [p.slug, p] as const));
+    return (data.slugs || [])
+      .map((s) => map.get(s))
+      .filter((p): p is ResearchPost => Boolean(p));
+  } catch {
+    return [];
+  }
+}
+
 export function getAllCategories(): { name: string; count: number }[] {
   const counts = new Map<string, number>();
   for (const p of loadAllPosts()) {

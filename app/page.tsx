@@ -6,10 +6,11 @@ import { SectionHeader } from '@/components/editorial/SectionHeader';
 import { EditorialLink } from '@/components/editorial/EditorialLink';
 import { ResearchCard } from '@/components/editorial/ResearchCard';
 import { FadeIn } from '@/components/motion/FadeIn';
-import { getLatestPosts } from '@/lib/research';
+import { getLatestPosts, getFeaturedPosts } from '@/lib/research';
 
 export default function HomePage() {
   const latest = getLatestPosts(4);
+  const featured = getFeaturedPosts().slice(0, 3);
 
   return (
     <>
@@ -24,17 +25,45 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Notable research (curated) */}
+      {featured.length > 0 && (
+        <section className="border-b border-[var(--color-hairline)]">
+          <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
+            <FadeIn>
+              <div className="flex flex-wrap items-end justify-between gap-6">
+                <SectionHeader
+                  kicker="Notable research"
+                  title="Stories that broke wider."
+                  dek="A selection of research that drove tier-one journalism. The work behind the work."
+                />
+                <EditorialLink href="/research">Browse the full archive</EditorialLink>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.1} className="mt-14">
+              <ul className="border-b border-[var(--color-hairline)]">
+                {featured.map((post) => (
+                  <li key={post.slug}>
+                    <ResearchCard post={post} size="lg" />
+                  </li>
+                ))}
+              </ul>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+
       {/* Latest research */}
       <section className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeader
-                kicker="Research"
-                title="Original analysis, published since 1998."
-                dek="Long-form research on corporate governance, tax structure, pensions, and capital markets — quoted in tier-one business journalism for more than two decades."
+                kicker="Latest"
+                title="Most recent notes."
+                dek="The most recent published work, in reverse chronological order. The full 203-note archive lives in research."
               />
-              <EditorialLink href="/research">View the archive</EditorialLink>
+              <EditorialLink href="/research">View all</EditorialLink>
             </div>
           </FadeIn>
 
@@ -42,7 +71,7 @@ export default function HomePage() {
             <ul className="border-b border-[var(--color-hairline)]">
               {latest.map((post) => (
                 <li key={post.slug}>
-                  <ResearchCard post={post} size="lg" />
+                  <ResearchCard post={post} size="md" />
                 </li>
               ))}
             </ul>

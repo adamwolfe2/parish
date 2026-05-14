@@ -34,3 +34,4 @@ next-env.d.ts
 # scraper output (gitignored — used for content migration only)
 scraped/
 public-photos-staging/
+content/posts/_scrape-log.txt

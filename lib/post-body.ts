@@ -75,16 +75,34 @@ export function sanitizePostHtml(html: string): string {
       // Block javascript: URLs and data: URLs except images
       if (/^\s*javascript:/i.test(value)) continue;
       if (name === 'href' && /^\s*data:/i.test(value)) continue;
-      // Force external links to open safely
-      if (t === 'a' && name === 'href' && /^https?:/i.test(value)) {
-        safeAttrs.push(`href="${escapeAttr(value)}"`);
+      // Rewrite legacy WordPress URLs to new /research routes
+      let v = value;
+      if (t === 'a' && name === 'href') {
+        v = rewriteInternalLink(value);
+        if (/^https?:\/\/(?:www\.)?parishinvestments\.com\//i.test(v)) {
+          // External link to legacy site — strip to relative for rewrite
+          v = v.replace(/^https?:\/\/(?:www\.)?parishinvestments\.com/i, '');
+          v = rewriteInternalLink(v);
+        }
+        if (v.startsWith('/research/') || v.startsWith('/')) {
+          // Internal — no target=_blank
+          safeAttrs.push(`href="${escapeAttr(v)}"`);
+          continue;
+        }
+      }
+      if (t === 'a' && name === 'href' && /^https?:/i.test(v)) {
+        safeAttrs.push(`href="${escapeAttr(v)}"`);
         continue;
       }
-      safeAttrs.push(value ? `${name}="${escapeAttr(value)}"` : name);
+      safeAttrs.push(v ? `${name}="${escapeAttr(v)}"` : name);
     }
     if (t === 'a' && safeAttrs.some((a) => a.startsWith('href='))) {
-      if (!safeAttrs.some((a) => a.startsWith('rel='))) safeAttrs.push('rel="noopener noreferrer"');
-      if (!safeAttrs.some((a) => a.startsWith('target='))) safeAttrs.push('target="_blank"');
+      const hrefAttr = safeAttrs.find((a) => a.startsWith('href=')) || '';
+      const isInternal = /href="\//.test(hrefAttr);
+      if (!isInternal) {
+        if (!safeAttrs.some((a) => a.startsWith('rel='))) safeAttrs.push('rel="noopener noreferrer"');
+        if (!safeAttrs.some((a) => a.startsWith('target='))) safeAttrs.push('target="_blank"');
+      }
     }
     if (t === 'img') {
       if (!safeAttrs.some((a) => a.startsWith('loading='))) safeAttrs.push('loading="lazy"');
@@ -98,4 +116,25 @@ export function sanitizePostHtml(html: string): string {
 
 function escapeAttr(s: string): string {
   return s.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/**
+ * Rewrite WordPress-style permalinks to the new /research/<slug> pattern.
+ * Examples:
+ *   /2012/02/22/inside-mitt-romneys-tax-return/ → /research/inside-mitt-romneys-tax-return
+ *   /1998/07/13/post-name/                       → /research/post-name
+ */
+function rewriteInternalLink(href: string): string {
+  if (!href) return href;
+  const wpMatch = href.match(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([^/?#]+)\/?(.*)$/);
+  if (wpMatch) {
+    const slug = wpMatch[4];
+    const rest = wpMatch[5] || '';
+    return `/research/${slug}${rest}`;
+  }
+  // Legacy top-level pages
+  if (/^\/(blog|blog-2|blog-3|selected-media-archive)\/?$/i.test(href)) return '/research';
+  if (/^\/(our-company|parish-company|services)\/?$/i.test(href)) return '/about';
+  if (/^\/(investment-philosophy)\/?$/i.test(href)) return '/philosophy';
+  return href;
 }
