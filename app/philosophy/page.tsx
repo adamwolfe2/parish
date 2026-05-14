@@ -57,12 +57,12 @@ export default function PhilosophyPage() {
         </div>
       </header>
 
-      {/* Narrative — centered prose */}
+      {/* Narrative — column centered, body left-aligned */}
       <section className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <div className="mx-auto max-w-2xl text-center">
-              <p className="text-[1.1rem] leading-[1.75] text-[var(--color-basalt)]">
+            <div className="mx-auto max-w-[680px]">
+              <p className="text-[1.15rem] leading-[1.7] text-[var(--color-basalt)]">
                 We replace emotion with the fundamental logic needed to make careful,
                 rational choices. Our investment philosophy is based on diligent research,
                 quality long-term investments, tax efficiency, and direct client
@@ -72,9 +72,9 @@ export default function PhilosophyPage() {
               <p className="mt-6 text-[1.05rem] leading-[1.75] text-[var(--color-slate)]">
                 Four economic environments and asset allocation strategies are recognized
                 by Parish &amp; Company. The current environment is defined as{' '}
-                <em className="text-[var(--color-basalt)] not-italic font-medium">
+                <span className="text-[var(--color-basalt)] font-medium italic">
                   balanced &#x2F; conservative
-                </em>
+                </span>
                 .
               </p>
             </div>
@@ -140,12 +140,14 @@ export default function PhilosophyPage() {
       <section className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <div className="mx-auto max-w-3xl text-center">
-              <Kicker className="inline-block mb-4">Track record · 1994 to present</Kicker>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
-                A public record of allocations through every cycle.
-              </h2>
-              <p className="mt-6 mx-auto max-w-2xl text-[1.05rem] leading-[1.65] text-[var(--color-slate)]">
+            <div className="mx-auto max-w-3xl">
+              <div className="text-center">
+                <Kicker className="inline-block mb-4">Track record · 1994 to present</Kicker>
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                  A public record of allocations through every cycle.
+                </h2>
+              </div>
+              <p className="mt-7 text-[1.05rem] leading-[1.7] text-[var(--color-slate)]">
                 The following summary is a matter of public record openly communicated to
                 leading members of the financial community and the business press. It was
                 the foundation for all client decisions over each period.
@@ -184,7 +186,7 @@ export default function PhilosophyPage() {
                 </tbody>
               </table>
             </div>
-            <p className="mt-8 mx-auto max-w-2xl text-center text-[0.9rem] text-[var(--color-slate)] italic leading-relaxed">
+            <p className="mt-8 mx-auto max-w-3xl text-[0.9rem] text-[var(--color-slate)] italic leading-relaxed">
               Note that not all clients have the same goals; some may desire a conservative
               portfolio during a period defined by Parish &amp; Company as &ldquo;growth.&rdquo;
               Past recommendations do not in any way guarantee the success of future

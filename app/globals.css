@@ -88,16 +88,6 @@ body {
   max-width: 68ch;
 }
 
-.prose-editorial p:first-of-type::first-letter {
-  font-family: var(--font-display), serif;
-  font-size: 3.5em;
-  float: left;
-  line-height: 0.85;
-  margin: 0.05em 0.08em 0 -0.04em;
-  color: var(--color-basalt);
-  font-weight: 400;
-}
-
 .prose-editorial h2 {
   font-family: var(--font-display), serif;
   font-size: var(--text-h2);
