@@ -35,3 +35,4 @@ next-env.d.ts
 scraped/
 public-photos-staging/
 content/posts/_scrape-log.txt
+.vercel

@@ -1,5 +1,23 @@
 # Deploy
 
+## Live URLs
+
+- **Production:** https://parishinvestments.vercel.app
+- **Project:** `prj_R1mY5EExRfqzAklKnf4FvnjtkzIZ` (AM Collective team)
+- **Repo:** https://github.com/adamwolfe2/parish
+- **Auto-deploy:** every push to `main` → production
+
+## Production status (deployed)
+
+- 217 static pages + 203 OG image routes prerendered
+- Build time ~31 seconds
+- All 6 main routes responding 200
+- Legacy WordPress permalinks redirect via proxy.ts (`/2012/02/22/inside-mitt-romneys-tax-return/` → `/research/inside-mitt-romneys-tax-return`)
+- `/our-company`, `/blog`, `/blog-2`, `/blog-3`, etc. redirect via next.config.mjs
+- CSP, HSTS, X-Frame, Referrer-Policy, Permissions-Policy all live
+- Mobile-tested at 375px viewport — zero overflow on all pages
+
+
 ## One-time Vercel setup
 
 1. Go to https://vercel.com/new
