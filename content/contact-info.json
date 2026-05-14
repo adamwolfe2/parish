@@ -1,0 +1,16 @@
+{
+  "phone": "(503) 726-5967",
+  "email": "bill@billparish.com",
+  "address": {
+    "street": "4800 Meadows Road, Suite 300",
+    "city": "Lake Oswego",
+    "state": "OR",
+    "zip": "97035",
+    "country": "USA",
+    "formatted": "4800 Meadows Road, Suite 300, Lake Oswego, OR 97035, USA"
+  },
+  "fax": null,
+  "hours": null,
+  "regulatory_note": "Parish & Company LLC is a Registered Investment Adviser firm in the State of Oregon. Prior to any advisory work conducted outside Oregon, the firm would become registered in that jurisdiction or qualify for an exemption or exclusion to the registration.",
+  "source_url": "https://parishinvestments.com/parish-company/"
+}

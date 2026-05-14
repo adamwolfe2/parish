@@ -1,48 +1,42 @@
-import { NextResponse } from 'next/server';
-import { getResearchPosts } from '@/sanity/lib/research';
+import { loadAllPosts, formatPostDate } from '@/lib/research';
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://parishinvestments.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://parishinvestments.com';
 
-function xmlEscape(value: string): string {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&apos;');
+function xmlEscape(s: string): string {
+  return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' } as const)[c] || c);
 }
 
+export const dynamic = 'force-static';
+
 export async function GET() {
-  const posts = await getResearchPosts();
+  const posts = loadAllPosts().slice(0, 50);
+  const items = posts.map((p) => `
+    <item>
+      <title>${xmlEscape(p.title)}</title>
+      <link>${siteUrl}/research/${p.slug}</link>
+      <guid isPermaLink="true">${siteUrl}/research/${p.slug}</guid>
+      <pubDate>${new Date(p.publishedAt).toUTCString()}</pubDate>
+      ${p.excerpt ? `<description>${xmlEscape(p.excerpt)}</description>` : ''}
+      ${p.categories.map((c) => `<category>${xmlEscape(c)}</category>`).join('')}
+    </item>`).join('');
 
-  const items = posts
-    .map((post) => {
-      const link = `${baseUrl}/research/${post.slug}`;
-      return `
-        <item>
-          <title>${xmlEscape(post.title)}</title>
-          <link>${xmlEscape(link)}</link>
-          <guid>${xmlEscape(link)}</guid>
-          <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
-          <description>${xmlEscape(post.dek)}</description>
-        </item>`;
-    })
-    .join('');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Parish &amp; Company — Research</title>
+    <link>${siteUrl}/research</link>
+    <description>Original investment research from Parish &amp; Company LLC. Published since 1998.</description>
+    <language>en-us</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="${siteUrl}/research/feed.xml" rel="self" type="application/rss+xml" />
+    ${items}
+  </channel>
+</rss>`;
 
-  const body = `<?xml version="1.0" encoding="UTF-8"?>
-    <rss version="2.0">
-      <channel>
-        <title>Parish &amp; Company Research</title>
-        <link>${xmlEscape(`${baseUrl}/research`)}</link>
-        <description>Original analysis from Parish &amp; Company.</description>
-        ${items}
-      </channel>
-    </rss>`;
+  // intentionally referenced for clarity
+  void formatPostDate;
 
-  return new NextResponse(body, {
-    headers: {
-      'Content-Type': 'application/rss+xml; charset=utf-8',
-      'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
-    },
+  return new Response(xml, {
+    headers: { 'content-type': 'application/rss+xml; charset=utf-8' },
   });
 }

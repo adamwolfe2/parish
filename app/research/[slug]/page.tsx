@@ -1,53 +1,130 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { PageFade } from '@/components/motion/PageFade';
-import { getResearchPostBySlug } from '@/sanity/lib/research';
+import { Kicker } from '@/components/editorial/Kicker';
+import { FadeIn } from '@/components/motion/FadeIn';
+import { ResearchCard } from '@/components/editorial/ResearchCard';
+import { loadAllPosts, getPostBySlug, formatPostDate } from '@/lib/research';
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://parishinvestments.com';
+type Params = Promise<{ slug: string }>;
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateStaticParams() {
+  return loadAllPosts().map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getResearchPostBySlug(slug);
-
-  if (!post) {
-    return { title: 'Research | Parish & Company' };
-  }
-
+  const post = getPostBySlug(slug);
+  if (!post) return { title: 'Research' };
   return {
-    title: `${post.title} | Parish & Company`,
-    description: post.dek,
-    alternates: { canonical: `${baseUrl}/research/${post.slug}` },
+    title: post.title,
+    description: post.excerpt || `Parish & Company research, ${formatPostDate(post.publishedAt)}.`,
     openGraph: {
       title: post.title,
-      description: post.dek,
+      description: post.excerpt,
       type: 'article',
       publishedTime: post.publishedAt,
-      url: `${baseUrl}/research/${post.slug}`,
     },
   };
 }
 
-export default async function ResearchPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ResearchPostPage({ params }: { params: Params }) {
   const { slug } = await params;
-  const post = await getResearchPostBySlug(slug);
+  const post = getPostBySlug(slug);
+  if (!post) notFound();
 
-  if (!post) return notFound();
+  const all = loadAllPosts();
+  const related = all
+    .filter((p) => p.slug !== post.slug && p.categories.some((c) => post.categories.includes(c)))
+    .slice(0, 3);
 
   return (
-    <PageFade>
-      <main className="container page">
-        <section className="section">
-          <p className="kicker">{post.topics[0]?.title ?? 'Research'}</p>
-          <h1 className="h1">{post.title}</h1>
-          <p className="meta">{post.publishedAt} · {post.estimatedReadMinutes} min read · By Bill Parish</p>
-          <p className="lead">{post.dek}</p>
+    <article>
+      <header className="border-b border-[var(--color-hairline)]">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-16 md:py-24">
+          <FadeIn>
+            <div className="max-w-[760px]">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.78rem] uppercase tracking-[0.1em] text-[var(--color-slate)] font-[family-name:var(--font-mono)] font-medium">
+                <Link href="/research" className="hover:text-[var(--color-moss)]">Research</Link>
+                {post.categories[0] && (
+                  <>
+                    <span aria-hidden="true">·</span>
+                    <Link
+                      href={`/research?topic=${encodeURIComponent(post.categories[0])}`}
+                      className="text-[var(--color-moss)] hover:text-[var(--color-basalt)]"
+                    >
+                      {post.categories[0]}
+                    </Link>
+                  </>
+                )}
+              </div>
+
+              <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] tracking-[-0.015em] text-[var(--color-basalt)]">
+                {post.title}
+              </h1>
+
+              {post.excerpt && (
+                <p className="mt-6 text-[var(--text-lead)] leading-[1.55] text-[var(--color-slate)]">
+                  {post.excerpt}
+                </p>
+              )}
+
+              <div className="mt-8 pt-6 border-t border-[var(--color-hairline)] flex flex-wrap gap-x-6 gap-y-2 text-[0.88rem] text-[var(--color-slate)]">
+                <span>
+                  <span className="text-[var(--color-basalt)] font-medium">By Bill Parish</span>
+                </span>
+                <span>·</span>
+                <time dateTime={post.publishedAt}>{formatPostDate(post.publishedAt)}</time>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </header>
+
+      <section className="border-b border-[var(--color-hairline)]">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-16 md:py-20">
+          <FadeIn>
+            <div className="max-w-[680px] mx-auto prose-editorial">
+              {post.excerpt && <p>{post.excerpt}</p>}
+              <p className="text-[var(--color-slate)] italic">
+                The full text of this research note will be available here once content migration
+                is complete. In the interim, the original publication is preserved at the legacy
+                archive.
+              </p>
+              {post.url && (
+                <p>
+                  <a href={post.url} target="_blank" rel="noopener noreferrer" className="link-editorial">
+                    <span>View on the legacy archive</span>
+                    <span className="arrow">→</span>
+                  </a>
+                </p>
+              )}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {related.length > 0 && (
+        <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/40">
+          <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-16 md:py-20">
+            <FadeIn>
+              <Kicker className="mb-5">Related research</Kicker>
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.55rem,2.5vw,2rem)] leading-[1.2] tracking-tight text-[var(--color-basalt)]">
+                More from this topic.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1} className="mt-10">
+              <ul className="border-t border-[var(--color-hairline)]">
+                {related.map((p) => (
+                  <li key={p.slug}>
+                    <ResearchCard post={p} size="md" />
+                  </li>
+                ))}
+              </ul>
+            </FadeIn>
+          </div>
         </section>
-        <section className="section">
-          <p className="lead">This route is wired for Sanity fetch with a local fallback. Portable Text body rendering and source footnotes are next.</p>
-          <p><Link href="/research" className="text-link">Back to research index →</Link></p>
-        </section>
-      </main>
-    </PageFade>
+      )}
+    </article>
   );
 }

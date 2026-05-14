@@ -1,55 +1,229 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { PageFade } from '@/components/motion/PageFade';
-import { readContent } from '@/lib/content';
-import { getResearchPosts } from '@/sanity/lib/research';
+import { Kicker } from '@/components/editorial/Kicker';
+import { ResearchCard } from '@/components/editorial/ResearchCard';
+import { FadeIn } from '@/components/motion/FadeIn';
+import { loadAllPosts, getAllCategories, getAllYears } from '@/lib/research';
 
-const topics = [
-  'corporate-governance',
-  'pensions-retirement',
-  'tax-policy',
-  'mergers-acquisitions',
-  'microsoft-tech',
-  'politics-campaigns',
-  'oregon-pers',
-  'banking-finance',
-  'energy-utilities',
-];
+export const metadata: Metadata = {
+  title: 'Research',
+  description:
+    'Original analysis of corporate governance, tax structure, pensions, and capital markets — published by Parish & Company LLC since 1998.',
+};
 
-export default async function ResearchPage() {
-  const posts = await getResearchPosts();
+type SearchParams = Promise<{ topic?: string; year?: string; q?: string; page?: string }>;
+
+const PAGE_SIZE = 20;
+
+export default async function ResearchPage({ searchParams }: { searchParams: SearchParams }) {
+  const sp = await searchParams;
+  const all = loadAllPosts();
+  const categories = getAllCategories().slice(0, 10);
+  const years = getAllYears();
+
+  const topic = sp.topic;
+  const year = sp.year;
+  const q = (sp.q || '').toLowerCase().trim();
+  const page = Math.max(1, parseInt(sp.page || '1', 10) || 1);
+
+  let filtered = all;
+  if (topic) filtered = filtered.filter((p) => p.categories.includes(topic));
+  if (year) filtered = filtered.filter((p) => p.publishedAt.startsWith(year));
+  if (q) {
+    filtered = filtered.filter(
+      (p) =>
+        p.title.toLowerCase().includes(q) ||
+        (p.excerpt || '').toLowerCase().includes(q) ||
+        p.categories.some((c) => c.toLowerCase().includes(q)),
+    );
+  }
+
+  const total = filtered.length;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const pageSafe = Math.min(page, totalPages);
+  const slice = filtered.slice((pageSafe - 1) * PAGE_SIZE, pageSafe * PAGE_SIZE);
+
+  const buildHref = (overrides: Record<string, string | undefined>) => {
+    const params = new URLSearchParams();
+    const merged = { topic, year, q, page: String(pageSafe), ...overrides };
+    for (const [k, v] of Object.entries(merged)) {
+      if (v && v !== '1') params.set(k, v);
+    }
+    const s = params.toString();
+    return s ? `/research?${s}` : '/research';
+  };
 
   return (
-    <PageFade>
-      <main className="container page">
-        <section className="section">
-          <h1 className="h1">Research</h1>
-          <p className="lead">{readContent('research-dek').trim()}</p>
-        </section>
+    <>
+      {/* Header */}
+      <header className="border-b border-[var(--color-hairline)]">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
+          <FadeIn>
+            <Kicker>Research</Kicker>
+            <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.5rem,5.5vw,4.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)] max-w-3xl">
+              Original analysis, published since 1998.
+            </h1>
+            <p className="mt-7 max-w-2xl text-[var(--text-lead)] leading-[1.6] text-[var(--color-slate)]">
+              {all.length} research notes on corporate governance, tax policy, pensions,
+              capital markets, and the Pacific Northwest economy. Quoted in tier-one business
+              journalism for more than two decades.
+            </p>
+          </FadeIn>
 
-        <section className="section">
-          <h2 className="h2">Topics</h2>
-          <div className="wordmarks">
-            {topics.map((topic) => (
-              <Link key={topic} href={`/research/topic/${topic}`} className="wordmark-item">
-                {topic.replaceAll('-', ' ')}
+          <FadeIn delay={0.1}>
+            <form action="/research" method="get" className="mt-10 max-w-md">
+              <label htmlFor="q" className="block text-[0.78rem] uppercase tracking-[0.12em] font-medium text-[var(--color-slate)] mb-2">
+                Search the archive
+              </label>
+              <div className="relative">
+                <input
+                  id="q"
+                  name="q"
+                  type="search"
+                  defaultValue={q}
+                  placeholder="e.g. Romney IRA, Intel pension, Sondland"
+                  className="w-full bg-transparent border-b border-[var(--color-hairline-strong)] py-2 pr-8 text-[1rem] focus:outline-none focus:border-[var(--color-moss)] transition-colors"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 text-[var(--color-slate)] hover:text-[var(--color-moss)] transition-colors"
+                  aria-label="Search"
+                >
+                  →
+                </button>
+              </div>
+            </form>
+          </FadeIn>
+        </div>
+      </header>
+
+      {/* Topic filter */}
+      <section className="sticky top-16 md:top-20 z-30 bg-[var(--color-bone)]/95 backdrop-blur-md border-b border-[var(--color-hairline)]">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-4 overflow-x-auto">
+          <div className="flex items-center gap-2 whitespace-nowrap">
+            <Link
+              href={buildHref({ topic: undefined, page: undefined })}
+              className={`px-3 py-1.5 text-[0.85rem] rounded-full border transition-colors ${
+                !topic
+                  ? 'bg-[var(--color-basalt)] text-[var(--color-bone)] border-[var(--color-basalt)]'
+                  : 'border-[var(--color-hairline-strong)] text-[var(--color-slate)] hover:text-[var(--color-basalt)] hover:border-[var(--color-basalt)]'
+              }`}
+            >
+              All topics
+            </Link>
+            {categories.map((c) => (
+              <Link
+                key={c.name}
+                href={buildHref({ topic: c.name, page: undefined })}
+                className={`px-3 py-1.5 text-[0.85rem] rounded-full border transition-colors ${
+                  topic === c.name
+                    ? 'bg-[var(--color-basalt)] text-[var(--color-bone)] border-[var(--color-basalt)]'
+                    : 'border-[var(--color-hairline-strong)] text-[var(--color-slate)] hover:text-[var(--color-basalt)] hover:border-[var(--color-basalt)]'
+                }`}
+              >
+                {c.name} <span className="opacity-50">·</span> {c.count}
               </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="section">
-          <h2 className="h2">Archive preview</h2>
-          <div className="cards">
-            {posts.map((post) => (
-              <article className="card" key={post.slug}>
-                <p className="meta">{post.publishedAt} · {post.estimatedReadMinutes} min read</p>
-                <h3 className="h3"><Link href={`/research/${post.slug}`}>{post.title}</Link></h3>
-                <p>{post.dek}</p>
-              </article>
-            ))}
+      {/* Main feed + year sidebar */}
+      <section>
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-12 md:py-16">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-9">
+              {(topic || year || q) && (
+                <div className="mb-8 flex flex-wrap items-center gap-3 text-[0.9rem] text-[var(--color-slate)]">
+                  <span>Showing {total} {total === 1 ? 'note' : 'notes'}</span>
+                  {topic && (
+                    <span className="inline-flex items-center gap-2 px-2.5 py-1 bg-[var(--color-mist)] text-[var(--color-basalt)] text-[0.82rem]">
+                      Topic: {topic}
+                      <Link href={buildHref({ topic: undefined, page: undefined })} className="hover:text-[var(--color-moss)]" aria-label="Remove topic filter">×</Link>
+                    </span>
+                  )}
+                  {year && (
+                    <span className="inline-flex items-center gap-2 px-2.5 py-1 bg-[var(--color-mist)] text-[var(--color-basalt)] text-[0.82rem]">
+                      Year: {year}
+                      <Link href={buildHref({ year: undefined, page: undefined })} className="hover:text-[var(--color-moss)]" aria-label="Remove year filter">×</Link>
+                    </span>
+                  )}
+                  {q && (
+                    <span className="inline-flex items-center gap-2 px-2.5 py-1 bg-[var(--color-mist)] text-[var(--color-basalt)] text-[0.82rem]">
+                      &ldquo;{q}&rdquo;
+                      <Link href={buildHref({ q: undefined, page: undefined })} className="hover:text-[var(--color-moss)]" aria-label="Clear search">×</Link>
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {slice.length === 0 ? (
+                <div className="py-16 text-center text-[var(--color-slate)]">
+                  No results. <Link href="/research" className="link-editorial"><span>Reset filters</span><span className="arrow">→</span></Link>
+                </div>
+              ) : (
+                <ul className="border-b border-[var(--color-hairline)]">
+                  {slice.map((post) => (
+                    <li key={post.slug}>
+                      <ResearchCard post={post} size="md" />
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <nav className="mt-10 flex items-center justify-between" aria-label="Pagination">
+                  <Link
+                    href={buildHref({ page: pageSafe > 1 ? String(pageSafe - 1) : undefined })}
+                    className={`text-[0.95rem] ${pageSafe === 1 ? 'text-[var(--color-slate)]/40 pointer-events-none' : 'text-[var(--color-slate)] hover:text-[var(--color-basalt)]'}`}
+                    aria-disabled={pageSafe === 1}
+                  >
+                    ← Previous
+                  </Link>
+                  <span className="text-[0.9rem] text-[var(--color-slate)] font-[family-name:var(--font-mono)] tabular-nums">
+                    Page {pageSafe} of {totalPages}
+                  </span>
+                  <Link
+                    href={buildHref({ page: pageSafe < totalPages ? String(pageSafe + 1) : undefined })}
+                    className={`text-[0.95rem] ${pageSafe === totalPages ? 'text-[var(--color-slate)]/40 pointer-events-none' : 'text-[var(--color-slate)] hover:text-[var(--color-basalt)]'}`}
+                    aria-disabled={pageSafe === totalPages}
+                  >
+                    Next →
+                  </Link>
+                </nav>
+              )}
+            </div>
+
+            {/* Year sidebar */}
+            <aside className="lg:col-span-3">
+              <div className="lg:sticky lg:top-40">
+                <h2 className="text-[0.72rem] uppercase tracking-[0.15em] font-medium text-[var(--color-slate)] mb-5">
+                  Archive by year
+                </h2>
+                <ul className="space-y-1.5 text-[0.92rem]">
+                  {years.map((y) => (
+                    <li key={y.year}>
+                      <Link
+                        href={buildHref({ year: year === y.year ? undefined : y.year, page: undefined })}
+                        className={`group flex items-baseline justify-between gap-3 py-0.5 ${
+                          year === y.year
+                            ? 'text-[var(--color-basalt)] font-medium'
+                            : 'text-[var(--color-slate)] hover:text-[var(--color-basalt)]'
+                        }`}
+                      >
+                        <span className="font-[family-name:var(--font-mono)] tabular-nums">{y.year}</span>
+                        <span className="flex-1 mx-2 border-b border-dotted border-[var(--color-hairline)]" />
+                        <span className="font-[family-name:var(--font-mono)] tabular-nums text-[0.85rem]">{y.count}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
           </div>
-        </section>
-      </main>
-    </PageFade>
+        </div>
+      </section>
+    </>
   );
 }
