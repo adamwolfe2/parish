@@ -28,6 +28,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@sanity/client';
 import { htmlToBlocks } from '@sanity/block-tools';
+import { Schema } from '@sanity/schema';
 import { JSDOM } from 'jsdom';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -153,6 +154,57 @@ async function migrateTopics() {
 }
 
 // ---------- step 3: convert + upload posts ----------
+// Compile a minimal Sanity schema for block-tools so htmlToBlocks knows
+// what marks/styles/annotations are permitted in our post body.
+const defaultSchema = Schema.compile({
+  name: 'default',
+  types: [
+    {
+      type: 'object',
+      name: 'post',
+      fields: [
+        {
+          name: 'body',
+          type: 'array',
+          of: [
+            {
+              type: 'block',
+              styles: [
+                { title: 'Normal', value: 'normal' },
+                { title: 'H2', value: 'h2' },
+                { title: 'H3', value: 'h3' },
+                { title: 'H4', value: 'h4' },
+                { title: 'Quote', value: 'blockquote' },
+              ],
+              lists: [
+                { title: 'Bullet', value: 'bullet' },
+                { title: 'Numbered', value: 'number' },
+              ],
+              marks: {
+                decorators: [
+                  { title: 'Strong', value: 'strong' },
+                  { title: 'Emphasis', value: 'em' },
+                ],
+                annotations: [
+                  {
+                    type: 'object',
+                    name: 'link',
+                    fields: [{ type: 'url', name: 'href' }],
+                  },
+                ],
+              },
+            },
+            { type: 'image' },
+          ],
+        },
+      ],
+    },
+  ],
+});
+const blockContentType = defaultSchema
+  .get('post')
+  .fields.find((f) => f.name === 'body').type;
+
 const blockToolsOpts = {
   parseHtml: (html) => new JSDOM(html).window.document,
 };
@@ -186,7 +238,7 @@ async function htmlToPortableText(html) {
     .replace(/\sclass="[^"]*"/g, '')
     .replace(/\sstyle="[^"]*"/g, '')
     .replace(/<!--[\s\S]*?-->/g, '');
-  return htmlToBlocks(cleaned, undefined, blockToolsOpts);
+  return htmlToBlocks(cleaned, blockContentType, blockToolsOpts);
 }
 
 async function migratePost(entry, bodyData, idx, total) {
