@@ -6,6 +6,8 @@ import { FadeIn } from '@/components/motion/FadeIn';
 import { ResearchCard } from '@/components/editorial/ResearchCard';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { PostBody } from '@/components/editorial/PostBody';
+import { CitationWidget } from '@/components/editorial/CitationWidget';
+import { Newsletter } from '@/components/editorial/Newsletter';
 import {
   loadAllPosts,
   getPostBySlug,
@@ -152,14 +154,26 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
                 </div>
               )}
 
-              {/* Post footer — sources + sharing */}
-              <div className="mt-14 pt-8 border-t border-[var(--color-hairline-strong)]">
+              {/* Post footer — sources + sharing + citation + subscribe */}
+              <div className="mt-14 pt-8 border-t border-[var(--color-hairline-strong)] space-y-8">
                 <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-[0.85rem] text-[var(--color-slate)]">
                   <p>
                     Originally published <time dateTime={post.publishedAt}>{formatPostDate(post.publishedAt)}</time> by Bill Parish.
                   </p>
                   <ShareLinks slug={slug} title={post.title} />
                 </div>
+
+                <CitationWidget
+                  title={post.title}
+                  publishedAt={post.publishedAt}
+                  url={`${siteUrl}/research/${post.slug}`}
+                />
+
+                <Newsletter
+                  variant="card"
+                  heading="Subscribe to research"
+                  dek="Receive new research notes from Parish & Company by email. No marketing, no third-party data sharing."
+                />
               </div>
             </div>
           </FadeIn>

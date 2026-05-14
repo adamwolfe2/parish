@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Kicker } from '@/components/editorial/Kicker';
 import { ResearchCard } from '@/components/editorial/ResearchCard';
+import { Newsletter } from '@/components/editorial/Newsletter';
 import { FadeIn } from '@/components/motion/FadeIn';
 import { loadAllPosts, getAllCategories, getAllYears } from '@/lib/research';
 
@@ -70,6 +71,14 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
                 business journalism for more than two decades.
               </p>
             </div>
+          </FadeIn>
+
+          <FadeIn delay={0.05} className="mt-10 max-w-2xl mx-auto">
+            <Newsletter
+              variant="card"
+              heading="Subscribe to receive new research"
+              dek="New research notes delivered by email. No marketing, no third-party data sharing."
+            />
           </FadeIn>
 
           <FadeIn delay={0.1}>
@@ -226,22 +235,34 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
                   Archive by year
                 </h2>
                 <ul className="space-y-1.5 text-[0.92rem]">
-                  {years.map((y) => (
-                    <li key={y.year}>
-                      <Link
-                        href={buildHref({ year: year === y.year ? undefined : y.year, page: undefined })}
-                        className={`group flex items-baseline justify-between gap-3 py-0.5 ${
-                          year === y.year
-                            ? 'text-[var(--color-basalt)] font-medium'
-                            : 'text-[var(--color-slate)] hover:text-[var(--color-basalt)]'
-                        }`}
-                      >
-                        <span className="font-[family-name:var(--font-mono)] tabular-nums">{y.year}</span>
-                        <span className="flex-1 mx-2 border-b border-dotted border-[var(--color-hairline)]" />
-                        <span className="font-[family-name:var(--font-mono)] tabular-nums text-[0.85rem]">{y.count}</span>
-                      </Link>
-                    </li>
-                  ))}
+                  {years.map((y) => {
+                    const empty = y.count === 0;
+                    if (empty) {
+                      return (
+                        <li key={y.year} className="flex items-baseline justify-between gap-3 py-0.5 text-[var(--color-slate)]/45 select-none">
+                          <span className="font-[family-name:var(--font-mono)] tabular-nums">{y.year}</span>
+                          <span className="flex-1 mx-2 border-b border-dotted border-[var(--color-hairline)]/60" />
+                          <span className="font-[family-name:var(--font-mono)] tabular-nums text-[0.85rem]">0</span>
+                        </li>
+                      );
+                    }
+                    return (
+                      <li key={y.year}>
+                        <Link
+                          href={buildHref({ year: year === y.year ? undefined : y.year, page: undefined })}
+                          className={`group flex items-baseline justify-between gap-3 py-0.5 ${
+                            year === y.year
+                              ? 'text-[var(--color-basalt)] font-medium'
+                              : 'text-[var(--color-slate)] hover:text-[var(--color-basalt)]'
+                          }`}
+                        >
+                          <span className="font-[family-name:var(--font-mono)] tabular-nums">{y.year}</span>
+                          <span className="flex-1 mx-2 border-b border-dotted border-[var(--color-hairline)]" />
+                          <span className="font-[family-name:var(--font-mono)] tabular-nums text-[0.85rem]">{y.count}</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </aside>

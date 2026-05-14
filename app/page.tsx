@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Hero } from '@/components/editorial/Hero';
-import { PressMarks } from '@/components/editorial/PressMarks';
+import { PressBand } from '@/components/editorial/PressBand';
 import { SectionDivider } from '@/components/editorial/SectionDivider';
 import { EditorialLink } from '@/components/editorial/EditorialLink';
 import { ResearchCard } from '@/components/editorial/ResearchCard';
 import { MountainSilhouette } from '@/components/editorial/MountainSilhouette';
+import { AllocationBars } from '@/components/editorial/AllocationBars';
+import { Newsletter } from '@/components/editorial/Newsletter';
 import { FadeIn } from '@/components/motion/FadeIn';
 import { getLatestPosts, getFeaturedPosts } from '@/lib/research';
 
@@ -55,6 +57,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <PressBand />
 
       {/* I — Mission */}
       <section className="relative bg-[var(--color-bone)] overflow-hidden">
@@ -220,12 +223,14 @@ export default function HomePage() {
             <SectionDivider numeral="iv" label="Fiduciary commitment" className="[&_*]:!text-white/80 [&_span:first-child]:!text-[var(--color-brass)] [&_span.h-px]:!bg-white/30" />
 
             <div className="mt-10 max-w-4xl">
-              <p className="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.2] italic">
-                &ldquo;A written guarantee is provided to every client that no fees are
-                accepted, either directly or indirectly, from any investment company on
-                any client. Removing such conflicts of interest is a key ingredient to
-                successful long-term oriented investment.&rdquo;
-              </p>
+              <blockquote className="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.25]">
+                <p>
+                  &ldquo;A written guarantee is provided to every client that{' '}
+                  <em>no fees are accepted, either directly or indirectly,</em> from any
+                  investment company on any client. Removing such conflicts of interest is
+                  a key ingredient to successful long-term oriented investment.&rdquo;
+                </p>
+              </blockquote>
               <div className="mt-10 pt-8 border-t border-white/20">
                 <Link
                   href="/philosophy"
@@ -240,25 +245,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* V — Press marks */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-bone)] overflow-hidden">
-        <MountainSilhouette variant="ridge" stretch className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 md:h-12 text-[var(--color-moss)] opacity-[0.10]" />
-        <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
-          <FadeIn>
-            <SectionDivider numeral="v" label="In the press" />
-            <div className="mt-10">
-              <PressMarks />
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* VI — Notable research */}
+      {/* V — Notable research */}
       {featured.length > 0 && (
         <section className="border-t border-[var(--color-hairline)] bg-[var(--color-bone)]">
           <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
             <FadeIn>
-              <SectionDivider numeral="vi" label="Notable research" />
+              <SectionDivider numeral="v" label="Notable research" />
 
               <div className="mt-8 flex flex-wrap items-end justify-between gap-x-12 gap-y-4">
                 <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)] max-w-2xl">
@@ -286,7 +278,7 @@ export default function HomePage() {
         <MountainSilhouette stretch className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 md:h-20 text-[var(--color-moss)] opacity-[0.18]" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 pt-20 md:pt-24 pb-24 md:pb-28">
           <FadeIn>
-            <SectionDivider numeral="vii" label="Philosophy" />
+            <SectionDivider numeral="vi" label="Philosophy" />
 
             <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-12 md:items-start">
               <div className="md:col-span-5">
@@ -302,48 +294,7 @@ export default function HomePage() {
               </div>
 
               <div className="md:col-span-7">
-                <div className="bg-[var(--color-bone)] border border-[var(--color-hairline)] overflow-hidden">
-                  <table className="w-full table-fixed border-collapse">
-                    <colgroup>
-                      <col className="w-1/2" />
-                      <col className="w-1/4" />
-                      <col className="w-1/4" />
-                    </colgroup>
-                    <thead>
-                      <tr className="bg-[var(--color-mist)]/60 border-b border-[var(--color-hairline-strong)]">
-                        <th className="text-left font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium px-5 md:px-6 py-3.5">
-                          Environment
-                        </th>
-                        <th className="text-right font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium px-5 md:px-6 py-3.5">
-                          Stocks
-                        </th>
-                        <th className="text-right font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium px-5 md:px-6 py-3.5">
-                          Fixed Income
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        { env: 'Growth', stocks: 75, fixed: 25 },
-                        { env: 'Balanced', stocks: 50, fixed: 50 },
-                        { env: 'Conservative', stocks: 25, fixed: 75 },
-                        { env: 'Wealth Preservation', stocks: 0, fixed: 100 },
-                      ].map((row) => (
-                        <tr key={row.env} className="border-b border-[var(--color-hairline)] last:border-b-0">
-                          <td className="font-[family-name:var(--font-display)] text-[1rem] md:text-[1.05rem] text-[var(--color-basalt)] px-5 md:px-6 py-3.5">
-                            {row.env}
-                          </td>
-                          <td className="text-right font-[family-name:var(--font-mono)] tabular-nums text-[0.95rem] text-[var(--color-basalt)] px-5 md:px-6 py-3.5">
-                            {row.stocks}%
-                          </td>
-                          <td className="text-right font-[family-name:var(--font-mono)] tabular-nums text-[0.95rem] text-[var(--color-basalt)] px-5 md:px-6 py-3.5">
-                            {row.fixed}%
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                <AllocationBars />
                 <p className="mt-4 text-[0.85rem] text-[var(--color-slate)] italic leading-relaxed">
                   Past recommendations do not in any way guarantee the success of future
                   recommendations.
@@ -359,7 +310,7 @@ export default function HomePage() {
         <MountainSilhouette variant="range" stretch className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 md:h-20 text-[var(--color-moss)] opacity-[0.12]" />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <SectionDivider numeral="viii" label="Latest" />
+            <SectionDivider numeral="vii" label="Latest" />
 
             <div className="mt-8 flex flex-wrap items-end justify-between gap-x-12 gap-y-4">
               <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)] max-w-2xl">
@@ -377,6 +328,14 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+          </FadeIn>
+
+          <FadeIn delay={0.1} className="mt-14 max-w-2xl mx-auto">
+            <Newsletter
+              variant="card"
+              heading="Subscribe"
+              dek="New research notes delivered by email — corporate governance, pensions, tax policy, and Pacific Northwest finance. No marketing, no third-party data sharing. Unsubscribe with one click."
+            />
           </FadeIn>
         </div>
       </section>

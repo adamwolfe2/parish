@@ -10,6 +10,7 @@ const navLinks = [
 
 const disclosureLinks = [
   { href: '/form-adv', label: 'Form ADV' },
+  { href: '/form-crs', label: 'Form CRS' },
   { href: '/code-of-ethics', label: 'Code of Ethics' },
   { href: '/privacy', label: 'Privacy Policy' },
   { href: '/terms', label: 'Terms of Use' },

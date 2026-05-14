@@ -61,7 +61,10 @@ export const metadata: Metadata = {
     title: 'Parish & Company',
     description: 'Independent investment research and management. Since 1998.',
   },
-  robots: { index: true, follow: true },
+  robots:
+    siteUrl.includes('vercel.app') || process.env.VERCEL_ENV === 'preview'
+      ? { index: false, follow: false, nocache: true }
+      : { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

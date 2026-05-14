@@ -75,7 +75,14 @@ export function loadAllPosts(): ResearchPost[] {
     }
   }
   const posts = raw
-    .filter((p) => !((p.title || '').toUpperCase().startsWith('DRAFT')))
+    .filter((p) => {
+      const t = (p.title || '').toUpperCase();
+      if (t.startsWith('DRAFT')) return false;
+      if (t.startsWith('ROUGH DRAFT')) return false;
+      const slug = p.slug || (p.url || '').split('/').filter(Boolean).pop() || '';
+      if (/^(draft|rough-draft)-/i.test(slug)) return false;
+      return true;
+    })
     .map((entry, i) => normalize(entry, i))
     .filter((p): p is ResearchPost => p !== null)
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
@@ -120,9 +127,17 @@ export function getAllYears(): { year: string; count: number }[] {
     const y = p.publishedAt.slice(0, 4);
     counts.set(y, (counts.get(y) || 0) + 1);
   }
-  return Array.from(counts.entries())
-    .map(([year, count]) => ({ year, count }))
-    .sort((a, b) => (a.year < b.year ? 1 : -1));
+  if (counts.size === 0) return [];
+  // Fill in missing years between min and max so the archive doesn't appear to skip.
+  const years = Array.from(counts.keys()).map((y) => parseInt(y, 10));
+  const minYear = Math.min(...years);
+  const maxYear = Math.max(...years);
+  const result: { year: string; count: number }[] = [];
+  for (let y = maxYear; y >= minYear; y--) {
+    const key = String(y);
+    result.push({ year: key, count: counts.get(key) || 0 });
+  }
+  return result;
 }
 
 export function getPostBySlug(slug: string): ResearchPost | null {
