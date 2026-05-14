@@ -154,23 +154,23 @@ export default function HomePage() {
           <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-14 lg:gap-16 md:items-center">
             {/* Bill's portrait */}
             <FadeIn className="md:col-span-5">
-              <figure className="relative mx-auto md:ml-auto md:mr-0 w-full max-w-[340px]">
-                <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)]">
+              <figure className="relative mx-auto md:ml-auto md:mr-0 w-full max-w-[420px]">
+                <div className="relative aspect-[3/4] overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)] shadow-[0_24px_64px_-24px_rgba(20,23,31,0.25)]">
                   <Image
                     src="/images/bill-parish-headshot.webp"
                     alt="Bill Parish, founder of Parish & Company LLC"
                     fill
-                    sizes="(max-width: 768px) 80vw, 340px"
+                    sizes="(max-width: 768px) 90vw, 420px"
                     quality={92}
-                    className="object-cover object-top"
-                    style={{ imageRendering: 'auto' }}
+                    priority
+                    className="object-cover object-center"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/55 via-transparent to-transparent" />
-                  <figcaption className="absolute bottom-0 left-0 right-0 p-5 pt-12">
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--color-ink)]/75 via-[var(--color-ink)]/25 to-transparent" />
+                  <figcaption className="absolute bottom-0 left-0 right-0 p-6">
                     <p className="text-[0.68rem] uppercase tracking-[0.18em] font-medium text-[var(--color-brass)]">
                       Principal &amp; Founder
                     </p>
-                    <p className="mt-1 font-[family-name:var(--font-display)] text-[1.35rem] text-white tracking-tight">
+                    <p className="mt-1 font-[family-name:var(--font-display)] text-[1.5rem] text-white tracking-tight">
                       Bill Parish
                     </p>
                   </figcaption>

@@ -91,21 +91,46 @@ export default function AboutPage() {
           className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 md:h-14 text-[var(--color-moss)] opacity-[0.12]"
         />
         <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
-          <FadeIn>
-            <div className="mx-auto max-w-3xl text-center">
+          <div className="grid gap-10 md:grid-cols-12 md:gap-14 lg:gap-16 md:items-center">
+            <FadeIn className="md:col-span-7 md:order-1 order-2">
               <Kicker className="inline-block">About Parish &amp; Company</Kicker>
               <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.15rem,4.2vw,3.5rem)] leading-[1.08] tracking-[-0.02em] text-[var(--color-basalt)]">
                 A 27-year independent practice in Lake Oswego, Oregon.
               </h1>
-              <p className="mt-7 mx-auto max-w-2xl text-[var(--text-lead)] leading-[1.6] text-[var(--color-slate)]">
+              <p className="mt-7 text-[var(--text-lead)] leading-[1.6] text-[var(--color-slate)] max-w-prose">
                 Bill Parish founded Parish &amp; Company LLC in 1998. The firm manages
                 investment portfolios for individuals, families, trusts, foundations, and
                 retirement plans. Its original research has been quoted in tier-one
                 business journalism on every major corporate-governance and tax-policy
                 story of the past two decades.
               </p>
-            </div>
-          </FadeIn>
+            </FadeIn>
+
+            <FadeIn className="md:col-span-5 md:order-2 order-1">
+              <figure className="relative mx-auto md:ml-auto md:mr-0 w-full max-w-[400px]">
+                <div className="relative aspect-[3/4] overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)] shadow-[0_24px_64px_-24px_rgba(20,23,31,0.25)]">
+                  <Image
+                    src="/images/bill-parish-headshot.webp"
+                    alt="Bill Parish, founder of Parish & Company LLC"
+                    fill
+                    sizes="(max-width: 768px) 80vw, 400px"
+                    quality={92}
+                    priority
+                    className="object-cover object-center"
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--color-ink)]/70 via-[var(--color-ink)]/20 to-transparent" />
+                  <figcaption className="absolute bottom-0 left-0 right-0 p-5">
+                    <p className="text-[0.66rem] uppercase tracking-[0.18em] font-medium text-[var(--color-brass)]">
+                      Principal &amp; Founder
+                    </p>
+                    <p className="mt-1 font-[family-name:var(--font-display)] text-[1.4rem] text-white tracking-tight">
+                      Bill Parish
+                    </p>
+                  </figcaption>
+                </div>
+              </figure>
+            </FadeIn>
+          </div>
         </div>
       </header>
 

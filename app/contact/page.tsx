@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Kicker } from '@/components/editorial/Kicker';
 import { FadeIn } from '@/components/motion/FadeIn';
 import { InquiryForm } from '@/components/editorial/InquiryForm';
@@ -28,6 +29,35 @@ export default function ContactPage() {
           </FadeIn>
         </div>
       </header>
+
+      {/* Office establishing shot */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-12 md:py-16">
+          <FadeIn>
+            <figure className="relative w-full overflow-hidden border border-[var(--color-hairline)]">
+              <div className="relative aspect-[16/7]">
+                <Image
+                  src="/images/office.webp"
+                  alt="Parish & Company office, 4949 Meadows Road, Lake Oswego, Oregon"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  quality={88}
+                  className="object-cover"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/40 via-transparent to-transparent" />
+              </div>
+              <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-7 text-white">
+                <p className="text-[0.68rem] uppercase tracking-[0.18em] font-medium text-[var(--color-brass)]">
+                  Office
+                </p>
+                <p className="mt-1 font-[family-name:var(--font-display)] text-[1.05rem] md:text-[1.2rem] tracking-tight">
+                  4949 Meadows Road, Suite 600 &nbsp;·&nbsp; Lake Oswego, Oregon
+                </p>
+              </figcaption>
+            </figure>
+          </FadeIn>
+        </div>
+      </section>
 
       <section className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-16 md:py-20">
