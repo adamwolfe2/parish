@@ -106,16 +106,16 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
         </div>
       </header>
 
-      {/* Topic filter */}
-      <section className="sticky top-16 md:top-20 z-30 bg-[var(--color-bone)]/95 backdrop-blur-md border-b border-[var(--color-hairline)]">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-4 overflow-x-auto">
-          <div className="flex items-center gap-2 whitespace-nowrap">
+      {/* Topic filter — wraps, no horizontal scroll */}
+      <section className="bg-[var(--color-bone)] border-b border-[var(--color-hairline)]">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-5">
+          <div className="flex flex-wrap items-center gap-1.5">
             <Link
               href={buildHref({ topic: undefined, page: undefined })}
-              className={`px-3 py-1.5 text-[0.85rem] rounded-full border transition-colors ${
+              className={`inline-flex items-center px-3.5 py-1.5 text-[0.82rem] font-medium tracking-tight transition-colors ${
                 !topic
-                  ? 'bg-[var(--color-basalt)] text-[var(--color-bone)] border-[var(--color-basalt)]'
-                  : 'border-[var(--color-hairline-strong)] text-[var(--color-slate)] hover:text-[var(--color-basalt)] hover:border-[var(--color-basalt)]'
+                  ? 'bg-[var(--color-basalt)] text-[var(--color-bone)]'
+                  : 'bg-transparent text-[var(--color-slate)] hover:text-[var(--color-basalt)] hover:bg-[var(--color-mist)]'
               }`}
             >
               All topics
@@ -124,13 +124,14 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
               <Link
                 key={c.name}
                 href={buildHref({ topic: c.name, page: undefined })}
-                className={`px-3 py-1.5 text-[0.85rem] rounded-full border transition-colors ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[0.82rem] font-medium tracking-tight transition-colors ${
                   topic === c.name
-                    ? 'bg-[var(--color-basalt)] text-[var(--color-bone)] border-[var(--color-basalt)]'
-                    : 'border-[var(--color-hairline-strong)] text-[var(--color-slate)] hover:text-[var(--color-basalt)] hover:border-[var(--color-basalt)]'
+                    ? 'bg-[var(--color-basalt)] text-[var(--color-bone)]'
+                    : 'bg-transparent text-[var(--color-slate)] hover:text-[var(--color-basalt)] hover:bg-[var(--color-mist)]'
                 }`}
               >
-                {c.name} <span className="opacity-50">·</span> {c.count}
+                <span>{c.name}</span>
+                <span className={`tabular-nums text-[0.72rem] ${topic === c.name ? 'text-white/60' : 'text-[var(--color-slate)]/60'}`}>{c.count}</span>
               </Link>
             ))}
           </div>

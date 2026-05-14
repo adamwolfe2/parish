@@ -63,7 +63,7 @@ export default function PhilosophyPage() {
               </p>
               <p>
                 Four economic environments and asset allocation strategies are recognized by
-                Parish &amp; Company. The current environment is defined as <em>balanced / growth</em>.
+                Parish &amp; Company. The current environment is defined as <em>balanced / conservative</em>.
               </p>
             </div>
           </FadeIn>

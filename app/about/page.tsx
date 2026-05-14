@@ -121,22 +121,62 @@ export default function AboutPage() {
                   Registered Investment Adviser.
                 </h2>
               </div>
-              <div className="md:col-span-8 prose-editorial">
-                <p>
-                  Parish &amp; Company manages investment portfolios for individuals, pensions, and trusts.
-                  The firm provides key planning advice on all financial matters and publishes financial,
-                  economic, and corporate governance research.
-                </p>
-                <p>
-                  The practice advances key corporate-governance initiatives to increase market transparency
-                  and is internationally recognized as a leader in evaluating interest rate trends, mergers,
-                  technology developments, stock options and other compensation programs, and accounting and
-                  regulatory rules.
-                </p>
-                <p>
-                  Bill is widely quoted in the New York Times, Bloomberg, Barron&apos;s, USA Today,
-                  Los Angeles Times, The Oregonian, and other leading publications.
-                </p>
+              <div className="md:col-span-8">
+                <ul className="space-y-3.5 text-[1.05rem] leading-[1.6] text-[var(--color-basalt)]">
+                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Manage investment portfolios for individuals, pensions, and trusts.</span></li>
+                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Provide key planning advice on all financial matters.</span></li>
+                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Publish financial, economic, and corporate governance related research.</span></li>
+                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Advance key corporate governance initiatives to increase market transparency.</span></li>
+                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Internationally recognized as a leader in evaluating interest rate trends, mergers, technology developments, stock options and other compensation programs, accounting and regulatory rules, and corporate governance matters.</span></li>
+                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Widely quoted in the NY Times, Bloomberg, Barron&apos;s, USA Today, LA Times, Oregonian, and other leading publications.</span></li>
+                </ul>
+
+                <div className="mt-10 pt-8 border-t border-[var(--color-hairline)]">
+                  <h3 className="font-[family-name:var(--font-display)] text-[1.45rem] leading-tight text-[var(--color-basalt)]">
+                    Personalized service and level of support
+                  </h3>
+                  <p className="mt-4 text-[1rem] leading-[1.7] text-[var(--color-slate)]">
+                    Choosing Parish &amp; Company will also provide a more personalized service
+                    and level of support. The firm focuses upon investment selection and
+                    client relations. This provides more long-term continuity and stability,
+                    especially in this age of mergers. Clients include exceptionally large
+                    portfolios in addition to smaller portfolios, although smaller portfolios
+                    are only accepted based upon a strong personal connection or relationship
+                    with an existing client. Fees charged are .75 percent per year with an
+                    annual minimum.
+                  </p>
+                </div>
+
+                <div className="mt-10">
+                  <h3 className="font-[family-name:var(--font-display)] text-[1.45rem] leading-tight text-[var(--color-basalt)]">
+                    Experience with both strong and weak markets
+                  </h3>
+                  <p className="mt-4 text-[1rem] leading-[1.7] text-[var(--color-slate)]">
+                    Parish &amp; Company has been in business for more than 25 years and has
+                    provided good results in both strong and weak investment markets. Due to
+                    concern over key corporate-governance and accounting issues, client stock
+                    exposure was greatly reduced in late 1999 and in fact no equities were
+                    recommended again until August of 2003. Avoiding the large losses most
+                    investors incurred has made a significant difference in clients&apos; total
+                    assets. Of course there are no guarantees with respect to future returns,
+                    yet it is exactly this type of long-term oriented thinking that investors
+                    should expect.
+                  </p>
+                </div>
+
+                <div className="mt-10">
+                  <h3 className="font-[family-name:var(--font-display)] text-[1.45rem] leading-tight text-[var(--color-basalt)]">
+                    Recognized as a leader in complex financial transactions
+                  </h3>
+                  <p className="mt-4 text-[1rem] leading-[1.7] text-[var(--color-slate)]">
+                    Parish &amp; Company is recognized as a leader in understanding complex
+                    financial transactions, including mergers and other issues. Work in this
+                    area has generated hundreds of news stories and television and radio
+                    interviews. Too much of the investment industry is sales driven today.
+                    With Parish &amp; Company you get an advisor with a genuine portfolio
+                    management — rather than sales — orientation.
+                  </p>
+                </div>
               </div>
             </div>
           </FadeIn>

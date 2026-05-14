@@ -5,27 +5,40 @@ import { PressMarks } from '@/components/editorial/PressMarks';
 import { SectionHeader } from '@/components/editorial/SectionHeader';
 import { EditorialLink } from '@/components/editorial/EditorialLink';
 import { ResearchCard } from '@/components/editorial/ResearchCard';
+import { MountainSilhouette } from '@/components/editorial/MountainSilhouette';
 import { FadeIn } from '@/components/motion/FadeIn';
 import { getLatestPosts, getFeaturedPosts } from '@/lib/research';
 
 const services = [
   {
-    title: 'Individuals & Families',
+    title: 'Individual Investors',
     summary:
-      'Discretionary portfolio management calibrated to long-horizon goals. Tax efficiency, estate coordination, and direct access to the principal — never a junior advisor.',
-    items: ['Asset allocation', 'Tax-aware investing', 'Estate coordination'],
+      'Evaluate current portfolio and mix of investments. Provide guidance in defining and setting investment goals. Recommend overall asset allocation based upon stated objectives.',
+    items: [
+      'Stocks, mutual funds, bonds, and other instruments',
+      'Model portfolios for investors wanting simplicity',
+      'Review of insurance, real estate, credit, and new-business decisions',
+    ],
   },
   {
     title: 'Trusts & Foundations',
     summary:
-      'Institutional process with clear policy statements, proprietary GAP analysis, and disciplined monitoring against stated objectives.',
-    items: ['Investment policy', 'Performance monitoring', 'Trustee reporting'],
+      'Evaluate stated goals and objectives. Recommend a mix of high-quality investment alternatives. Conduct proprietary GAP analysis to monitor performance.',
+    items: [
+      'Evaluate outside money managers, if applicable',
+      'Monitor all key aspects of the plan for fiduciary implications',
+      'Meet with management and trustees as requested',
+    ],
   },
   {
-    title: 'Retirement Plans',
+    title: 'Retirement Plans, 401K and 403B',
     summary:
-      'Plan design, ERISA 404(c) compliance review, fee scrutiny, and participant education for 401(k) and 403(b) sponsors.',
-    items: ['Plan design', 'Fiduciary oversight', 'Fee reduction'],
+      'Plan design and evaluation. Risk analysis, enrollment and education for participants. ERISA compliance reviews to reduce 404C fiduciary risk.',
+    items: [
+      'Quarterly performance briefings to management',
+      'Constant focus on overall fee reduction',
+      'Interface with key vendors to improve and simplify the plan',
+    ],
   },
 ];
 
@@ -52,17 +65,14 @@ export default function HomePage() {
               </div>
               <div className="md:col-span-8">
                 <p className="text-[clamp(1.15rem,1.5vw,1.3rem)] leading-[1.55] text-[var(--color-basalt)]">
-                  Parish &amp; Company manages investment portfolios for individuals, families,
-                  trusts, and retirement plans across the Pacific Northwest. The firm makes
-                  prudent decisions through diligent research, quality long-term investments,
-                  tax efficiency, and direct communication — replacing emotion with the
-                  fundamental logic needed to make careful, rational choices.
+                  A nationally recognized registered investment management firm based in
+                  Portland, Oregon specializing in asset management for individuals,
+                  families, and institutions throughout the Northwest.
                 </p>
-                <p className="mt-6 text-[1rem] leading-[1.65] text-[var(--color-slate)]">
-                  No fees are accepted from any investment company, either directly or
-                  indirectly. Bill Parish&apos;s original research has driven coverage in
-                  The New York Times, Wall Street Journal, Bloomberg, Barron&apos;s,
-                  Financial Times, and The Guardian for more than two decades.
+                <p className="mt-6 text-[1.05rem] leading-[1.65] text-[var(--color-slate)]">
+                  My goal is to make prudent decisions based upon each client&apos;s specific
+                  needs. This requires a disciplined approach designed to achieve
+                  competitive long-term returns while controlling risks.
                 </p>
               </div>
             </div>
@@ -154,16 +164,16 @@ export default function HomePage() {
                 A 27-year practice you can actually reach.
               </h2>
               <p className="mt-6 text-[clamp(1.05rem,1.4vw,1.2rem)] leading-[1.6] text-[var(--color-basalt)]">
-                Bill Parish is a Registered Investment Adviser, CPA, MBA, and former CFO who
-                has spent more than two decades publishing original research that has
-                appeared in tier-one business journalism.
+                Choosing Parish &amp; Company provides a more personalized service and level
+                of support. The firm focuses upon investment selection and client relations,
+                providing long-term continuity and stability — especially in this age of
+                mergers.
               </p>
               <p className="mt-4 text-[1rem] leading-[1.65] text-[var(--color-slate)]">
-                His analytical work is behind reporting on Microsoft&apos;s stock-option tax
-                avoidance, Romney&apos;s $100M IRA, Buffett&apos;s derivatives exposure, Intel&apos;s
-                pension structure, Bain Capital, Gordon Sondland, the Mercer family, and
-                Oregon PERS&apos; private-equity exposure. When you become a client, you work
-                directly with him — never a junior advisor.
+                Clients include exceptionally large portfolios in addition to smaller
+                portfolios, although smaller portfolios are only accepted based upon a
+                strong personal connection or relationship with an existing client. Fees
+                charged are .75 percent per year with an annual minimum.
               </p>
 
               <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-[var(--color-hairline)] pt-8">
@@ -255,8 +265,9 @@ export default function HomePage() {
       )}
 
       {/* Philosophy preview */}
-      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/50">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
+      <section className="relative border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/50 overflow-hidden">
+        <MountainSilhouette className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 md:h-32 text-[var(--color-moss)] opacity-[0.18]" />
+        <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
           <FadeIn>
             <div className="grid gap-12 md:grid-cols-12 md:gap-16">
               <div className="md:col-span-5">
@@ -264,9 +275,9 @@ export default function HomePage() {
               </div>
               <div className="md:col-span-7">
                 <p className="text-[var(--text-lead)] leading-[1.55] text-[var(--color-basalt)]">
-                  Portfolios are calibrated to four economic environments — Growth, Balanced,
-                  Conservative, and Wealth Preservation — with a 30-year published record of
-                  forecasts and recommendations.
+                  Four economic environments and asset allocation strategies are
+                  recognized by Parish &amp; Company. The current environment is defined as{' '}
+                  <span className="italic">balanced &#x2F; conservative</span>.
                 </p>
                 <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {[

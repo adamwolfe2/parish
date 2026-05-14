@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export function Hero() {
+  const yearsSince = new Date().getFullYear() - 1998;
   return (
     <section className="relative overflow-hidden bg-[var(--color-ink)] text-[var(--color-bone)]">
       {/* Image side */}
@@ -21,19 +22,20 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-24 md:py-36 lg:py-44">
         <div className="max-w-[720px]">
-          <p className="text-[0.75rem] uppercase tracking-[0.18em] font-medium text-[var(--color-brass)] mb-7 flex items-center gap-3">
-            <span className="h-px w-10 bg-[var(--color-brass)]" />
-            Parish &amp; Company LLC · Since 1998
+          <p className="text-[0.72rem] uppercase tracking-[0.22em] font-medium text-[var(--color-brass)] mb-8 flex items-center gap-4">
+            <span className="h-px w-12 bg-[var(--color-brass)]" />
+            <span>Parish &amp; Company LLC · Portland, Oregon · Est. 1998</span>
           </p>
 
           <h1 className="font-[family-name:var(--font-display)] text-[clamp(2.75rem,6.5vw,5.25rem)] leading-[1.02] tracking-[-0.025em] text-white">
-            Independent investment <span className="text-[var(--color-brass)]">research</span> and management.
+            A nationally recognized investment management firm in the Pacific Northwest.
           </h1>
 
-          <p className="mt-8 max-w-xl text-[clamp(1.1rem,1.5vw,1.3rem)] leading-[1.55] text-white/80 font-[family-name:var(--font-display)]">
-            A 27-year record of original analysis featured in The New York Times,
-            The Wall Street Journal, Bloomberg, and Barron&rsquo;s — managing portfolios
-            for individuals, families, and institutions across the Pacific Northwest.
+          <p className="mt-8 max-w-xl text-[clamp(1.1rem,1.4vw,1.25rem)] leading-[1.55] text-white/80">
+            Asset management for individuals, families, and institutions throughout
+            the Northwest. Prudent decisions grounded in {yearsSince} years of original
+            research featured in The New York Times, The Wall Street Journal,
+            Bloomberg, and Barron&rsquo;s.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -59,10 +61,10 @@ export function Hero() {
       <div className="relative z-10 border-t border-white/10 bg-[var(--color-ink)]/60 backdrop-blur-md">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10">
           <dl className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-            <Stat label="Years independent" value="27" />
+            <Stat label="Years independent" value={String(yearsSince)} />
             <Stat label="Research notes published" value="200+" />
             <Stat label="Tier-one publications" value="12" />
-            <Stat label="Fees from issuers" value="0" prefix="$" />
+            <Stat label="Conflicts of interest" value="Zero" />
           </dl>
         </div>
       </div>
@@ -70,14 +72,13 @@ export function Hero() {
   );
 }
 
-function Stat({ label, value, prefix }: { label: string; value: string; prefix?: string }) {
+function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="px-4 md:px-8 py-7 md:py-9">
       <div className="font-[family-name:var(--font-display)] text-[clamp(2rem,3.5vw,3rem)] leading-none tracking-[-0.02em] text-white tabular-nums">
-        {prefix && <span className="text-[var(--color-brass)]">{prefix}</span>}
         {value}
       </div>
-      <div className="mt-2 text-[0.75rem] uppercase tracking-[0.12em] text-white/55 font-medium">
+      <div className="mt-2 text-[0.72rem] uppercase tracking-[0.14em] text-white/55 font-medium">
         {label}
       </div>
     </div>
