@@ -58,13 +58,13 @@ export default function HomePage() {
 
       {/* I — Mission */}
       <section className="bg-[var(--color-bone)]">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 pt-24 md:pt-32 pb-20 md:pb-28">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="i" label="The firm" />
 
-            <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-16">
+            <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-16">
               <div className="md:col-span-5">
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)]">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.02em] text-[var(--color-basalt)]">
                   Independent advice.<br />
                   Original research.<br />
                   <span className="text-[var(--color-moss)]">No conflicts.</span>
@@ -95,13 +95,13 @@ export default function HomePage() {
 
       {/* II — What we do (Services) */}
       <section className="border-t border-[var(--color-hairline)] bg-[var(--color-mist)]/45">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-24 md:py-32">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="ii" label="Services" />
 
-            <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
+            <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
               <div className="md:col-span-7">
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)]">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.02em] text-[var(--color-basalt)]">
                   Three categories of clients. One disciplined process.
                 </h2>
               </div>
@@ -114,7 +114,7 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.05} className="mt-16">
+          <FadeIn delay={0.05} className="mt-12">
             <div className="grid gap-px bg-[var(--color-hairline-strong)] md:grid-cols-3 border border-[var(--color-hairline-strong)]">
               {services.map((s, i) => (
                 <article
@@ -152,12 +152,12 @@ export default function HomePage() {
 
       {/* III — Founder */}
       <section className="border-t border-[var(--color-hairline)] bg-[var(--color-bone)]">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-24 md:py-32">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="iii" label="Founder" />
           </FadeIn>
 
-          <div className="mt-12 grid gap-12 md:grid-cols-12 md:gap-16 md:items-start">
+          <div className="mt-10 grid gap-12 md:grid-cols-12 md:gap-16 md:items-start">
             <FadeIn className="md:col-span-5">
               <div className="relative aspect-[4/5] w-full max-w-md mx-auto overflow-hidden bg-[var(--color-mist)]">
                 <Image
@@ -179,7 +179,7 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn delay={0.05} className="md:col-span-7">
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,3.8vw,3rem)] leading-[1.1] tracking-[-0.015em] text-[var(--color-basalt)]">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.015em] text-[var(--color-basalt)]">
                 A 27-year practice you can actually reach.
               </h2>
 
@@ -225,7 +225,7 @@ export default function HomePage() {
           <FadeIn>
             <SectionDivider numeral="iv" label="Fiduciary commitment" className="[&_*]:!text-white/80 [&_span:first-child]:!text-[var(--color-brass)] [&_span.h-px]:!bg-white/30" />
 
-            <div className="mt-12 max-w-4xl">
+            <div className="mt-10 max-w-4xl">
               <p className="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.2] italic">
                 &ldquo;A written guarantee is provided to every client that no fees are
                 accepted, either directly or indirectly, from any investment company on
@@ -251,7 +251,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="v" label="In the press" />
-            <div className="mt-12">
+            <div className="mt-10">
               <PressMarks />
             </div>
           </FadeIn>
@@ -261,13 +261,13 @@ export default function HomePage() {
       {/* VI — Notable research */}
       {featured.length > 0 && (
         <section className="border-t border-[var(--color-hairline)] bg-[var(--color-bone)]">
-          <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-24 md:py-32">
+          <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
             <FadeIn>
               <SectionDivider numeral="vi" label="Notable research" />
 
-              <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
+              <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
                 <div className="md:col-span-7">
-                  <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)]">
+                  <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.02em] text-[var(--color-basalt)]">
                     Stories that broke wider.
                   </h2>
                 </div>
@@ -281,7 +281,7 @@ export default function HomePage() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.05} className="mt-16">
+            <FadeIn delay={0.05} className="mt-12">
               <ul className="border-y border-[var(--color-hairline-strong)]">
                 {featured.map((post) => (
                   <li key={post.slug}>
@@ -296,58 +296,66 @@ export default function HomePage() {
 
       {/* VII — Philosophy preview */}
       <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-mist)]/55 overflow-hidden">
-        <MountainSilhouette className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 md:h-32 text-[var(--color-moss)] opacity-[0.16]" />
-        <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-24 md:py-32">
+        <MountainSilhouette className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 md:h-20 text-[var(--color-moss)] opacity-[0.16]" />
+        <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 pt-20 md:pt-24 pb-24 md:pb-28">
           <FadeIn>
             <SectionDivider numeral="vii" label="Philosophy" />
 
-            <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-16">
+            <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-12 md:items-start">
               <div className="md:col-span-5">
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)]">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.02em] text-[var(--color-basalt)]">
                   A disciplined process across four economic environments.
                 </h2>
-                <p className="mt-7 text-[1.05rem] leading-[1.7] text-[var(--color-slate)] max-w-md">
+                <p className="mt-5 text-[0.98rem] leading-[1.65] text-[var(--color-slate)]">
                   Four economic environments and asset allocation strategies are recognized
                   by Parish &amp; Company. The current environment is defined as{' '}
                   <span className="text-[var(--color-basalt)] font-medium">balanced / conservative</span>.
                 </p>
-                <EditorialLink href="/philosophy" className="mt-7">Read the philosophy</EditorialLink>
+                <EditorialLink href="/philosophy" className="mt-6">Read the philosophy</EditorialLink>
               </div>
 
               <div className="md:col-span-7">
-                <div className="bg-[var(--color-bone)] border border-[var(--color-hairline)]">
-                  <div className="grid grid-cols-[1fr,auto,auto] items-center px-5 md:px-7 py-4 border-b border-[var(--color-hairline-strong)] bg-[var(--color-mist)]/70">
-                    <p className="font-[family-name:var(--font-mono)] text-[0.7rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium">
-                      Environment
-                    </p>
-                    <p className="font-[family-name:var(--font-mono)] text-[0.7rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium pl-8 md:pl-14">
-                      Stocks
-                    </p>
-                    <p className="font-[family-name:var(--font-mono)] text-[0.7rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium pl-8 md:pl-14">
-                      Fixed Income
-                    </p>
-                  </div>
-                  {[
-                    { env: 'Growth', stocks: 75, fixed: 25 },
-                    { env: 'Balanced', stocks: 50, fixed: 50 },
-                    { env: 'Conservative', stocks: 25, fixed: 75 },
-                    { env: 'Wealth Preservation', stocks: 0, fixed: 100 },
-                  ].map((row) => (
-                    <div
-                      key={row.env}
-                      className="grid grid-cols-[1fr,auto,auto] items-center px-5 md:px-7 py-4 border-b border-[var(--color-hairline)] last:border-b-0"
-                    >
-                      <p className="font-[family-name:var(--font-display)] text-[1.05rem] text-[var(--color-basalt)]">
-                        {row.env}
-                      </p>
-                      <p className="font-[family-name:var(--font-mono)] tabular-nums text-[0.95rem] text-[var(--color-basalt)] pl-8 md:pl-14 text-right">
-                        {row.stocks}%
-                      </p>
-                      <p className="font-[family-name:var(--font-mono)] tabular-nums text-[0.95rem] text-[var(--color-basalt)] pl-8 md:pl-14 text-right">
-                        {row.fixed}%
-                      </p>
-                    </div>
-                  ))}
+                <div className="bg-[var(--color-bone)] border border-[var(--color-hairline)] overflow-hidden">
+                  <table className="w-full table-fixed border-collapse">
+                    <colgroup>
+                      <col className="w-1/2" />
+                      <col className="w-1/4" />
+                      <col className="w-1/4" />
+                    </colgroup>
+                    <thead>
+                      <tr className="bg-[var(--color-mist)]/60 border-b border-[var(--color-hairline-strong)]">
+                        <th className="text-left font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium px-5 md:px-6 py-3.5">
+                          Environment
+                        </th>
+                        <th className="text-right font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium px-5 md:px-6 py-3.5">
+                          Stocks
+                        </th>
+                        <th className="text-right font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.12em] text-[var(--color-slate)] font-medium px-5 md:px-6 py-3.5">
+                          Fixed Income
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { env: 'Growth', stocks: 75, fixed: 25 },
+                        { env: 'Balanced', stocks: 50, fixed: 50 },
+                        { env: 'Conservative', stocks: 25, fixed: 75 },
+                        { env: 'Wealth Preservation', stocks: 0, fixed: 100 },
+                      ].map((row) => (
+                        <tr key={row.env} className="border-b border-[var(--color-hairline)] last:border-b-0">
+                          <td className="font-[family-name:var(--font-display)] text-[1rem] md:text-[1.05rem] text-[var(--color-basalt)] px-5 md:px-6 py-3.5">
+                            {row.env}
+                          </td>
+                          <td className="text-right font-[family-name:var(--font-mono)] tabular-nums text-[0.95rem] text-[var(--color-basalt)] px-5 md:px-6 py-3.5">
+                            {row.stocks}%
+                          </td>
+                          <td className="text-right font-[family-name:var(--font-mono)] tabular-nums text-[0.95rem] text-[var(--color-basalt)] px-5 md:px-6 py-3.5">
+                            {row.fixed}%
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
                 <p className="mt-4 text-[0.85rem] text-[var(--color-slate)] italic leading-relaxed">
                   Past recommendations do not in any way guarantee the success of future
@@ -361,13 +369,13 @@ export default function HomePage() {
 
       {/* VIII — Latest research */}
       <section className="border-t border-[var(--color-hairline)] bg-[var(--color-bone)]">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-24 md:py-32">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
             <SectionDivider numeral="viii" label="Latest" />
 
-            <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
+            <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-16 md:items-end">
               <div className="md:col-span-7">
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)]">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.4vw,2.5rem)] leading-[1.1] tracking-[-0.02em] text-[var(--color-basalt)]">
                   Most recent notes.
                 </h2>
               </div>
@@ -380,7 +388,7 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.05} className="mt-16">
+          <FadeIn delay={0.05} className="mt-12">
             <ul className="border-y border-[var(--color-hairline-strong)]">
               {latest.map((post) => (
                 <li key={post.slug}>
