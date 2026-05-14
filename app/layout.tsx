@@ -68,6 +68,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
       <head>
+        {/* Stop iOS/Chrome from auto-decorating phone/email/addresses */}
+        <meta name="format-detection" content="telephone=no, address=no, email=no, date=no" />
         <JsonLd data={[organizationSchema, personSchema]} />
       </head>
       <body className="min-h-screen flex flex-col">
