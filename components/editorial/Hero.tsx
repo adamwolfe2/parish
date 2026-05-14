@@ -16,11 +16,12 @@ export function Hero() {
     <section className="relative overflow-hidden bg-[var(--color-ink)] text-[var(--color-bone)]">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/mt-hood.jpg"
-          alt="Mt. Hood at dawn, viewed from Trillium Lake, Oregon"
+          src="/images/mt-hood-hero.jpg"
+          alt="Mt. Hood at dawn, reflected in Trillium Lake, Oregon"
           fill
           priority
           sizes="100vw"
+          quality={88}
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-ink)]/94 via-[var(--color-ink)]/80 to-[var(--color-ink)]/45" />
