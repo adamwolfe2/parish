@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import DOMPurify from 'isomorphic-dompurify';
 
 export type PostBody = {
   slug: string;
@@ -22,7 +23,7 @@ export function getPostBody(slug: string): PostBody | null {
   }
 }
 
-const ALLOWED_TAGS = new Set([
+const ALLOWED_TAGS = [
   'p', 'br', 'a', 'em', 'strong', 'i', 'b', 'u', 'span',
   'h2', 'h3', 'h4',
   'ul', 'ol', 'li',
@@ -30,92 +31,60 @@ const ALLOWED_TAGS = new Set([
   'img',
   'table', 'thead', 'tbody', 'tr', 'th', 'td',
   'hr',
-]);
+];
 
-const ALLOWED_ATTRS: Record<string, Set<string>> = {
-  a: new Set(['href', 'title', 'rel', 'target']),
-  img: new Set(['src', 'alt', 'width', 'height', 'loading']),
-  th: new Set(['scope', 'colspan', 'rowspan']),
-  td: new Set(['colspan', 'rowspan']),
-};
+const ALLOWED_ATTRS = [
+  'href', 'title', 'rel', 'target',
+  'src', 'alt', 'width', 'height', 'loading',
+  'scope', 'colspan', 'rowspan',
+];
+
+// Allow only http/https/mailto/tel/relative URLs. Block javascript:/data:/vbscript:/file:.
+const SAFE_URL_REGEX = /^(?:(?:https?|mailto|tel):|\/(?!\/)|#|\?|$)/i;
 
 /**
- * Minimal HTML sanitizer for WordPress-imported post bodies.
- * Strips inline styles, scripts, iframes, embeds, classes — keeps semantic markup only.
+ * DOM-based sanitizer for WordPress-imported post bodies.
+ * Strips scripts, iframes, styles, dangerous protocols, event handlers,
+ * forms, and any tag not on the allowlist.
  */
 export function sanitizePostHtml(html: string): string {
   if (!html) return '';
 
-  // Strip script/style blocks entirely
-  let cleaned = html
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
-    .replace(/<iframe\b[^>]*>[\s\S]*?<\/iframe>/gi, '')
-    .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, '');
+  // Strip WordPress shortcodes before DOMPurify (DOMPurify doesn't know about them).
+  let cleaned = html.replace(/\[[a-z0-9_-]+(?:\s[^\]]*)?\]/gi, '');
 
-  // Strip WordPress shortcodes still in body
-  cleaned = cleaned.replace(/\[[a-z0-9_-]+(?:\s[^\]]*)?\]/gi, '');
-
-  // Walk tags and filter
-  cleaned = cleaned.replace(/<\/?([a-z0-9]+)([^>]*?)\/?>/gi, (full, tag: string, attrs: string) => {
-    const t = tag.toLowerCase();
-    if (!ALLOWED_TAGS.has(t)) return '';
-    const allowed = ALLOWED_ATTRS[t];
-    if (!allowed || !attrs.trim()) {
-      // Re-emit tag without attributes
-      return full.startsWith('</') ? `</${t}>` : `<${t}>`;
-    }
-    const safeAttrs: string[] = [];
-    const re = /([a-z-]+)(?:\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+)))?/gi;
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(attrs))) {
-      const name = m[1].toLowerCase();
-      if (!allowed.has(name)) continue;
-      const value = (m[3] ?? m[4] ?? m[5] ?? '').trim();
-      // Block javascript: URLs and data: URLs except images
-      if (/^\s*javascript:/i.test(value)) continue;
-      if (name === 'href' && /^\s*data:/i.test(value)) continue;
-      // Rewrite legacy WordPress URLs to new /research routes
-      let v = value;
-      if (t === 'a' && name === 'href') {
-        v = rewriteInternalLink(value);
-        if (/^https?:\/\/(?:www\.)?parishinvestments\.com\//i.test(v)) {
-          // External link to legacy site — strip to relative for rewrite
-          v = v.replace(/^https?:\/\/(?:www\.)?parishinvestments\.com/i, '');
-          v = rewriteInternalLink(v);
-        }
-        if (v.startsWith('/research/') || v.startsWith('/')) {
-          // Internal — no target=_blank
-          safeAttrs.push(`href="${escapeAttr(v)}"`);
-          continue;
-        }
-      }
-      if (t === 'a' && name === 'href' && /^https?:/i.test(v)) {
-        safeAttrs.push(`href="${escapeAttr(v)}"`);
-        continue;
-      }
-      safeAttrs.push(v ? `${name}="${escapeAttr(v)}"` : name);
-    }
-    if (t === 'a' && safeAttrs.some((a) => a.startsWith('href='))) {
-      const hrefAttr = safeAttrs.find((a) => a.startsWith('href=')) || '';
-      const isInternal = /href="\//.test(hrefAttr);
-      if (!isInternal) {
-        if (!safeAttrs.some((a) => a.startsWith('rel='))) safeAttrs.push('rel="noopener noreferrer"');
-        if (!safeAttrs.some((a) => a.startsWith('target='))) safeAttrs.push('target="_blank"');
-      }
-    }
-    if (t === 'img') {
-      if (!safeAttrs.some((a) => a.startsWith('loading='))) safeAttrs.push('loading="lazy"');
-    }
-    const space = safeAttrs.length ? ' ' + safeAttrs.join(' ') : '';
-    return full.startsWith('</') ? `</${t}>` : `<${t}${space}>`;
+  // First pass: rewrite legacy WP permalinks to /research/<slug>.
+  cleaned = cleaned.replace(/href="([^"]+)"/g, (m, raw: string) => {
+    return `href="${rewriteInternalLink(raw)}"`;
   });
 
-  return cleaned.trim();
-}
+  // Use DOMPurify with a strict allowlist.
+  const safe = DOMPurify.sanitize(cleaned, {
+    ALLOWED_TAGS,
+    ALLOWED_ATTR: ALLOWED_ATTRS,
+    ALLOW_DATA_ATTR: false,
+    ALLOWED_URI_REGEXP: SAFE_URL_REGEX,
+    FORBID_TAGS: ['script', 'style', 'iframe', 'noscript', 'svg', 'math', 'object', 'embed', 'form', 'input', 'button'],
+    FORBID_ATTR: ['onerror', 'onload', 'onclick', 'onmouseover', 'style', 'class', 'id', 'srcset', 'sizes'],
+    KEEP_CONTENT: true,
+    USE_PROFILES: { html: true },
+  });
 
-function escapeAttr(s: string): string {
-  return s.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Post-process anchor tags: add rel + target on external links, omit on internal.
+  return safe.replace(
+    /<a\s+([^>]*?)href="([^"]+)"([^>]*)>/gi,
+    (match, before: string, href: string, after: string) => {
+      const isInternal = href.startsWith('/') || href.startsWith('#');
+      if (isInternal) return match;
+      const hasRel = /rel=/i.test(before + after);
+      const hasTarget = /target=/i.test(before + after);
+      const additions = [
+        hasRel ? '' : 'rel="noopener noreferrer"',
+        hasTarget ? '' : 'target="_blank"',
+      ].filter(Boolean).join(' ');
+      return `<a ${before}href="${href}"${after}${additions ? ' ' + additions : ''}>`;
+    },
+  );
 }
 
 /**
@@ -123,18 +92,20 @@ function escapeAttr(s: string): string {
  * Examples:
  *   /2012/02/22/inside-mitt-romneys-tax-return/ → /research/inside-mitt-romneys-tax-return
  *   /1998/07/13/post-name/                       → /research/post-name
+ *   https://parishinvestments.com/2012/02/.../   → /research/<slug>
  */
 function rewriteInternalLink(href: string): string {
   if (!href) return href;
-  const wpMatch = href.match(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([^/?#]+)\/?(.*)$/);
+  // Strip legacy domain to relative
+  const stripped = href.replace(/^https?:\/\/(?:www\.)?parishinvestments\.com/i, '');
+  const wpMatch = stripped.match(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([^/?#]+)\/?(.*)$/);
   if (wpMatch) {
     const slug = wpMatch[4];
     const rest = wpMatch[5] || '';
     return `/research/${slug}${rest}`;
   }
-  // Legacy top-level pages
-  if (/^\/(blog|blog-2|blog-3|selected-media-archive)\/?$/i.test(href)) return '/research';
-  if (/^\/(our-company|parish-company|services)\/?$/i.test(href)) return '/about';
-  if (/^\/(investment-philosophy)\/?$/i.test(href)) return '/philosophy';
-  return href;
+  if (/^\/(blog|blog-2|blog-3|selected-media-archive)\/?$/i.test(stripped)) return '/research';
+  if (/^\/(our-company|parish-company|services)\/?$/i.test(stripped)) return '/about';
+  if (/^\/(investment-philosophy)\/?$/i.test(stripped)) return '/philosophy';
+  return stripped || href;
 }

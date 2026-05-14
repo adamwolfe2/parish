@@ -10,7 +10,11 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io https://*.plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://cdn.sanity.io https://billparish.files.wordpress.com https://i0.wp.com https://i1.wp.com https://i2.wp.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://plausible.io https://*.plausible.io https://api.resend.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+        }
       ]
     }
   ]

@@ -5,8 +5,11 @@ export function JsonLd({ data }: { data: Json }) {
     <script
       type="application/ld+json"
       // The schema.org JSON-LD format intentionally embeds JSON in the page;
-      // values are server-controlled and structured, no user input.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      // values are server-controlled. Escape </script> defensively in case
+      // any field ever contains user content (e.g., post titles from CMS).
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data).replace(/</g, '\\u003c'),
+      }}
     />
   );
 }
