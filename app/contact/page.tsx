@@ -13,20 +13,24 @@ export default function ContactPage() {
   return (
     <article>
       <header className="border-b border-[var(--color-hairline)]">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-14 md:py-16">
           <FadeIn>
-            <div className="mx-auto max-w-3xl text-center">
+            <div className="mx-auto max-w-2xl text-center">
               <Kicker className="inline-block">Contact</Kicker>
-              <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.15rem,4.2vw,3.5rem)] leading-[1.08] tracking-[-0.02em] text-[var(--color-basalt)]">
-                Inquiries from prospective clients, media, and academic researchers are welcomed.
+              <h1 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.85rem,3.2vw,2.65rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                Get in touch.
               </h1>
+              <p className="mt-5 mx-auto max-w-xl text-[1rem] leading-[1.65] text-[var(--color-slate)]">
+                Inquiries from prospective clients, media, and academic researchers are welcomed.
+                Replies typically arrive within one business day.
+              </p>
             </div>
           </FadeIn>
         </div>
       </header>
 
       <section className="border-b border-[var(--color-hairline)]">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-16 md:py-20">
           <div className="grid gap-14 md:grid-cols-12 md:gap-20">
             <FadeIn className="md:col-span-5">
               <Kicker>By phone or email</Kicker>
@@ -76,11 +80,7 @@ export default function ContactPage() {
 
             <FadeIn delay={0.1} className="md:col-span-7">
               <Kicker>Send a message</Kicker>
-              <p className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-[var(--color-slate)]">
-                Brief notes on the nature of your inquiry are appreciated. Replies typically
-                arrive within one business day.
-              </p>
-              <div className="mt-8">
+              <div className="mt-6">
                 <InquiryForm />
               </div>
             </FadeIn>
