@@ -4,6 +4,8 @@ import './globals.css';
 import { Nav } from '@/components/layout/Nav';
 import { Footer } from '@/components/layout/Footer';
 import { ContactStrip } from '@/components/layout/ContactStrip';
+import { JsonLd, organizationSchema, personSchema } from '@/components/seo/JsonLd';
+import { Plausible } from '@/components/analytics/Plausible';
 
 const display = Source_Serif_4({
   subsets: ['latin'],
@@ -65,11 +67,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+      <head>
+        <JsonLd data={[organizationSchema, personSchema]} />
+      </head>
       <body className="min-h-screen flex flex-col">
         <Nav />
         <main className="flex-1">{children}</main>
         <ContactStrip />
         <Footer />
+        <Plausible />
       </body>
     </html>
   );

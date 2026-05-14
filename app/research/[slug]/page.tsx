@@ -4,7 +4,12 @@ import { notFound } from 'next/navigation';
 import { Kicker } from '@/components/editorial/Kicker';
 import { FadeIn } from '@/components/motion/FadeIn';
 import { ResearchCard } from '@/components/editorial/ResearchCard';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { PostBody } from '@/components/editorial/PostBody';
 import { loadAllPosts, getPostBySlug, formatPostDate } from '@/lib/research';
+import { getPostBody } from '@/lib/post-body';
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://parishinvestments.com';
 
 type Params = Promise<{ slug: string }>;
 
@@ -38,8 +43,24 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
     .filter((p) => p.slug !== post.slug && p.categories.some((c) => post.categories.includes(c)))
     .slice(0, 3);
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    inLanguage: 'en-US',
+    url: `${siteUrl}/research/${post.slug}`,
+    author: { '@type': 'Person', '@id': `${siteUrl}#bill-parish`, name: 'Bill Parish' },
+    publisher: { '@id': `${siteUrl}#organization` },
+    keywords: post.categories.join(', ') || undefined,
+    image: `${siteUrl}/research/${post.slug}/opengraph-image`,
+  };
+
   return (
     <article>
+      <JsonLd data={articleSchema} />
       <header className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-16 md:py-24">
           <FadeIn>
@@ -84,21 +105,8 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
       <section className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-16 md:py-20">
           <FadeIn>
-            <div className="max-w-[680px] mx-auto prose-editorial">
-              {post.excerpt && <p>{post.excerpt}</p>}
-              <p className="text-[var(--color-slate)] italic">
-                The full text of this research note will be available here once content migration
-                is complete. In the interim, the original publication is preserved at the legacy
-                archive.
-              </p>
-              {post.url && (
-                <p>
-                  <a href={post.url} target="_blank" rel="noopener noreferrer" className="link-editorial">
-                    <span>View on the legacy archive</span>
-                    <span className="arrow">→</span>
-                  </a>
-                </p>
-              )}
+            <div className="max-w-[680px] mx-auto">
+              <PostContent slug={post.slug} excerpt={post.excerpt} legacyUrl={post.url} />
             </div>
           </FadeIn>
         </div>
@@ -126,5 +134,34 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
         </section>
       )}
     </article>
+  );
+}
+
+function PostContent({ slug, excerpt, legacyUrl }: { slug: string; excerpt?: string; legacyUrl?: string }) {
+  const body = getPostBody(slug);
+  if (body?.bodyHtml) {
+    return <PostBody html={body.bodyHtml} />;
+  }
+  return (
+    <div className="prose-editorial">
+      {excerpt && <p>{excerpt}</p>}
+      <p className="text-[var(--color-slate)] italic">
+        The full text of this research note is being migrated. In the interim, the original
+        publication is preserved at the legacy archive.
+      </p>
+      {legacyUrl && (
+        <p>
+          <a
+            href={legacyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-editorial"
+          >
+            <span>View on the legacy archive</span>
+            <span className="arrow">→</span>
+          </a>
+        </p>
+      )}
+    </div>
   );
 }
