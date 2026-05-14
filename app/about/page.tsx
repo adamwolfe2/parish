@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Kicker } from '@/components/editorial/Kicker';
 import { FadeIn } from '@/components/motion/FadeIn';
+import { MountainSilhouette } from '@/components/editorial/MountainSilhouette';
 import pressCitations from '@/content/press-citations.json';
 
 export const metadata: Metadata = {
@@ -10,12 +11,25 @@ export const metadata: Metadata = {
     'Bill Parish is an independent Registered Investment Adviser based in Lake Oswego, Oregon. CPA, MBA, and former CFO with more than two decades of portfolio and financial research experience.',
 };
 
-const credentials = [
-  'Registered Investment Adviser (RIA)',
-  'Certified Public Accountant (CPA)',
+type Citation = { publication: string; title: string; author?: string; date?: string; excerpt?: string; url?: string | null };
+const citations = pressCitations as Citation[];
+
+const background = [
+  'Manage investment portfolios for individuals, pensions, and trusts.',
+  'Provide key planning advice on all financial matters.',
+  'Publish financial, economic, and corporate governance related research.',
+  'Advance key corporate-governance initiatives to increase market transparency.',
+  'Internationally recognized as a leader in evaluating interest rate trends, mergers, technology developments, stock options and other compensation programs, accounting and regulatory rules, and corporate governance matters.',
+  'Widely quoted in the NY Times, Bloomberg, Barron’s, USA Today, LA Times, Oregonian, and other leading publications.',
+];
+
+const education = [
   'MBA, Finance — Portland State University',
   'BA, Finance / Accounting (minor Journalism) — University of Oregon',
+  'Certified Public Accountant (CPA)',
 ];
+
+const languages = ['English', 'Spanish', 'French', 'Italian', 'Russian (basic)', 'Mandarin (basic)'];
 
 const previousExperience = [
   'Chief Financial Officer',
@@ -24,8 +38,6 @@ const previousExperience = [
   'Certified Public Accountant, Auditor and Systems Consultant',
   'Rural Bank Consultant — Peace Corps Volunteer, Paraguay',
 ];
-
-const languages = ['English', 'Spanish', 'French', 'Italian', 'Russian (basic)', 'Mandarin (basic)'];
 
 const services = [
   {
@@ -36,7 +48,7 @@ const services = [
       'Recommend overall asset allocation based on stated objectives',
       'Select stocks, mutual funds, bonds, and other instruments',
       'Provide model portfolios for investors wanting simplicity',
-      'Review decisions involving insurance, real estate, credit, and new business opportunities',
+      'Review of insurance, real estate, credit, and new-business decisions',
     ],
   },
   {
@@ -52,7 +64,7 @@ const services = [
     ],
   },
   {
-    title: 'Retirement Plans (401K, 403B)',
+    title: 'Retirement Plans · 401K, 403B',
     items: [
       'Plan design and evaluation',
       'Risk analysis, enrollment, and education for participants',
@@ -62,273 +74,270 @@ const services = [
       'Quarterly performance briefings to management',
       'Ongoing GAP analysis to improve performance',
       'Constant focus on overall fee reduction',
-      'Interface with key vendors to continually improve and simplify the plan',
+      'Interface with key vendors to improve and simplify the plan',
       'Employee and manager meetings as requested',
     ],
   },
 ];
 
-type Citation = { publication: string; title: string; author?: string; date?: string; excerpt?: string; url?: string | null };
-const citations = pressCitations as Citation[];
-
 export default function AboutPage() {
   return (
     <article>
-      {/* Header */}
-      <header className="border-b border-[var(--color-hairline)]">
-        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-28">
-          <div className="grid gap-12 md:grid-cols-12 md:gap-16 md:items-end">
-            <FadeIn className="md:col-span-7">
-              <Kicker>About Parish &amp; Company</Kicker>
-              <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.5rem,5.5vw,4.25rem)] leading-[1.05] tracking-[-0.02em] text-[var(--color-basalt)]">
+      {/* Header — centered */}
+      <header className="relative bg-[var(--color-bone)] overflow-hidden border-b border-[var(--color-hairline)]">
+        <MountainSilhouette
+          variant="ridge"
+          stretch
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 md:h-14 text-[var(--color-moss)] opacity-[0.12]"
+        />
+        <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
+          <FadeIn>
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker className="inline-block">About Parish &amp; Company</Kicker>
+              <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.15rem,4.2vw,3.5rem)] leading-[1.08] tracking-[-0.02em] text-[var(--color-basalt)]">
                 A 27-year independent practice in Lake Oswego, Oregon.
               </h1>
-              <p className="mt-7 text-[var(--text-lead)] leading-[1.6] text-[var(--color-slate)]">
-                Bill Parish founded Parish &amp; Company LLC in 1998. The firm manages investment
-                portfolios for individuals, families, trusts, foundations, and retirement plans.
-                Its original research has been quoted in tier-one business journalism on every
-                major corporate-governance and tax-policy story of the past two decades.
+              <p className="mt-7 mx-auto max-w-2xl text-[var(--text-lead)] leading-[1.6] text-[var(--color-slate)]">
+                Bill Parish founded Parish &amp; Company LLC in 1998. The firm manages
+                investment portfolios for individuals, families, trusts, foundations, and
+                retirement plans. Its original research has been quoted in tier-one
+                business journalism on every major corporate-governance and tax-policy
+                story of the past two decades.
               </p>
-            </FadeIn>
-
-            <FadeIn className="md:col-span-5">
-              <div className="relative aspect-[4/5] w-full max-w-sm mx-auto md:ml-auto md:mr-0 overflow-hidden border border-[var(--color-hairline)] bg-[var(--color-mist)]">
-                <Image
-                  src="/images/bill-parish-portrait.webp"
-                  alt="Bill Parish, founder of Parish & Company LLC"
-                  fill
-                  sizes="(max-width: 768px) 80vw, 30vw"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              <p className="mt-3 text-center md:text-right text-[0.78rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium">
-                Bill Parish · President &amp; CEO
-              </p>
-            </FadeIn>
-          </div>
+            </div>
+          </FadeIn>
         </div>
       </header>
 
-      {/* Background narrative */}
-      <section className="border-b border-[var(--color-hairline)]">
+      {/* Background — Registered Investment Adviser */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-              <div className="md:col-span-4">
-                <Kicker>Background</Kicker>
-                <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-tight text-[var(--color-basalt)]">
+            <div className="mx-auto max-w-3xl">
+              <div className="text-center">
+                <Kicker className="inline-block mb-4">Background</Kicker>
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
                   Registered Investment Adviser.
                 </h2>
               </div>
-              <div className="md:col-span-8">
-                <ul className="space-y-3.5 text-[1.05rem] leading-[1.6] text-[var(--color-basalt)]">
-                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Manage investment portfolios for individuals, pensions, and trusts.</span></li>
-                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Provide key planning advice on all financial matters.</span></li>
-                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Publish financial, economic, and corporate governance related research.</span></li>
-                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Advance key corporate governance initiatives to increase market transparency.</span></li>
-                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Internationally recognized as a leader in evaluating interest rate trends, mergers, technology developments, stock options and other compensation programs, accounting and regulatory rules, and corporate governance matters.</span></li>
-                  <li className="flex gap-3"><span className="text-[var(--color-moss)] mt-1">·</span><span>Widely quoted in the NY Times, Bloomberg, Barron&apos;s, USA Today, LA Times, Oregonian, and other leading publications.</span></li>
-                </ul>
-
-                <div className="mt-10 pt-8 border-t border-[var(--color-hairline)]">
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.45rem] leading-tight text-[var(--color-basalt)]">
-                    Personalized service and level of support
-                  </h3>
-                  <p className="mt-4 text-[1rem] leading-[1.7] text-[var(--color-slate)]">
-                    Choosing Parish &amp; Company will also provide a more personalized service
-                    and level of support. The firm focuses upon investment selection and
-                    client relations. This provides more long-term continuity and stability,
-                    especially in this age of mergers. Clients include exceptionally large
-                    portfolios in addition to smaller portfolios, although smaller portfolios
-                    are only accepted based upon a strong personal connection or relationship
-                    with an existing client.
-                  </p>
-                </div>
-
-                <div className="mt-10">
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.45rem] leading-tight text-[var(--color-basalt)]">
-                    Experience with both strong and weak markets
-                  </h3>
-                  <p className="mt-4 text-[1rem] leading-[1.7] text-[var(--color-slate)]">
-                    Parish &amp; Company has been in business for more than 25 years and has
-                    provided good results in both strong and weak investment markets. Due to
-                    concern over key corporate-governance and accounting issues, client stock
-                    exposure was greatly reduced in late 1999 and in fact no equities were
-                    recommended again until August of 2003. Avoiding the large losses most
-                    investors incurred has made a significant difference in clients&apos; total
-                    assets. Of course there are no guarantees with respect to future returns,
-                    yet it is exactly this type of long-term oriented thinking that investors
-                    should expect.
-                  </p>
-                </div>
-
-                <div className="mt-10">
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.45rem] leading-tight text-[var(--color-basalt)]">
-                    Recognized as a leader in complex financial transactions
-                  </h3>
-                  <p className="mt-4 text-[1rem] leading-[1.7] text-[var(--color-slate)]">
-                    Parish &amp; Company is recognized as a leader in understanding complex
-                    financial transactions, including mergers and other issues. Work in this
-                    area has generated hundreds of news stories and television and radio
-                    interviews. Too much of the investment industry is sales driven today.
-                    With Parish &amp; Company you get an advisor with a genuine portfolio
-                    management — rather than sales — orientation.
-                  </p>
-                </div>
-              </div>
+              <ul className="mt-10 space-y-4 text-[1.02rem] leading-[1.65] text-[var(--color-basalt)]">
+                {background.map((line) => (
+                  <li key={line} className="flex gap-4">
+                    <span aria-hidden="true" className="text-[var(--color-moss)] mt-1 shrink-0">▸</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Credentials & experience */}
-      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/40">
+      {/* Personalized service */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/45">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-              <div className="md:col-span-4">
-                <Kicker>Credentials</Kicker>
-                <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-tight text-[var(--color-basalt)]">
-                  Education &amp; experience.
+            <div className="mx-auto max-w-3xl">
+              <div className="text-center">
+                <Kicker className="inline-block mb-4">A different practice</Kicker>
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                  Personalized service and level of support.
                 </h2>
-                <p className="mt-6 text-[0.95rem] leading-relaxed text-[var(--color-slate)] max-w-sm">
-                  More than 20 years of portfolio and financial-research experience across strong
-                  and weak markets.
-                </p>
               </div>
-              <div className="md:col-span-8 grid gap-10 sm:grid-cols-2">
-                <div>
-                  <h3 className="text-[0.72rem] uppercase tracking-[0.12em] font-medium text-[var(--color-moss)]">
-                    Education
-                  </h3>
-                  <ul className="mt-4 space-y-2 text-[0.98rem] text-[var(--color-basalt)] leading-relaxed">
-                    {credentials.map((c) => (
-                      <li key={c}>· {c}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-[0.72rem] uppercase tracking-[0.12em] font-medium text-[var(--color-moss)]">
-                    Languages
-                  </h3>
-                  <ul className="mt-4 space-y-2 text-[0.98rem] text-[var(--color-basalt)] leading-relaxed">
-                    {languages.map((l) => (
-                      <li key={l}>· {l}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <h3 className="text-[0.72rem] uppercase tracking-[0.12em] font-medium text-[var(--color-moss)]">
-                    Previous professional experience
-                  </h3>
-                  <ul className="mt-4 grid gap-2 sm:grid-cols-2 text-[0.98rem] text-[var(--color-basalt)] leading-relaxed">
-                    {previousExperience.map((e) => (
-                      <li key={e}>· {e}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <p className="mt-9 text-[1.1rem] leading-[1.75] text-[var(--color-basalt)]">
+                Choosing Parish &amp; Company provides a more personalized service and level
+                of support. The firm focuses upon investment selection and client relations —
+                providing long-term continuity and stability, especially in this age of
+                mergers.
+              </p>
+              <p className="mt-5 text-[1.05rem] leading-[1.75] text-[var(--color-slate)]">
+                Clients include exceptionally large portfolios in addition to smaller
+                portfolios, although smaller portfolios are only accepted based upon a strong
+                personal connection or relationship with an existing client.
+              </p>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="border-b border-[var(--color-hairline)]">
+      {/* Experience */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <Kicker>Services</Kicker>
-            <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-tight text-[var(--color-basalt)] max-w-2xl">
-              Three categories of clients. One disciplined process.
-            </h2>
-            <p className="mt-6 max-w-2xl text-[var(--text-lead)] leading-[1.55] text-[var(--color-slate)]">
-              The same disciplined investment process is applied across every relationship.
-            </p>
+            <div className="mx-auto max-w-3xl">
+              <div className="text-center">
+                <Kicker className="inline-block mb-4">Through every market</Kicker>
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                  Experience with both strong and weak markets.
+                </h2>
+              </div>
+              <p className="mt-9 text-[1.1rem] leading-[1.75] text-[var(--color-basalt)]">
+                Parish &amp; Company has been in business for more than 25 years and has
+                provided good results in both strong and weak investment markets. Due to
+                concern over key corporate-governance and accounting issues, client stock
+                exposure was greatly reduced in late 1999 and in fact no equities were
+                recommended again until August of 2003.
+              </p>
+              <p className="mt-5 text-[1.05rem] leading-[1.75] text-[var(--color-slate)]">
+                Avoiding the large losses most investors incurred has made a significant
+                difference in clients&apos; total assets. Of course there are no guarantees
+                with respect to future returns, yet it is exactly this type of long-term
+                oriented thinking that investors should expect.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Complex transactions */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/45">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
+          <FadeIn>
+            <div className="mx-auto max-w-3xl">
+              <div className="text-center">
+                <Kicker className="inline-block mb-4">In the press</Kicker>
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                  Recognized as a leader in complex financial transactions.
+                </h2>
+              </div>
+              <p className="mt-9 text-[1.1rem] leading-[1.75] text-[var(--color-basalt)]">
+                Parish &amp; Company is recognized as a leader in understanding complex
+                financial transactions, including mergers and other issues. Work in this
+                area has generated hundreds of news stories and television and radio
+                interviews.
+              </p>
+              <p className="mt-5 text-[1.05rem] leading-[1.75] text-[var(--color-slate)]">
+                Too much of the investment industry is sales driven today. With Parish
+                &amp; Company you get an advisor with a genuine portfolio management — rather
+                than sales — orientation.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Credentials — centered grid */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
+          <FadeIn>
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker className="inline-block mb-4">Credentials</Kicker>
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                Education, languages, and experience.
+              </h2>
+            </div>
           </FadeIn>
 
-          <FadeIn delay={0.1} className="mt-14">
-            <div className="grid gap-10 md:grid-cols-3 md:gap-12">
-              {services.map((s) => (
-                <div key={s.title} className="pt-8 border-t border-[var(--color-hairline-strong)]">
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.35rem] leading-tight text-[var(--color-basalt)]">
+          <FadeIn delay={0.05} className="mt-12">
+            <div className="mx-auto max-w-4xl grid gap-px bg-[var(--color-hairline-strong)] border border-[var(--color-hairline-strong)] md:grid-cols-3">
+              <CredentialCell label="Education" items={education} />
+              <CredentialCell label="Languages" items={languages} />
+              <CredentialCell label="Previous experience" items={previousExperience} />
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Services — centered cards */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/45">
+        <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
+          <FadeIn>
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker className="inline-block mb-4">Services</Kicker>
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                Three categories of clients. One disciplined process.
+              </h2>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.05} className="mt-12">
+            <div className="grid gap-px bg-[var(--color-hairline-strong)] md:grid-cols-3 border border-[var(--color-hairline-strong)]">
+              {services.map((s, i) => (
+                <article key={s.title} className="group bg-[var(--color-bone)] p-8 md:p-10 transition-colors hover:bg-white">
+                  <p className="font-[family-name:var(--font-mono)] text-[0.72rem] tracking-[0.15em] text-[var(--color-moss)] font-medium">
+                    {String(i + 1).padStart(2, '0')}
+                  </p>
+                  <h3 className="mt-4 font-[family-name:var(--font-display)] text-[1.35rem] leading-[1.15] tracking-[-0.01em] text-[var(--color-basalt)]">
                     {s.title}
                   </h3>
-                  <ul className="mt-5 space-y-2.5 text-[0.95rem] leading-[1.55] text-[var(--color-slate)]">
+                  <ul className="mt-7 pt-6 border-t border-[var(--color-hairline)] space-y-2.5">
                     {s.items.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span aria-hidden="true" className="text-[var(--color-moss)] mt-0.5">·</span>
+                      <li key={item} className="flex items-start gap-3 text-[0.9rem] leading-[1.55] text-[var(--color-basalt)]">
+                        <span aria-hidden="true" className="text-[var(--color-moss)] mt-1 text-[0.7rem]">▸</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
-                </div>
+                </article>
               ))}
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Donaldson */}
-      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/50">
+      {/* Donaldson — centered */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <div className="grid gap-10 md:grid-cols-12 md:gap-14 md:items-center">
-              <div className="md:col-span-5">
-                <div className="relative aspect-[5/4] w-full overflow-hidden border border-[var(--color-hairline)] bg-[var(--color-bone)]">
-                  <Image
-                    src="/images/donaldson-parish.webp"
-                    alt="Bill Donaldson (left) and Bill Parish (right)"
-                    fill
-                    sizes="(max-width: 768px) 90vw, 40vw"
-                    className="object-cover"
-                  />
-                </div>
-                <p className="mt-3 text-[0.78rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium">
-                  Bill Donaldson (left) and Bill Parish (right)
-                </p>
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker className="inline-block mb-4">Recognition</Kicker>
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.6rem,2.6vw,2.15rem)] leading-[1.2] tracking-[-0.01em] text-[var(--color-basalt)]">
+                A meeting with the SEC Chairman who tried to regulate the hedge funds that triggered 2008.
+              </h2>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.05} className="mt-12">
+            <div className="mx-auto max-w-3xl">
+              <div className="relative aspect-[5/4] w-full max-w-md mx-auto overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)]">
+                <Image
+                  src="/images/donaldson-parish.webp"
+                  alt="Bill Donaldson (left) and Bill Parish (right)"
+                  fill
+                  sizes="(max-width: 768px) 90vw, 30vw"
+                  className="object-cover"
+                />
               </div>
-              <div className="md:col-span-7">
-                <Kicker>Recognition</Kicker>
-                <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.6rem,2.8vw,2.1rem)] leading-[1.2] tracking-tight text-[var(--color-basalt)]">
-                  A meeting with the SEC Chairman who tried to regulate the hedge funds that triggered 2008.
-                </h2>
-                <p className="mt-6 text-[var(--text-lead)] leading-[1.6] text-[var(--color-slate)]">
-                  Bill Donaldson was the SEC Chairman who voted in favor of requiring private equity firms
-                  and hedge funds to register with the SEC for the first time. President Bush fired
-                  Donaldson and the vote was later overturned. The same funds would trigger the financial
-                  crisis of 2008 less than eighteen months later.
-                </p>
-              </div>
+              <p className="mt-3 text-center text-[0.78rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium">
+                Bill Donaldson (left) &nbsp;·&nbsp; Bill Parish (right)
+              </p>
+              <p className="mt-8 text-[1.05rem] leading-[1.75] text-[var(--color-basalt)]">
+                Bill Donaldson was the SEC Chairman who voted in favor of requiring private
+                equity firms and hedge funds to register with the SEC for the first time.
+                President Bush fired Donaldson and the vote was later overturned. The same
+                funds would trigger the financial crisis of 2008 less than eighteen months
+                later.
+              </p>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Press archive */}
-      <section className="border-b border-[var(--color-hairline)]">
+      {/* Selected media */}
+      <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/45">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
-            <Kicker>Selected media</Kicker>
-            <h2 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-tight text-[var(--color-basalt)] max-w-2xl">
-              Original research featured in tier-one publications.
-            </h2>
-            <p className="mt-6 max-w-2xl text-[var(--text-lead)] leading-[1.55] text-[var(--color-slate)]">
-              A selected archive of stories drawing on Parish &amp; Company research. The full
-              archive lives in <a href="/research" className="underline decoration-[var(--color-moss)] underline-offset-4 hover:text-[var(--color-moss)]">research</a>.
-            </p>
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker className="inline-block mb-4">Selected media</Kicker>
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--color-basalt)]">
+                Original research featured in tier-one publications.
+              </h2>
+              <p className="mt-6 mx-auto max-w-xl text-[1rem] leading-[1.6] text-[var(--color-slate)]">
+                A selected archive of stories drawing on Parish &amp; Company research. The
+                full archive lives in{' '}
+                <a href="/research" className="text-[var(--color-moss)] underline decoration-[var(--color-moss)]/40 underline-offset-[6px] hover:decoration-[var(--color-moss)]">
+                  research
+                </a>
+                .
+              </p>
+            </div>
           </FadeIn>
 
-          <FadeIn delay={0.1} className="mt-14">
-            <ul className="border-t border-[var(--color-hairline)]">
+          <FadeIn delay={0.05} className="mt-12">
+            <ul className="mx-auto max-w-3xl border-t border-[var(--color-hairline)]">
               {citations.map((c, i) => (
-                <li
-                  key={`${c.publication}-${i}`}
-                  className="border-b border-[var(--color-hairline)] py-7"
-                >
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[0.78rem] uppercase tracking-[0.1em] text-[var(--color-slate)] font-[family-name:var(--font-mono)] font-medium">
+                <li key={`${c.publication}-${i}`} className="border-b border-[var(--color-hairline)] py-7">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[0.74rem] uppercase tracking-[0.1em] text-[var(--color-slate)] font-[family-name:var(--font-mono)] font-medium">
                     <span className="text-[var(--color-moss)]">{c.publication}</span>
                     {c.date && (
                       <>
@@ -343,7 +352,7 @@ export default function AboutPage() {
                       </>
                     )}
                   </div>
-                  <h3 className="mt-3 font-[family-name:var(--font-display)] text-[1.25rem] md:text-[1.45rem] leading-[1.2] tracking-[-0.01em] text-[var(--color-basalt)]">
+                  <h3 className="mt-3 font-[family-name:var(--font-display)] text-[1.2rem] md:text-[1.35rem] leading-[1.25] tracking-[-0.01em] text-[var(--color-basalt)]">
                     {c.url ? (
                       <a
                         href={c.url}
@@ -359,7 +368,7 @@ export default function AboutPage() {
                     )}
                   </h3>
                   {c.excerpt && (
-                    <p className="mt-3 max-w-3xl text-[0.95rem] leading-relaxed text-[var(--color-slate)] line-clamp-3">
+                    <p className="mt-2.5 text-[0.95rem] leading-[1.55] text-[var(--color-slate)] line-clamp-3">
                       {c.excerpt}
                     </p>
                   )}
@@ -370,5 +379,23 @@ export default function AboutPage() {
         </div>
       </section>
     </article>
+  );
+}
+
+function CredentialCell({ label, items }: { label: string; items: string[] }) {
+  return (
+    <div className="bg-[var(--color-bone)] p-7 md:p-8">
+      <p className="font-[family-name:var(--font-mono)] text-[0.7rem] tracking-[0.15em] text-[var(--color-moss)] font-medium">
+        {label}
+      </p>
+      <ul className="mt-5 space-y-2 text-[0.95rem] leading-[1.55] text-[var(--color-basalt)]">
+        {items.map((item) => (
+          <li key={item} className="flex gap-2.5">
+            <span aria-hidden="true" className="text-[var(--color-moss)] mt-1 text-[0.65rem]">▸</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
