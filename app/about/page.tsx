@@ -68,7 +68,7 @@ const services = [
   },
 ];
 
-type Citation = { publication: string; title: string; author?: string; date?: string; excerpt?: string };
+type Citation = { publication: string; title: string; author?: string; date?: string; excerpt?: string; url?: string | null };
 const citations = pressCitations as Citation[];
 
 export default function AboutPage() {
@@ -306,7 +306,19 @@ export default function AboutPage() {
                     )}
                   </div>
                   <h3 className="mt-3 font-[family-name:var(--font-display)] text-[1.25rem] md:text-[1.45rem] leading-[1.2] tracking-[-0.01em] text-[var(--color-basalt)]">
-                    {c.title}
+                    {c.url ? (
+                      <a
+                        href={c.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[var(--color-moss)] transition-colors inline-flex items-baseline gap-2"
+                      >
+                        <span>{c.title}</span>
+                        <span aria-hidden="true" className="text-[0.7em] text-[var(--color-slate)]">↗</span>
+                      </a>
+                    ) : (
+                      c.title
+                    )}
                   </h3>
                   {c.excerpt && (
                     <p className="mt-3 max-w-3xl text-[0.95rem] leading-relaxed text-[var(--color-slate)] line-clamp-3">
