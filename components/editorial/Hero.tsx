@@ -7,7 +7,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/portland-hero.webp"
-          alt="Downtown Portland, Oregon with Mt. Hood in the distance"
+          alt="Downtown Portland, Oregon skyline in autumn with Mt. Hood in the distance"
           fill
           priority
           sizes="100vw"
