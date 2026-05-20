@@ -14,7 +14,7 @@ type Props = {
 };
 
 /**
- * Newsletter signup. POSTs to /api/subscribe — when the user wires up
+ * Newsletter signup. POSTs to /api/subscribe · when the user wires up
  * Resend Audiences or a third-party (Buttondown, etc.), the route handler
  * is the only file to update.
  *

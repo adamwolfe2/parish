@@ -80,7 +80,7 @@ export function Nav() {
               );
             })}
 
-            {/* Client portal — opens Schwab Alliance in a new tab */}
+            {/* Client portal · opens Schwab Alliance in a new tab */}
             <a
               href="https://schwaballiance.com/"
               target="_blank"
@@ -146,7 +146,7 @@ export function Nav() {
               })}
             </ul>
 
-            {/* Client portal — Schwab Alliance, opens externally */}
+            {/* Client portal · Schwab Alliance, opens externally */}
             <a
               href="https://schwaballiance.com/"
               target="_blank"

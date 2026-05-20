@@ -6,7 +6,7 @@ type Props = {
 };
 
 /**
- * Minimal PNW silhouette accents — all paths use most of the viewbox height
+ * Minimal PNW silhouette accents · all paths use most of the viewbox height
  * so peaks remain visible even when the SVG is stretched into a thin band.
  *
  * - hood: Mt. Hood-style central peak (dominant feature)
@@ -41,7 +41,7 @@ function HoodPeak({ className, par }: { className?: string; par: string }) {
         fill="currentColor"
         opacity="0.32"
       />
-      {/* Foreground — Mt. Hood-like dominant peak slightly right of center */}
+      {/* Foreground · Mt. Hood-like dominant peak slightly right of center */}
       <path
         d="M0 95 L50 88 L110 92 L170 80 L230 90 L290 65 L325 12 L360 65 L420 88 L480 80 L540 90 L600 85 L600 100 L0 100 Z"
         fill="currentColor"
@@ -66,19 +66,19 @@ function RangeRolling({ className, par }: { className?: string; par: string }) {
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Far — light rolling ridges */}
+      {/* Far · light rolling ridges */}
       <path
         d="M0 60 L40 52 L90 58 L140 42 L190 56 L235 48 L285 38 L335 50 L380 40 L425 56 L475 44 L520 54 L575 46 L600 52 L600 100 L0 100 Z"
         fill="currentColor"
         opacity="0.22"
       />
-      {/* Middle — bigger peaks */}
+      {/* Middle · bigger peaks */}
       <path
         d="M0 80 L45 60 L95 72 L150 48 L210 70 L260 40 L305 58 L355 32 L405 58 L460 38 L510 64 L560 46 L600 62 L600 100 L0 100 Z"
         fill="currentColor"
         opacity="0.38"
       />
-      {/* Foreground — dramatic rolling */}
+      {/* Foreground · dramatic rolling */}
       <path
         d="M0 95 L40 75 L100 88 L160 60 L220 82 L280 50 L335 68 L395 42 L450 70 L510 55 L560 78 L600 70 L600 100 L0 100 Z"
         fill="currentColor"

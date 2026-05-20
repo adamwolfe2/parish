@@ -7,7 +7,7 @@ import { InquiryForm } from '@/components/editorial/InquiryForm';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Contact Parish & Company LLC — phone, email, and address. Inquiries from prospective clients, media, and academic researchers are welcomed.',
+    'Contact Parish & Company LLC · phone, email, and address. Inquiries from prospective clients, media, and academic researchers are welcomed.',
 };
 
 export default function ContactPage() {

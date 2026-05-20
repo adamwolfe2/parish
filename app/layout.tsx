@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ContactStrip } from '@/components/layout/ContactStrip';
 import { JsonLd, organizationSchema, personSchema } from '@/components/seo/JsonLd';
 import { Plausible } from '@/components/analytics/Plausible';
+import { SmoothScroll } from '@/components/motion/SmoothScroll';
 
 const display = Source_Serif_4({
   subsets: ['latin'],
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={[organizationSchema, personSchema]} />
       </head>
       <body className="min-h-screen flex flex-col">
+        <SmoothScroll />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-[var(--color-basalt)] focus:text-[var(--color-bone)] focus:px-4 focus:py-2 focus:text-[0.9rem] focus:font-medium"

@@ -154,7 +154,7 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
                 </div>
               )}
 
-              {/* Post footer — sources + sharing + citation + subscribe */}
+              {/* Post footer · sources + sharing + citation + subscribe */}
               <div className="mt-14 pt-8 border-t border-[var(--color-hairline-strong)] space-y-8">
                 <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-[0.85rem] text-[var(--color-slate)]">
                   <p>

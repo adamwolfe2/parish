@@ -6,7 +6,7 @@ export default function FormCrsPage() {
   return (
     <>
       <h1 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-tight text-[var(--color-basalt)]">
-        Form CRS — Client Relationship Summary
+        Form CRS · Client Relationship Summary
       </h1>
 
       <p>

@@ -9,7 +9,7 @@ type Props = {
 };
 
 /**
- * One-click citation widget — generates a plain-text citation a journalist
+ * One-click citation widget · generates a plain-text citation a journalist
  * or researcher can paste into their copy. Three formats; copy-to-clipboard
  * with confirmation toast.
  */

@@ -6,7 +6,7 @@ import { MountainSilhouette } from '@/components/editorial/MountainSilhouette';
 export const metadata: Metadata = {
   title: 'Investment Philosophy',
   description:
-    'Parish & Company manages client wealth through a disciplined investment process across four economic environments — Growth, Balanced, Conservative, and Wealth Preservation.',
+    'Parish & Company manages client wealth through a disciplined investment process across four economic environments · Growth, Balanced, Conservative, and Wealth Preservation.',
 };
 
 const allocations = [
@@ -32,7 +32,7 @@ const history: { years: string; allocation: string }[] = [
 export default function PhilosophyPage() {
   return (
     <article>
-      {/* Header — centered */}
+      {/* Header · centered */}
       <header className="relative bg-[var(--color-bone)] overflow-hidden border-b border-[var(--color-hairline)]">
         <MountainSilhouette
           variant="ridge"
@@ -57,7 +57,7 @@ export default function PhilosophyPage() {
         </div>
       </header>
 
-      {/* Narrative — column centered, body left-aligned */}
+      {/* Narrative · column centered, body left-aligned */}
       <section className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
@@ -82,7 +82,7 @@ export default function PhilosophyPage() {
         </div>
       </section>
 
-      {/* Allocation framework table — centered */}
+      {/* Allocation framework table · centered */}
       <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/50">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
@@ -136,7 +136,7 @@ export default function PhilosophyPage() {
         </div>
       </section>
 
-      {/* Track record — centered */}
+      {/* Track record · centered */}
       <section className="border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
@@ -196,7 +196,7 @@ export default function PhilosophyPage() {
         </div>
       </section>
 
-      {/* Fiduciary callout — centered */}
+      {/* Fiduciary callout · centered */}
       <section className="relative bg-[var(--color-moss)] text-white overflow-hidden">
         <MountainSilhouette
           variant="range"

@@ -9,7 +9,7 @@ import { loadAllPosts, getAllCategories, getAllYears } from '@/lib/research';
 export const metadata: Metadata = {
   title: 'Research',
   description:
-    'Original analysis of corporate governance, tax structure, pensions, and capital markets — published by Parish & Company LLC since 1998.',
+    'Original analysis of corporate governance, tax structure, pensions, and capital markets · published by Parish & Company LLC since 1998.',
 };
 
 type SearchParams = Promise<{ topic?: string; year?: string; q?: string; page?: string }>;
@@ -117,7 +117,7 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
         </div>
       </header>
 
-      {/* Topic filter — wraps, no horizontal scroll */}
+      {/* Topic filter · wraps, no horizontal scroll */}
       <section className="bg-[var(--color-bone)] border-b border-[var(--color-hairline)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-5">
           <div className="flex flex-wrap items-center gap-1.5">

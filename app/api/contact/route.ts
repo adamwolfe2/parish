@@ -6,7 +6,7 @@ const schema = z.object({
   email: z.string().trim().email().max(320),
   type: z.string().trim().min(1).max(100),
   message: z.string().trim().min(10).max(4000),
-  website: z.string().max(0).optional(), // honeypot — must be empty
+  website: z.string().max(0).optional(), // honeypot · must be empty
 });
 
 export const runtime = 'nodejs';
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
   // If Resend isn't configured, accept the message but log it server-side.
   // (Bill will still get inquiries by email once RESEND_API_KEY is set.)
   if (!apiKey) {
-    console.warn('[contact] RESEND_API_KEY not set — accepted submission without forwarding.', {
+    console.warn('[contact] RESEND_API_KEY not set · accepted submission without forwarding.', {
       from: email,
       type,
     });
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     const resend = new Resend(apiKey);
     const html = `
       <div style="font-family:Inter,Arial,sans-serif;line-height:1.55;color:#1a1f2b">
-        <h2 style="font-family:'Source Serif 4',Georgia,serif;margin:0 0 12px;">New inquiry — Parish & Company</h2>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif;margin:0 0 12px;">New inquiry · Parish & Company</h2>
         <p style="margin:0 0 6px"><strong>From:</strong> ${escape(name)} &lt;${escape(email)}&gt;</p>
         <p style="margin:0 0 6px"><strong>Type:</strong> ${escape(type)}</p>
         <hr style="border:none;border-top:1px solid #ebe6dd;margin:18px 0" />
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
       from: 'Parish & Company <inquiries@parishinvestments.com>',
       to: [to],
       replyTo: email,
-      subject: `[Parish] ${type} — ${name}`,
+      subject: `[Parish] ${type} · ${name}`,
       html,
     });
     return NextResponse.json({ ok: true, forwarded: true });

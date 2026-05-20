@@ -24,8 +24,8 @@ const background = [
 ];
 
 const education = [
-  'MBA, Finance — Portland State University',
-  'BA, Finance / Accounting (minor Journalism) — University of Oregon',
+  'MBA, Finance · Portland State University',
+  'BA, Finance / Accounting (minor Journalism) · University of Oregon',
   'Certified Public Accountant (CPA)',
 ];
 
@@ -36,7 +36,7 @@ const previousExperience = [
   'Senior Analyst and Portfolio Manager',
   'Financial Analyst and Business Planner',
   'Certified Public Accountant, Auditor and Systems Consultant',
-  'Rural Bank Consultant — Peace Corps Volunteer, Paraguay',
+  'Rural Bank Consultant · Peace Corps Volunteer, Paraguay',
 ];
 
 const services = [
@@ -83,7 +83,7 @@ const services = [
 export default function AboutPage() {
   return (
     <article>
-      {/* Header — centered */}
+      {/* Header · centered */}
       <header className="relative bg-[var(--color-bone)] overflow-hidden border-b border-[var(--color-hairline)]">
         <MountainSilhouette
           variant="ridge"
@@ -134,7 +134,7 @@ export default function AboutPage() {
         </div>
       </header>
 
-      {/* Background — Registered Investment Adviser */}
+      {/* Background · Registered Investment Adviser */}
       <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
@@ -170,10 +170,10 @@ export default function AboutPage() {
                 </h2>
               </div>
               <p className="mt-9 text-[1.1rem] leading-[1.75] text-[var(--color-basalt)]">
-                Choosing Parish &amp; Company provides a more personalized service and level
-                of support. The firm focuses upon investment selection and client relations —
-                providing long-term continuity and stability, especially in this age of
-                mergers.
+                Choosing Parish &amp; Company provides a more personalized service
+                and level of support. The firm focuses on investment selection and
+                client relations. That means long-term continuity and stability,
+                even in this age of mergers.
               </p>
               <p className="mt-5 text-[1.05rem] leading-[1.75] text-[var(--color-slate)]">
                 Clients include exceptionally large portfolios in addition to smaller
@@ -232,16 +232,16 @@ export default function AboutPage() {
                 interviews.
               </p>
               <p className="mt-5 text-[1.05rem] leading-[1.75] text-[var(--color-slate)]">
-                Too much of the investment industry is sales driven today. With Parish
-                &amp; Company you get an advisor with a genuine portfolio management — rather
-                than sales — orientation.
+                Too much of the investment industry is sales driven today. With
+                Parish &amp; Company you get an advisor focused on genuine
+                portfolio management, not sales.
               </p>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Credentials — centered grid */}
+      {/* Credentials · centered grid */}
       <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
@@ -263,7 +263,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Services — centered cards */}
+      {/* Services · centered cards */}
       <section className="border-b border-[var(--color-hairline)] bg-[var(--color-mist)]/45">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>
@@ -300,7 +300,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Donaldson — centered */}
+      {/* Donaldson · centered */}
       <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
           <FadeIn>

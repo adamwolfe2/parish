@@ -10,7 +10,7 @@ const rows: Row[] = [
 /**
  * Horizontal stacked bar visualization of the four-environment allocation
  * framework. Replaces the plain HTML table that the audit flagged as
- * "visually monotonous" — readers can grasp the framework in one second
+ * "visually monotonous" · readers can grasp the framework in one second
  * instead of ten.
  */
 export function AllocationBars() {
