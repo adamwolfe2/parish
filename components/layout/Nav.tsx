@@ -79,6 +79,28 @@ export function Nav() {
                 </Link>
               );
             })}
+
+            {/* Client portal — opens Schwab Alliance in a new tab */}
+            <a
+              href="https://schwaballiance.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[var(--color-basalt)] hover:bg-[var(--color-moss)] text-[var(--color-bone)] px-4 py-2 text-[0.85rem] font-medium tracking-tight transition-colors group min-h-[36px]"
+              aria-label="Client portal login at Schwab Alliance (opens in a new tab)"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+                className="opacity-80"
+              >
+                <path d="M12 11V7a4 4 0 0 1 8 0v4M6 11h12v9H6z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="15.5" r="1.5" fill="currentColor" />
+              </svg>
+              <span>Client Portal</span>
+            </a>
           </nav>
 
           <button
@@ -123,6 +145,22 @@ export function Nav() {
                 );
               })}
             </ul>
+
+            {/* Client portal — Schwab Alliance, opens externally */}
+            <a
+              href="https://schwaballiance.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 bg-[var(--color-basalt)] text-[var(--color-bone)] px-4 py-3 text-[0.9rem] font-medium tracking-tight min-h-[44px]"
+              aria-label="Client portal login at Schwab Alliance (opens in a new tab)"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="opacity-80">
+                <path d="M12 11V7a4 4 0 0 1 8 0v4M6 11h12v9H6z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="15.5" r="1.5" fill="currentColor" />
+              </svg>
+              <span>Client Portal</span>
+              <span aria-hidden="true" className="opacity-60">↗</span>
+            </a>
           </nav>
         )}
       </div>
