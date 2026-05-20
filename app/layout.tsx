@@ -73,6 +73,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Stop iOS/Chrome from auto-decorating phone/email/addresses */}
         <meta name="format-detection" content="telephone=no, address=no, email=no, date=no" />
+
+        {/*
+          Warm the connection to Schwab so the Client Portal button feels
+          instant instead of stuck on about:blank. DNS lookup + TLS handshake
+          run eagerly when the Parish page loads; by the time the user
+          clicks, the browser just has to fetch the HTML.
+        */}
+        <link rel="dns-prefetch" href="https://schwaballiance.com" />
+        <link rel="preconnect" href="https://schwaballiance.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://client.schwab.com" />
+        <link rel="preconnect" href="https://client.schwab.com" crossOrigin="" />
+
         <JsonLd data={[organizationSchema, personSchema]} />
       </head>
       <body className="min-h-screen flex flex-col">
