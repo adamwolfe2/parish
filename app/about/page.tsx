@@ -314,13 +314,14 @@ export default function AboutPage() {
 
           <FadeIn delay={0.05} className="mt-12">
             <div className="mx-auto max-w-3xl">
-              <div className="relative aspect-[5/4] w-full max-w-md mx-auto overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)]">
+              <div className="relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)]">
                 <Image
-                  src="/images/donaldson-parish.webp"
-                  alt="Bill Donaldson (left) and Bill Parish (right)"
+                  src="/images/donaldson-parish-hd.jpg"
+                  alt="Bill Donaldson (left) and Bill Parish (right) at an Ameritrade Institutional event"
                   fill
                   sizes="(max-width: 768px) 90vw, 30vw"
-                  className="object-cover"
+                  quality={90}
+                  className="object-cover object-center"
                 />
               </div>
               <p className="mt-3 text-center text-[0.78rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium">

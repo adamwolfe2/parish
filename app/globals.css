@@ -226,8 +226,8 @@ button:focus-visible,
   padding: 0.75rem 1.5rem;
   border-radius: 0;
   border: 1px solid var(--color-moss);
-  color: var(--color-moss);
-  background: transparent;
+  color: var(--color-bone);
+  background: var(--color-moss);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -236,18 +236,21 @@ button:focus-visible,
 }
 
 .btn-editorial:hover {
-  background: var(--color-moss);
+  background: var(--color-moss-deep);
+  border-color: var(--color-moss-deep);
   color: var(--color-bone);
 }
 
 .btn-editorial-light {
-  border-color: var(--color-brass);
-  color: var(--color-brass);
+  border-color: var(--color-bone);
+  background: var(--color-bone);
+  color: var(--color-moss);
 }
 
 .btn-editorial-light:hover {
-  background: var(--color-brass);
-  color: var(--color-ink);
+  background: var(--color-mist);
+  border-color: var(--color-mist);
+  color: var(--color-moss-deep);
 }
 
 .btn-editorial .arrow,

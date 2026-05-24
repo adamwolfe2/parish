@@ -136,7 +136,7 @@ export default function HomePage() {
                   className="absolute -top-6 right-0 w-8 h-8 md:w-12 md:h-12 bg-[var(--color-bone)]"
                   style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }}
                 />
-                <div className="bg-[var(--color-basalt)]/95 backdrop-blur-sm text-[var(--color-bone)] p-6 md:p-9">
+                <div className="bg-[var(--color-moss)]/95 backdrop-blur-sm text-[var(--color-bone)] p-6 md:p-9">
                   <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] tracking-[-0.015em]">
                     Where independent research meets prudent portfolios.
                   </h2>
@@ -222,14 +222,14 @@ export default function HomePage() {
 
           <FadeIn delay={0.05} className="mt-16 grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16 md:items-center">
             <div className="md:col-span-6">
-              <div className="relative w-full aspect-[4/5] md:aspect-[5/6] overflow-hidden bg-[var(--color-mist)]">
+              <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden bg-[var(--color-mist)]">
                 <Image
-                  src="/images/donaldson-parish.webp"
-                  alt="Bill Donaldson and Bill Parish"
+                  src="/images/donaldson-parish-hd.jpg"
+                  alt="Bill Donaldson and Bill Parish shaking hands at an Ameritrade Institutional event"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={88}
-                  className="object-cover object-top"
+                  quality={90}
+                  className="object-cover object-center"
                 />
               </div>
             </div>

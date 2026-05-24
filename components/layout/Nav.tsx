@@ -85,7 +85,7 @@ export function Nav() {
               href="https://schwaballiance.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[var(--color-basalt)] hover:bg-[var(--color-moss)] text-[var(--color-bone)] px-4 py-2 text-[0.85rem] font-medium tracking-tight transition-colors group min-h-[36px]"
+              className="inline-flex items-center gap-2 bg-[var(--color-moss)] hover:bg-[var(--color-moss-deep)] text-[var(--color-bone)] px-4 py-2 text-[0.85rem] font-medium tracking-tight transition-colors group min-h-[36px]"
               aria-label="Client portal login at Schwab Alliance (opens in a new tab)"
             >
               <svg
@@ -151,7 +151,7 @@ export function Nav() {
               href="https://schwaballiance.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 bg-[var(--color-basalt)] text-[var(--color-bone)] px-4 py-3 text-[0.9rem] font-medium tracking-tight min-h-[44px]"
+              className="mt-4 inline-flex items-center gap-2 bg-[var(--color-moss)] hover:bg-[var(--color-moss-deep)] text-[var(--color-bone)] px-4 py-3 text-[0.9rem] font-medium tracking-tight min-h-[44px]"
               aria-label="Client portal login at Schwab Alliance (opens in a new tab)"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="opacity-80">
