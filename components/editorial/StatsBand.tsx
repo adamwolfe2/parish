@@ -30,7 +30,7 @@ export function StatsBand() {
           fill
           sizes="100vw"
           quality={88}
-          className="object-cover"
+          className="object-cover object-top"
         />
         {/* Wash for legibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-ink)]/30 via-[var(--color-ink)]/55 to-[var(--color-ink)]/70" />

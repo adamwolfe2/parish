@@ -213,6 +213,54 @@ button:focus-visible,
 }
 
 
+/* Editorial button — rectangular, sharp corners, consistent width.
+   Used across the homepage and editorial pages for visual rhythm. */
+.btn-editorial,
+.btn-editorial-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-width: 14rem;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+  border: 1px solid var(--color-moss);
+  color: var(--color-moss);
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-editorial:hover {
+  background: var(--color-moss);
+  color: var(--color-bone);
+}
+
+.btn-editorial-light {
+  border-color: var(--color-brass);
+  color: var(--color-brass);
+}
+
+.btn-editorial-light:hover {
+  background: var(--color-brass);
+  color: var(--color-ink);
+}
+
+.btn-editorial .arrow,
+.btn-editorial-light .arrow {
+  transition: transform 0.2s ease;
+  font-weight: 400;
+}
+
+.btn-editorial:hover .arrow,
+.btn-editorial-light:hover .arrow {
+  transform: translateX(3px);
+}
+
 /* Editorial link with animated underline */
 .link-editorial {
   position: relative;

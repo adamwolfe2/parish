@@ -26,25 +26,61 @@ export default function HomePage() {
           <SectionEyebrow>Working together</SectionEyebrow>
 
           <FadeIn className="mt-16 grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16 md:items-center">
-            <div className="md:col-span-5 lg:col-span-5 md:pl-8 lg:pl-16">
+            <div className="md:col-span-5 lg:col-span-5 md:pl-8 lg:pl-16 flex md:justify-center">
+              {/* Process illustration: three milestones connected by a topographic
+                  contour, evoking a planned route through the Cascades. */}
               <svg
                 aria-hidden="true"
-                viewBox="0 0 200 140"
-                className="w-32 md:w-44 text-[var(--color-slate)]"
+                viewBox="0 0 280 180"
+                className="w-full max-w-[340px] text-[var(--color-moss)]"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                {/* Dotted journey path from X to a flag */}
+                {/* Subtle topographic contour lines */}
+                <g stroke="currentColor" strokeWidth="0.6" opacity="0.18">
+                  <path d="M 10 150 Q 70 130 140 138 T 270 132" />
+                  <path d="M 10 130 Q 70 110 140 118 T 270 112" />
+                  <path d="M 10 110 Q 70 90 140 98 T 270 92" />
+                  <path d="M 10 90 Q 70 70 140 78 T 270 72" />
+                  <path d="M 10 70 Q 70 50 140 58 T 270 52" />
+                  <path d="M 10 50 Q 70 30 140 38 T 270 32" />
+                </g>
+
+                {/* Mountain ridge silhouette */}
                 <path
-                  d="M 20 120 C 50 100, 70 80, 100 70 S 150 50, 170 30"
-                  strokeDasharray="2 5"
+                  d="M 0 160 L 50 110 L 80 130 L 130 70 L 170 100 L 210 60 L 250 90 L 280 75 L 280 180 L 0 180 Z"
+                  fill="var(--color-moss)"
+                  fillOpacity="0.08"
+                  stroke="none"
                 />
-                <path d="M 14 114 L 26 126 M 26 114 L 14 126" />
-                <circle cx="170" cy="26" r="6" fill="currentColor" stroke="none" />
-                <path d="M 170 26 L 170 8" />
+
+                {/* The route — a confident dashed path between three milestones */}
+                <path
+                  d="M 36 148 Q 90 130 130 110 T 244 56"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeDasharray="1 4"
+                  opacity="0.85"
+                />
+
+                {/* Milestone 1 — start */}
+                <circle cx="36" cy="148" r="5" fill="var(--color-bone)" stroke="currentColor" strokeWidth="1.4" />
+                <circle cx="36" cy="148" r="1.6" fill="currentColor" stroke="none" />
+
+                {/* Milestone 2 — midpoint */}
+                <circle cx="130" cy="110" r="4" fill="var(--color-bone)" stroke="currentColor" strokeWidth="1.4" />
+
+                {/* Milestone 3 — summit, with a small flag */}
+                <line x1="244" y1="56" x2="244" y2="30" stroke="currentColor" strokeWidth="1.4" />
+                <path d="M 244 30 L 260 35 L 244 42 Z" fill="currentColor" stroke="none" />
+                <circle cx="244" cy="56" r="5" fill="var(--color-moss)" stroke="none" />
+
+                {/* Tiny labels — barely-there typographic anchors */}
+                <text x="36" y="170" textAnchor="middle" fontSize="7" fontFamily="ui-monospace, monospace" fill="currentColor" opacity="0.55" letterSpacing="1">PLAN</text>
+                <text x="130" y="132" textAnchor="middle" fontSize="7" fontFamily="ui-monospace, monospace" fill="currentColor" opacity="0.55" letterSpacing="1">INVEST</text>
+                <text x="244" y="22" textAnchor="middle" fontSize="7" fontFamily="ui-monospace, monospace" fill="currentColor" opacity="0.55" letterSpacing="1">GROW</text>
               </svg>
             </div>
 
@@ -63,12 +99,9 @@ export default function HomePage() {
                 and retirement plans across the Pacific Northwest.
               </p>
               <div className="mt-10">
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 border border-[var(--color-moss)] text-[var(--color-moss)] hover:bg-[var(--color-moss)] hover:text-[var(--color-bone)] px-5 py-2.5 text-[0.9rem] min-h-[44px] font-medium tracking-tight transition-colors group rounded-full"
-                >
+                <Link href="/about" className="btn-editorial">
                   <span>Working together</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">›</span>
+                  <span aria-hidden="true" className="arrow">›</span>
                 </Link>
               </div>
             </div>
@@ -86,12 +119,12 @@ export default function HomePage() {
         <FadeIn className="mt-12 md:mt-16">
           <div className="relative w-full aspect-[16/9] md:aspect-[16/7] overflow-hidden">
             <Image
-              src="/images/willamette-bridge.webp"
-              alt="The Willamette River bridges at dusk, Portland, Oregon"
+              src="/images/multnomah-falls.jpg"
+              alt="Multnomah Falls and the Benson Footbridge in the Columbia River Gorge, Oregon"
               fill
               sizes="100vw"
               quality={88}
-              className="object-cover"
+              className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[var(--color-ink)]/35" />
 
@@ -107,12 +140,9 @@ export default function HomePage() {
                   <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] tracking-[-0.015em]">
                     Where independent research meets prudent portfolios.
                   </h2>
-                  <Link
-                    href="/about#services"
-                    className="mt-6 inline-flex items-center gap-2 border border-[var(--color-brass)] text-[var(--color-brass)] hover:bg-[var(--color-brass)] hover:text-[var(--color-ink)] px-4 py-2 text-[0.85rem] min-h-[40px] font-medium tracking-tight transition-colors group rounded-full"
-                  >
+                  <Link href="/about#services" className="btn-editorial-light mt-6">
                     <span>Our services</span>
-                    <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">›</span>
+                    <span aria-hidden="true" className="arrow">›</span>
                   </Link>
                 </div>
               </div>
@@ -163,12 +193,9 @@ export default function HomePage() {
                   <p className="text-[0.75rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium mb-3">
                     Learn more about our services
                   </p>
-                  <Link
-                    href="/about#services"
-                    className="inline-flex items-center gap-2 border border-[var(--color-moss)] text-[var(--color-moss)] hover:bg-[var(--color-moss)] hover:text-[var(--color-bone)] px-5 py-2.5 text-[0.9rem] min-h-[44px] font-medium tracking-tight transition-colors group rounded-full"
-                  >
-                    <span>Wealth management services</span>
-                    <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">›</span>
+                  <Link href="/about#services" className="btn-editorial">
+                    <span>Our services</span>
+                    <span aria-hidden="true" className="arrow">›</span>
                   </Link>
                 </div>
               </div>
@@ -195,14 +222,14 @@ export default function HomePage() {
 
           <FadeIn delay={0.05} className="mt-16 grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16 md:items-center">
             <div className="md:col-span-6">
-              <div className="relative w-full aspect-[5/4] overflow-hidden bg-[var(--color-mist)]">
+              <div className="relative w-full aspect-[4/5] md:aspect-[5/6] overflow-hidden bg-[var(--color-mist)]">
                 <Image
                   src="/images/donaldson-parish.webp"
                   alt="Bill Donaldson and Bill Parish"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   quality={88}
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
@@ -274,12 +301,9 @@ export default function HomePage() {
               </div>
 
               <div className="mt-12">
-                <Link
-                  href="/research"
-                  className="inline-flex items-center gap-2 border border-[var(--color-moss)] text-[var(--color-moss)] hover:bg-[var(--color-moss)] hover:text-[var(--color-bone)] px-5 py-2.5 text-[0.9rem] min-h-[44px] font-medium tracking-tight transition-colors group rounded-full"
-                >
+                <Link href="/research" className="btn-editorial">
                   <span>More articles</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">›</span>
+                  <span aria-hidden="true" className="arrow">›</span>
                 </Link>
               </div>
             </FadeIn>

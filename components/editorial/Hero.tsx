@@ -37,12 +37,9 @@ export function Hero() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 border border-[var(--color-moss)] text-[var(--color-moss)] hover:bg-[var(--color-moss)] hover:text-[var(--color-bone)] px-5 py-2.5 text-[0.9rem] min-h-[44px] font-medium tracking-tight transition-colors group rounded-full"
-              >
+              <Link href="/contact" className="btn-editorial">
                 <span>Let&apos;s talk</span>
-                <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">›</span>
+                <span aria-hidden="true" className="arrow">›</span>
               </Link>
             </div>
           </div>
