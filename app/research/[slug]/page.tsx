@@ -7,7 +7,6 @@ import { ResearchCard } from '@/components/editorial/ResearchCard';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { PostBody } from '@/components/editorial/PostBody';
 import { CitationWidget } from '@/components/editorial/CitationWidget';
-import { Newsletter } from '@/components/editorial/Newsletter';
 import {
   loadAllPosts,
   getPostBySlug,
@@ -167,12 +166,6 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
                   title={post.title}
                   publishedAt={post.publishedAt}
                   url={`${siteUrl}/research/${post.slug}`}
-                />
-
-                <Newsletter
-                  variant="card"
-                  heading="Subscribe to research"
-                  dek="Receive new research notes from Parish & Company by email. No marketing, no third-party data sharing."
                 />
               </div>
             </div>

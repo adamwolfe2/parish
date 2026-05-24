@@ -7,7 +7,6 @@ import { StatsBand } from '@/components/editorial/StatsBand';
 import { FoldedImage } from '@/components/editorial/FoldedImage';
 import { TopoLines } from '@/components/editorial/TopoLines';
 import { ResearchCard } from '@/components/editorial/ResearchCard';
-import { Newsletter } from '@/components/editorial/Newsletter';
 import { FadeIn } from '@/components/motion/FadeIn';
 import { getLatestPosts, getFeaturedPosts } from '@/lib/research';
 
@@ -308,14 +307,6 @@ export default function HomePage() {
               </div>
             </FadeIn>
           )}
-
-          <FadeIn delay={0.1} className="mt-20 max-w-2xl">
-            <Newsletter
-              variant="card"
-              heading="Subscribe to receive new research"
-              dek="New research notes delivered by email. No marketing. No third-party data sharing."
-            />
-          </FadeIn>
         </div>
       </section>
     </>

@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Kicker } from '@/components/editorial/Kicker';
 import { ResearchCard } from '@/components/editorial/ResearchCard';
-import { Newsletter } from '@/components/editorial/Newsletter';
 import { FadeIn } from '@/components/motion/FadeIn';
 import { loadAllPosts, getAllCategories, getAllYears } from '@/lib/research';
 
@@ -71,14 +70,6 @@ export default async function ResearchPage({ searchParams }: { searchParams: Sea
                 business journalism for more than two decades.
               </p>
             </div>
-          </FadeIn>
-
-          <FadeIn delay={0.05} className="mt-10 max-w-2xl mx-auto">
-            <Newsletter
-              variant="card"
-              heading="Subscribe to receive new research"
-              dek="New research notes delivered by email. No marketing, no third-party data sharing."
-            />
           </FadeIn>
 
           <FadeIn delay={0.1}>
