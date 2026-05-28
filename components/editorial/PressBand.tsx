@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -68,6 +69,12 @@ export function PressBand() {
             </li>
           ))}
         </ul>
+
+        <div className="mt-10 md:mt-12 flex justify-center">
+          <Link href="/research" className="btn-editorial">
+            View research <span className="arrow" aria-hidden="true">›</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -37,18 +37,19 @@ export function StatsBand() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-24 md:py-36 lg:py-44">
-        <p className="text-[0.7rem] uppercase tracking-[0.22em] font-medium text-white/80 mb-12 md:mb-20 flex items-center gap-3">
+        <p className="text-[0.7rem] uppercase tracking-[0.22em] font-medium text-white/80 mb-12 md:mb-20 flex items-center justify-center gap-3">
           <span className="h-px w-8 bg-[var(--color-brass)]" />
           <span>Parish &amp; Company at a glance</span>
+          <span className="h-px w-8 bg-[var(--color-brass)]" />
         </p>
 
         <ul className="grid gap-y-14 gap-x-8 md:grid-cols-3 md:gap-x-12">
           {stats.map((s) => (
-            <li key={s.label} className="text-center md:text-left">
+            <li key={s.label} className="text-center">
               <p className="font-[family-name:var(--font-display)] text-[clamp(3.5rem,8vw,6.5rem)] leading-[0.95] tracking-[-0.03em] tabular-nums text-white">
                 {s.value}
               </p>
-              <p className="mt-3 text-[0.92rem] text-white/75 max-w-[20ch] mx-auto md:mx-0">
+              <p className="mt-3 text-[0.92rem] text-white/75 max-w-[20ch] mx-auto">
                 {s.label}
               </p>
             </li>
