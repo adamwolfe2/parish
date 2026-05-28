@@ -108,7 +108,7 @@ export default function AboutPage() {
 
             <FadeIn className="md:col-span-5 md:order-2 order-1">
               <figure className="relative mx-auto md:ml-auto md:mr-0 w-full max-w-[400px]">
-                <div className="relative aspect-[3/4] overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)] shadow-[0_24px_64px_-24px_rgba(20,23,31,0.25)]">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-[var(--color-mist)] border border-[var(--color-hairline)] shadow-[0_24px_64px_-24px_rgba(20,23,31,0.25)]">
                   <Image
                     src="/images/bill-parish-headshot.webp"
                     alt="Bill Parish, founder of Parish & Company LLC"
@@ -314,7 +314,7 @@ export default function AboutPage() {
 
           <FadeIn delay={0.05} className="mt-12">
             <div className="mx-auto max-w-3xl">
-              <div className="relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden bg-[var(--color-mist)] border border-[var(--color-hairline)]">
+              <div className="relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden rounded-lg bg-[var(--color-mist)] border border-[var(--color-hairline)]">
                 <Image
                   src="/images/donaldson-parish-hd.jpg"
                   alt="Bill Donaldson (left) and Bill Parish (right) at an Ameritrade Institutional event"

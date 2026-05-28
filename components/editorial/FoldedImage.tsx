@@ -48,7 +48,7 @@ export function FoldedImage({
 
   return (
     <figure className={cn('relative', className)}>
-      <div className={cn('relative w-full overflow-hidden bg-[var(--color-mist)]', aspect)}>
+      <div className={cn('relative w-full overflow-hidden rounded-2xl bg-[var(--color-mist)]', aspect)}>
         <Image
           src={src}
           alt={alt}

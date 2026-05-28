@@ -116,7 +116,7 @@ export default function HomePage() {
 
         {/* Full-bleed editorial image */}
         <FadeIn className="mt-12 md:mt-16">
-          <div className="relative w-full aspect-[16/9] md:aspect-[16/7] overflow-hidden">
+          <div className="relative w-full aspect-[16/9] md:aspect-[16/7] overflow-hidden rounded-lg">
             <Image
               src="/images/multnomah-falls.jpg"
               alt="Multnomah Falls and the Benson Footbridge in the Columbia River Gorge, Oregon"
@@ -221,7 +221,7 @@ export default function HomePage() {
 
           <FadeIn delay={0.05} className="mt-16 grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16 md:items-center">
             <div className="md:col-span-6">
-              <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden bg-[var(--color-mist)]">
+              <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg bg-[var(--color-mist)]">
                 <Image
                   src="/images/donaldson-parish-hd.jpg"
                   alt="Bill Donaldson and Bill Parish shaking hands at an Ameritrade Institutional event"

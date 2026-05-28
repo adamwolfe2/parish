@@ -34,7 +34,7 @@ export default function ContactPage() {
       <section className="border-b border-[var(--color-hairline)] bg-[var(--color-bone)]">
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-12 md:py-16">
           <FadeIn>
-            <figure className="relative w-full overflow-hidden border border-[var(--color-hairline)]">
+            <figure className="relative w-full overflow-hidden rounded-lg border border-[var(--color-hairline)]">
               <div className="relative aspect-[16/7]">
                 <Image
                   src="/images/office.webp"

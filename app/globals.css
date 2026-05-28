@@ -153,6 +153,7 @@ button:focus-visible,
   margin: 2em 0;
   border: 1px solid var(--color-hairline);
   background: var(--color-mist);
+  border-radius: 0.5rem;
 }
 
 .prose-editorial figure {
