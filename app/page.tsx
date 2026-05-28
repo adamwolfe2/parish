@@ -149,13 +149,13 @@ export default function HomePage() {
           </div>
         </FadeIn>
 
-        {/* Services intro paragraph + research carousel-like card */}
+        {/* Services intro + 3-up service card grid */}
         <div className="relative">
           <TopoLines intensity={0.05} className="pointer-events-none absolute inset-0 w-full h-full text-[var(--color-moss)]" />
 
           <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
-            <FadeIn>
-              <p className="max-w-[64ch] text-[1.05rem] md:text-[1.15rem] leading-[1.65] text-[var(--color-basalt)]">
+            <FadeIn className="max-w-[64ch] mx-auto text-center">
+              <p className="text-[1.05rem] md:text-[1.2rem] leading-[1.6] text-[var(--color-basalt)]">
                 With wealth comes a steady stream of decisions, some
                 exciting, some tedious, some overwhelming. We help you
                 navigate those choices and build a portfolio that puts your
@@ -163,113 +163,111 @@ export default function HomePage() {
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.05} className="mt-16 grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16">
-              <div className="md:col-span-7 lg:col-span-6">
-                <p className="text-[0.75rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium">
+            <FadeIn delay={0.05} className="mt-16 md:mt-20 grid gap-px bg-[var(--color-hairline)] border border-[var(--color-hairline)] md:grid-cols-3">
+              {/* Card 1 — Investment Management */}
+              <article className="bg-[var(--color-bone)] p-8 md:p-10 flex flex-col">
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="var(--color-moss)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M 6 30 L 14 22 L 22 26 L 32 14" />
+                  <circle cx="32" cy="14" r="3" />
+                  <circle cx="40" cy="38" r="6" />
+                  <path d="M 36 34 L 44 42" />
+                </svg>
+                <p className="mt-6 text-[0.7rem] uppercase tracking-[0.18em] text-[var(--color-slate)] font-medium">
                   Investment management
                 </p>
-                <div className="mt-6 flex items-center gap-4">
-                  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="var(--color-moss)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M 6 30 L 14 22 L 22 26 L 32 14" />
-                    <circle cx="32" cy="14" r="3" />
-                    <circle cx="40" cy="38" r="6" />
-                    <path d="M 36 34 L 44 42" />
-                  </svg>
-                </div>
-                <h3 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.4vw,1.85rem)] leading-[1.2] tracking-[-0.01em] text-[var(--color-basalt)]">
+                <h3 className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.4rem,2vw,1.65rem)] leading-[1.2] tracking-[-0.01em] text-[var(--color-basalt)]">
                   Focus on what matters.
                 </h3>
-                <p className="mt-4 max-w-[52ch] text-[1rem] leading-[1.65] text-[var(--color-slate)]">
+                <p className="mt-4 text-[0.98rem] leading-[1.6] text-[var(--color-slate)]">
                   Skip the daily anxiety over which stocks to buy. Tap the
                   long history of global capital markets through a
                   disciplined process built on diligent research, long-term
                   quality, and tax efficiency.
                 </p>
-              </div>
+              </article>
 
-              <div className="md:col-span-5 lg:col-span-6 md:flex md:items-end md:justify-end">
-                <div className="w-full md:max-w-xs">
-                  <p className="text-[0.75rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium mb-3">
-                    Learn more about our services
+              {/* Card 2 — Financial Transitions */}
+              <article className="bg-[var(--color-bone)] p-8 md:p-10 flex flex-col">
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="var(--color-moss)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  {/* Two paths converging — change/transition */}
+                  <path d="M 6 14 Q 18 14 24 24 T 42 34" />
+                  <path d="M 6 34 Q 18 34 24 24 T 42 14" />
+                  <circle cx="6" cy="14" r="2.5" fill="var(--color-moss)" stroke="none" />
+                  <circle cx="6" cy="34" r="2.5" fill="var(--color-moss)" stroke="none" />
+                  <circle cx="42" cy="14" r="2.5" />
+                  <circle cx="42" cy="34" r="2.5" />
+                </svg>
+                <p className="mt-6 text-[0.7rem] uppercase tracking-[0.18em] text-[var(--color-slate)] font-medium">
+                  Financial transitions
+                </p>
+                <h3 className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.4rem,2vw,1.65rem)] leading-[1.2] tracking-[-0.01em] text-[var(--color-basalt)]">
+                  Navigate life&apos;s big changes.
+                </h3>
+                <p className="mt-4 text-[0.98rem] leading-[1.6] text-[var(--color-slate)]">
+                  Whether planned or unexpected, changes to your financial
+                  life can feel overwhelming. We support you through the
+                  sale of a business, complex compensation, and the receipt
+                  of an inheritance.
+                </p>
+              </article>
+
+              {/* Card 3 — Retirement */}
+              <article className="bg-[var(--color-bone)] p-8 md:p-10 flex flex-col">
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="var(--color-moss)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  {/* Mountain summit with flag — retirement as the summit */}
+                  <path d="M 4 40 L 18 18 L 26 28 L 36 12 L 44 40 Z" />
+                  <line x1="36" y1="12" x2="36" y2="4" />
+                  <path d="M 36 4 L 44 7 L 36 10 Z" fill="var(--color-moss)" stroke="none" />
+                </svg>
+                <p className="mt-6 text-[0.7rem] uppercase tracking-[0.18em] text-[var(--color-slate)] font-medium">
+                  Retirement
+                </p>
+                <h3 className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.4rem,2vw,1.65rem)] leading-[1.2] tracking-[-0.01em] text-[var(--color-basalt)]">
+                  Secure your future.
+                </h3>
+                <p className="mt-4 text-[0.98rem] leading-[1.6] text-[var(--color-slate)]">
+                  After a lifetime of work, the move into retirement can
+                  feel harder than expected. We help you choose when to
+                  retire, model the lifestyle your portfolio will support,
+                  and draw income from your accounts tax-efficiently.
+                </p>
+              </article>
+            </FadeIn>
+
+            {/* Single bottom CTA + experts-on-retirement strip */}
+            <FadeIn delay={0.1} className="mt-14 md:mt-16 flex flex-col items-center gap-10">
+              <Link href="/about#services" className="btn-editorial">
+                <span>Our services</span>
+                <span aria-hidden="true" className="arrow">›</span>
+              </Link>
+
+              {(latest[0] || latest[1]) && (
+                <div className="w-full max-w-3xl border-t border-[var(--color-hairline)] pt-8 text-center">
+                  <p className="text-[0.7rem] uppercase tracking-[0.18em] text-[var(--color-slate)] font-medium">
+                    Our experts on retirement
                   </p>
-                  <Link href="/about#services" className="btn-editorial">
-                    <span>Our services</span>
-                    <span aria-hidden="true" className="arrow">›</span>
-                  </Link>
+                  <div className="mt-4 flex flex-col sm:flex-row sm:justify-center sm:gap-x-10 gap-y-2">
+                    {latest[0] && (
+                      <Link
+                        href={`/research/${latest[0].slug}`}
+                        className="text-[0.95rem] text-[var(--color-moss)] hover:text-[var(--color-moss-deep)] transition-colors"
+                      >
+                        {latest[0].title} ›
+                      </Link>
+                    )}
+                    {latest[1] && (
+                      <Link
+                        href={`/research/${latest[1].slug}`}
+                        className="text-[0.95rem] text-[var(--color-moss)] hover:text-[var(--color-moss-deep)] transition-colors"
+                      >
+                        {latest[1].title} ›
+                      </Link>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </FadeIn>
           </div>
-        </div>
-      </section>
-
-      {/* FINANCIAL TRANSITIONS ----------------------------------------- */}
-      <section className="relative bg-[var(--color-bone)]">
-        <TopoLines intensity={0.05} className="pointer-events-none absolute inset-0 w-full h-full text-[var(--color-moss)]" />
-
-        <div className="relative mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-20 md:py-24">
-          <SectionEyebrow>Financial transitions</SectionEyebrow>
-
-          <FadeIn className="mt-12 max-w-[58ch]">
-            <p className="text-[1.05rem] md:text-[1.15rem] leading-[1.65] text-[var(--color-basalt)]">
-              Whether planned or unexpected, changes to your financial life
-              can feel overwhelming. We support you through retirement, the
-              sale of a business, complex compensation, and the receipt of
-              an inheritance.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.05} className="mt-16 grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16 md:items-center">
-            <div className="md:col-span-6">
-              <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg bg-[var(--color-mist)]">
-                <Image
-                  src="/images/donaldson-parish-hd.jpg"
-                  alt="Bill Donaldson and Bill Parish shaking hands at an Ameritrade Institutional event"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={90}
-                  className="object-cover object-center"
-                />
-              </div>
-            </div>
-
-            <div className="md:col-span-6">
-              <p className="text-[0.75rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium">
-                Retirement
-              </p>
-              <h3 className="mt-4 font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.4vw,1.85rem)] leading-[1.2] tracking-[-0.01em] text-[var(--color-basalt)]">
-                Secure your future.
-              </h3>
-              <p className="mt-4 max-w-[52ch] text-[1rem] leading-[1.65] text-[var(--color-slate)]">
-                After a lifetime of work, the move into retirement can feel
-                harder than expected. We help you choose when to retire,
-                model the lifestyle your portfolio will support, and draw
-                income from your accounts tax-efficiently.
-              </p>
-
-              <div className="mt-8 border-t border-[var(--color-hairline)] pt-6 max-w-md">
-                <p className="text-[0.7rem] uppercase tracking-[0.15em] text-[var(--color-slate)] font-medium">
-                  Our experts on retirement
-                </p>
-                {latest[0] && (
-                  <Link
-                    href={`/research/${latest[0].slug}`}
-                    className="mt-3 block text-[0.95rem] text-[var(--color-moss)] hover:text-[var(--color-moss-deep)] transition-colors"
-                  >
-                    {latest[0].title} ›
-                  </Link>
-                )}
-                {latest[1] && (
-                  <Link
-                    href={`/research/${latest[1].slug}`}
-                    className="mt-2 block text-[0.95rem] text-[var(--color-moss)] hover:text-[var(--color-moss-deep)] transition-colors"
-                  >
-                    {latest[1].title} ›
-                  </Link>
-                )}
-              </div>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
