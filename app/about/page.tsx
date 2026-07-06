@@ -29,7 +29,7 @@ const education = [
   'Certified Public Accountant (CPA)',
 ];
 
-const languages = ['English', 'Spanish', 'French', 'Italian', 'Russian (basic)', 'Mandarin (basic)'];
+const languages = ['English', 'Spanish', 'French', 'Italian', 'Russian', 'Mandarin (basic)'];
 
 const previousExperience = [
   'Chief Financial Officer',

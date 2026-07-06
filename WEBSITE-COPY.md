@@ -269,7 +269,7 @@ Side-by-side: bio left, Bill's portrait on the right (with brass "Principal & Fo
 - Spanish
 - French
 - Italian
-- Russian (basic)
+- Russian
 - Mandarin (basic)
 
 **PREVIOUS EXPERIENCE**
