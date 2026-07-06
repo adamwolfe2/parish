@@ -208,7 +208,7 @@ Side-by-side: bio left, Bill's portrait on the right (with brass "Principal & Fo
 >
 > # A 27-year independent practice in Lake Oswego, Oregon.
 >
-> Bill Parish founded Parish & Company LLC in 1998. The firm manages investment portfolios for individuals, families, trusts, foundations, and retirement plans. Its original research has been quoted in tier-one business journalism on every major corporate-governance and tax-policy story of the past two decades.
+> Bill Parish founded Parish & Company LLC in 1998. The firm manages investment portfolios for individuals, families, trusts, foundations, and retirement plans. Its original research has been quoted in tier-one business journalism on most major corporate-governance and tax-policy stories of the past two decades.
 
 ### Background
 

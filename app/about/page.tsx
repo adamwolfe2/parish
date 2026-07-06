@@ -101,8 +101,8 @@ export default function AboutPage() {
                 Bill Parish founded Parish &amp; Company LLC in 1998. The firm manages
                 investment portfolios for individuals, families, trusts, foundations, and
                 retirement plans. Its original research has been quoted in tier-one
-                business journalism on every major corporate-governance and tax-policy
-                story of the past two decades.
+                business journalism on most major corporate-governance and tax-policy
+                stories of the past two decades.
               </p>
             </FadeIn>
 
