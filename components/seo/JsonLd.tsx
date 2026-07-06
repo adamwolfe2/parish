@@ -32,7 +32,7 @@ export const organizationSchema = {
   areaServed: { '@type': 'Country', name: 'United States' },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '4949 Meadows Road, Suite 600',
+    streetAddress: '4800 SW Meadows Road, Suite 300',
     addressLocality: 'Lake Oswego',
     addressRegion: 'OR',
     postalCode: '97035',

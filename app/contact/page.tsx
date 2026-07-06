@@ -38,7 +38,7 @@ export default function ContactPage() {
               <div className="relative aspect-[16/7]">
                 <Image
                   src="/images/office.webp"
-                  alt="Parish & Company office, 4949 Meadows Road, Lake Oswego, Oregon"
+                  alt="Parish & Company office, 4800 SW Meadows Road, Lake Oswego, Oregon"
                   fill
                   sizes="(max-width: 768px) 100vw, 1200px"
                   quality={88}
@@ -51,7 +51,7 @@ export default function ContactPage() {
                   Office
                 </p>
                 <p className="mt-1 font-[family-name:var(--font-display)] text-[1.05rem] md:text-[1.2rem] tracking-tight">
-                  4949 Meadows Road, Suite 600 &nbsp;·&nbsp; Lake Oswego, Oregon
+                  4800 SW Meadows Road, Suite 300 &nbsp;·&nbsp; Lake Oswego, Oregon
                 </p>
               </figcaption>
             </figure>
@@ -95,7 +95,7 @@ export default function ContactPage() {
                   </p>
                   <address className="mt-2 not-italic text-[1.05rem] leading-relaxed text-[var(--color-basalt)]">
                     Parish &amp; Company LLC<br />
-                    4949 Meadows Road, Suite 600<br />
+                    4800 SW Meadows Road, Suite 300<br />
                     Lake Oswego, Oregon 97035
                   </address>
                 </div>

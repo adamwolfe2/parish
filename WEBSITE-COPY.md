@@ -47,7 +47,7 @@ commas, and middle dots (·).
 >
 > **Phone:** (503) 726-5967
 > **Email:** bill@billparish.com
-> **Office:** 4949 Meadows Road, Suite 600 · Lake Oswego, Oregon 97035
+> **Office:** 4800 SW Meadows Road, Suite 300 · Lake Oswego, Oregon 97035
 
 ### Footer
 
@@ -533,7 +533,7 @@ Bill's full research note: paragraphs, headings, lists, inline links, images, pu
 Full-width photograph of the Lake Oswego office building.
 
 > **OFFICE**
-> 4949 Meadows Road, Suite 600 · Lake Oswego, Oregon
+> 4800 SW Meadows Road, Suite 300 · Lake Oswego, Oregon
 
 ### Two-column body
 
@@ -547,7 +547,7 @@ Full-width photograph of the Lake Oswego office building.
 >
 > **OFFICE**
 > Parish & Company LLC
-> 4949 Meadows Road, Suite 600
+> 4800 SW Meadows Road, Suite 300
 > Lake Oswego, Oregon 97035
 >
 > *Parish & Company LLC is a Registered Investment Adviser firm in the State of Oregon. Prior to any advisory work conducted outside Oregon, the firm would become registered in that jurisdiction or qualify for an exemption.*

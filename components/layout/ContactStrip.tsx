@@ -32,7 +32,7 @@ export function ContactStrip() {
                 Office
               </p>
               <address className="not-italic text-[0.98rem] leading-[1.5] text-[var(--color-basalt)]">
-                4949 Meadows Road, Suite 600<br />
+                4800 SW Meadows Road, Suite 300<br />
                 Lake Oswego, Oregon 97035
               </address>
             </div>
