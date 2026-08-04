@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import { Nav } from '@/components/layout/Nav';
 import { Footer } from '@/components/layout/Footer';
+import { SiteChrome } from '@/components/layout/SiteChrome';
 import { ContactStrip } from '@/components/layout/ContactStrip';
 import { JsonLd, organizationSchema, personSchema } from '@/components/seo/JsonLd';
 import { Plausible } from '@/components/analytics/Plausible';
@@ -96,10 +97,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Nav />
+        <SiteChrome><Nav /></SiteChrome>
         <main id="main" className="flex-1">{children}</main>
-        <ContactStrip />
-        <Footer />
+        <SiteChrome>
+          <ContactStrip />
+          <Footer />
+        </SiteChrome>
         <Plausible />
       </body>
     </html>
