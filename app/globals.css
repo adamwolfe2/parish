@@ -169,6 +169,30 @@ button:focus-visible,
   text-align: left;
 }
 
+/* A figure containing figures is an image row (see normalize-post-bodies.mjs).
+   Bill placed related portraits back to back and labelled them on one line
+   underneath — that only reads correctly side by side. auto-fit collapses the
+   row to a single column on phones, so nothing is ever squeezed. */
+.prose-editorial figure:has(> figure) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  align-items: end;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+.prose-editorial figure > figure {
+  margin: 0;
+  max-width: 100%;
+}
+
+.prose-editorial figure > figure img {
+  width: 100%;
+  margin: 0;
+}
+
 /* Consecutive documents (three Treasury screenshots in a row, say) otherwise
    collide into one undifferentiated block. Tighten the gap between siblings and
    let the border do the separating, so each reads as its own exhibit. */
