@@ -164,9 +164,30 @@ button:focus-visible,
 }
 
 .prose-editorial figure {
-  margin: 2em 0;
+  margin: 2.75em 0;
   max-width: min(100%, 68ch);
   text-align: left;
+}
+
+/* Consecutive documents (three Treasury screenshots in a row, say) otherwise
+   collide into one undifferentiated block. Tighten the gap between siblings and
+   let the border do the separating, so each reads as its own exhibit. */
+.prose-editorial figure + figure,
+.prose-editorial img + img,
+.prose-editorial figure + img,
+.prose-editorial img + figure {
+  margin-top: 1.25em;
+}
+
+/* Bill's bold lead-ins ("MInutes at OIC Meeting, Audio File...") act as figure
+   labels. Bind them to the image they introduce instead of floating mid-gap. */
+.prose-editorial p + figure,
+.prose-editorial p + img,
+.prose-editorial h2 + figure,
+.prose-editorial h3 + figure,
+.prose-editorial h2 + img,
+.prose-editorial h3 + img {
+  margin-top: 1.5em;
 }
 
 .prose-editorial figure img {

@@ -63,7 +63,10 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
     dateModified: post.publishedAt,
     inLanguage: 'en-US',
     url: `${siteUrl}/research/${post.slug}`,
-    author: { '@type': 'Person', '@id': `${siteUrl}#bill-parish`, name: 'Bill Parish' },
+    // Never claim Bill authored another outlet's article — credit the outlet.
+    author: post.publication
+      ? { '@type': 'Organization', name: post.publication }
+      : { '@type': 'Person', '@id': `${siteUrl}#bill-parish`, name: 'Bill Parish' },
     publisher: { '@id': `${siteUrl}#organization` },
     keywords: post.categories.join(', ') || undefined,
     image: `${siteUrl}/research/${post.slug}/opengraph-image`,
@@ -109,7 +112,9 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
             )}
 
             <div className="mt-9 pt-6 border-t border-[var(--color-hairline)] flex flex-wrap gap-x-7 gap-y-2 text-[0.85rem] text-[var(--color-slate)]">
-              <span className="text-[var(--color-basalt)] font-medium">By Bill Parish</span>
+              <span className="text-[var(--color-basalt)] font-medium">
+                {post.publication ? `Originally published by ${post.publication}` : 'By Bill Parish'}
+              </span>
               <span aria-hidden="true" className="text-[var(--color-hairline-strong)]">·</span>
               <time dateTime={post.publishedAt}>{formatPostDate(post.publishedAt)}</time>
               {readingMin > 0 && (
@@ -128,6 +133,15 @@ export default async function ResearchPostPage({ params }: { params: Params }) {
         <div className="mx-auto max-w-[var(--container-editorial)] px-6 md:px-10 py-14 md:py-20">
           <FadeIn>
             <div className="max-w-[700px] mx-auto">
+              {post.publication && (
+                <aside className="mb-10 border-l-2 border-[var(--color-moss)] pl-4 py-1 text-[0.9rem] leading-[1.55] text-[var(--color-slate)]">
+                  <span className="block font-medium text-[var(--color-basalt)]">
+                    Press coverage — originally published by {post.publication}
+                  </span>
+                  Archived by Parish &amp; Company as a record of coverage citing our research.
+                  The reporting and copyright remain with the publisher.
+                </aside>
+              )}
               {body?.bodyHtml ? (
                 <PostBody html={body.bodyHtml} />
               ) : (

@@ -8,7 +8,39 @@ export type ResearchPost = {
   categories: string[];
   excerpt?: string;
   url?: string;
+  /** Set when the post reproduces another outlet's article (press coverage of
+   *  Bill's research) rather than Bill's own writing. Drives attribution. */
+  publication?: string;
 };
+
+/**
+ * Outlets whose coverage Bill archived on the blog. Titles in the WordPress
+ * export lead with the publication name ("The Oregonian – ..."), which is the
+ * only reliable signal we have — the bodies carry a byline in fewer than a
+ * quarter of cases, so we credit the outlet and never guess a journalist.
+ *
+ * Explicit allowlist on purpose: a loose regex also matches Bill's own topic
+ * prefixes ("Nokia – ...", "Mitt Romney's Tax Return – ...") and would strip
+ * his byline from his own research. Add new outlets here as they appear.
+ */
+const PUBLICATIONS = [
+  'Barron’s', "Barron's", 'Bloomberg Markets', 'Bloomberg', 'Brainstorm NW', 'ComputerWorld',
+  'Detroit Free Press', 'Financial News', 'Financial Times', 'Fortune',
+  'KATU.com', 'Les Echos', 'Los Angeles Times', 'OPB', 'Oregon Business',
+  'PR Newswire and Business Wire', 'PR Newswire', 'Portland Business Journal',
+  'Portland Tribune', 'The Daily News', 'The Guardian', 'The New York Times',
+  'The Oregonian', 'The Register', 'The Seattle Times', 'The Wall Street Journal',
+  'USA Today', 'Willamette Week',
+];
+
+function publicationFor(title: string): string | undefined {
+  for (const p of PUBLICATIONS) {
+    // separator must be a dash or colon followed by space, so "USA Today's ..." never matches
+    const re = new RegExp(`^\\s*${p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*[–—:-]\\s+\\S`);
+    if (re.test(title)) return p.replace(/’/g, "'");
+  }
+  return undefined;
+}
 
 type RawIndexEntry = {
   url?: string;
@@ -55,7 +87,7 @@ function normalize(raw: RawIndexEntry, idx: number): ResearchPost | null {
         .replace(/\s+/g, ' ')
         .trim()
     : undefined;
-  return { slug, title, publishedAt, categories, excerpt, url: raw.url };
+  return { slug, title, publishedAt, categories, excerpt, url: raw.url, publication: publicationFor(title) };
 }
 
 /**
