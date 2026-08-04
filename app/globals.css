@@ -147,38 +147,31 @@ button:focus-visible,
   color: var(--color-basalt);
 }
 
+/* Body images share the paragraph measure and the paragraph's left edge.
+   These are screenshots of filings and press clippings — dense tables of
+   numbers — so they need the full column to be legible, and they read as part
+   of the argument rather than as decoration floating beside it. Anything
+   genuinely wide can still be opened full-size via its enlarge link. */
 .prose-editorial img {
   display: block;
   width: auto;
-  max-width: 25%;
+  max-width: min(100%, 68ch);
   height: auto;
-  margin: 2em auto;
+  margin: 2em 0;
   border: 1px solid var(--color-hairline);
   background: var(--color-mist);
   border-radius: 0.5rem;
 }
 
-@media (max-width: 640px) {
-  .prose-editorial img {
-    max-width: 45%;
-  }
-}
-
 .prose-editorial figure {
-  margin: 2em auto;
-  max-width: 25%;
-  text-align: center;
-}
-
-@media (max-width: 640px) {
-  .prose-editorial figure {
-    max-width: 45%;
-  }
+  margin: 2em 0;
+  max-width: min(100%, 68ch);
+  text-align: left;
 }
 
 .prose-editorial figure img {
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .prose-editorial figcaption {
@@ -187,7 +180,7 @@ button:focus-visible,
   color: var(--color-slate);
   font-style: italic;
   line-height: 1.45;
-  text-align: center;
+  text-align: left;
 }
 
 .prose-editorial table {
