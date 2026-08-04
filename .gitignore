@@ -36,3 +36,8 @@ scraped/
 public-photos-staging/
 content/posts/_scrape-log.txt
 .vercel
+
+# image backfill working files (cache + run reports)
+.image-cache/
+scripts/.image-map.json
+scripts/.image-failures.json

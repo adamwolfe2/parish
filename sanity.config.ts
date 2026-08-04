@@ -74,7 +74,7 @@ export default defineConfig({
       const doc = context.document as { _type?: string; slug?: { current?: string } };
       const slug = doc?.slug?.current;
       if (doc?._type === 'post' && slug) {
-        return `https://parishinvestments.vercel.app/research/${slug}`;
+        return `https://www.billparish.com/research/${slug}`;
       }
       return prev;
     },
