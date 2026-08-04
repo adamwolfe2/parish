@@ -19,7 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POSTS_DIR = path.join(__dirname, '..', 'content/posts');
 const DRY = process.argv.includes('--dry-run');
 
-const stats = { emptyFigures: 0, demotedH1: 0, emptyParas: 0, imageRows: 0, files: 0 };
+const stats = { emptyFigures: 0, demotedH1: 0, emptyParas: 0, imageRows: 0, captions: 0, subheads: 0, files: 0 };
 
 for (const file of fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.json'))) {
   const fp = path.join(POSTS_DIR, file);
@@ -53,11 +53,25 @@ for (const file of fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.json')))
   // Only small images group. Full-width document scans (ERISA filings, meeting
   // minutes) must keep the whole measure or the numbers become unreadable.
   const MAX_ROW_IMG_WIDTH = 500;
-  const figureRe = /<figure\b[^>]*>[\s\S]*?<\/figure>/g;
+  // Depth-aware scan: a non-greedy /<figure>...<\/figure>/ mis-matches an
+  // already-grouped row (outer open + first inner close) and would re-wrap it
+  // on every run. Collect only top-level figures so this stays idempotent.
+  const found = [];
+  {
+    const tagRe = /<(\/?)figure\b[^>]*>/g;
+    let depth = 0, start = -1, m;
+    while ((m = tagRe.exec(html))) {
+      if (!m[1]) {
+        if (depth === 0) start = m.index;
+        depth++;
+      } else if (depth > 0 && --depth === 0) {
+        const text = html.slice(start, m.index + m[0].length);
+        found.push({ 0: text, index: start });
+      }
+    }
+  }
   const chunks = [];
   let cursor = 0;
-  const found = [...html.matchAll(figureRe)];
-  let runStart = null;
   const flush = (run, endIdx) => {
     if (run.length < 2) return false;
     chunks.push(html.slice(cursor, run[0].index));
@@ -70,6 +84,7 @@ for (const file of fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.json')))
   };
   for (let i = 0; i < found.length; ) {
     const smallAt = (m) => {
+      if (/<figure\b/.test(m[0].slice(m[0].indexOf('>') + 1))) return false; // already a row
       const w = /\bwidth="(\d+)"/.exec(m[0]);
       return w ? Number(w[1]) <= MAX_ROW_IMG_WIDTH : false;
     };
@@ -86,6 +101,74 @@ for (const file of fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.json')))
   }
   if (chunks.length) { chunks.push(html.slice(cursor)); html = chunks.join(''); }
 
+  // Pull the label line that follows an image into the figure as a real caption.
+  //
+  // Bill wrote these as ordinary bold paragraphs ("Henry Kravis      George
+  // Roberts"), so they currently render as body copy sitting under a picture.
+  // For a row of N images whose label splits into exactly N segments, each name
+  // is attached to the image it belongs to — which is what the &nbsp; runs were
+  // reaching for. Otherwise the whole line captions the figure.
+  {
+    const topLevel = [];
+    const tagRe = /<(\/?)figure\b[^>]*>/g;
+    let depth = 0, start = -1, m;
+    while ((m = tagRe.exec(html))) {
+      if (!m[1]) { if (depth === 0) start = m.index; depth++; }
+      else if (depth > 0 && --depth === 0) topLevel.push([start, m.index + m[0].length]);
+    }
+    const out = [];
+    let cur = 0;
+    for (const [s, e] of topLevel) {
+      const fig = html.slice(s, e);
+      if (/<\/figcaption>\s*<\/figure>\s*$/.test(fig)) continue; // already captioned
+      const pm = /^\s*<p\b[^>]*>([\s\S]*?)<\/p>/.exec(html.slice(e));
+      if (!pm) continue;
+      const inner = pm[1].trim();
+      const text = inner.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim();
+      if (!text || text.length > 140 || /<a\b/i.test(inner)) continue;
+      const isBold = /^\s*<strong>[\s\S]*?<\/strong>\s*(<br\s*\/?>)?\s*$/.test(inner);
+      const kids = (fig.match(/<figure\b/g) || []).length - 1; // children of a grouped row
+      const segments = text.split(/(?:\s|\u00a0){3,}/).map((x) => x.trim()).filter(Boolean);
+      let rebuilt = null;
+      if (kids >= 2 && segments.length === kids) {
+        // per-image labels: "Preet Bharara      Geoffrey Berman" under a 2-up row
+        let n = 0;
+        rebuilt = fig.replace(/<\/figure>/g, (close, offset) =>
+          offset === fig.length - close.length ? close : `<figcaption>${segments[n++] ?? ''}</figcaption></figure>`);
+      } else if (isBold) {
+        rebuilt = fig.replace(/<\/figure>\s*$/, `<figcaption>${text}</figcaption></figure>`);
+      }
+      if (!rebuilt) continue;
+      out.push(html.slice(cur, s), rebuilt);
+      cur = e + pm[0].length;
+      stats.captions++;
+    }
+    if (out.length) { out.push(html.slice(cur)); html = out.join(''); }
+  }
+
+  // Bill marked section breaks by bolding a short line rather than using a
+  // heading style — a very common WordPress habit. Promote those to real
+  // headings so the posts get an outline instead of an unbroken wall.
+  // Skips link lines, bare dates, and anything that reads as a sentence.
+  html = html.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/g, (whole, inner) => {
+    const trimmed = inner.trim();
+    if (!/^\s*<strong>[\s\S]*?<\/strong>\s*(<br\s*\/?>)?\s*$/.test(trimmed)) return whole;
+    if (/<a\b/i.test(trimmed)) return whole;
+    const text = trimmed.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim();
+    if (!text || text.length > 90) return whole;
+    if (/[.!?]["”]?$/.test(text)) return whole;
+    if (/^[A-Z][a-z]+ \d{1,2}, \d{4}$/.test(text)) return whole; // bare date line
+    stats.subheads++;
+    return `<h3>${text}</h3>`;
+  });
+
+  // A trailing <br> inside a bold paragraph makes <strong> stop being the only
+  // element child, which breaks the `p:has(> strong:only-child)` rule that
+  // styles Bill's key statements. Purely cosmetic to remove.
+  html = html
+    .replace(/(<br\s*\/?>\s*)+<\/strong>/gi, '</strong>')
+    .replace(/<\/strong>(\s*<br\s*\/?>\s*)+<\/p>/gi, '</strong></p>');
+
   const beforeParas = html;
   html = html
     .replace(/<p\b[^>]*>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '')
@@ -100,5 +183,5 @@ for (const file of fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.json')))
 }
 
 console.log(
-  `${DRY ? '[dry-run] ' : ''}files touched ${stats.files} · empty figures removed ${stats.emptyFigures} · h1 demoted ${stats.demotedH1} · posts with blank-paragraph cleanup ${stats.emptyParas} · image rows grouped ${stats.imageRows}`,
+  `${DRY ? '[dry-run] ' : ''}files touched ${stats.files} · empty figures removed ${stats.emptyFigures} · h1 demoted ${stats.demotedH1} · posts with blank-paragraph cleanup ${stats.emptyParas} · image rows grouped ${stats.imageRows} · captions ${stats.captions} · subheads ${stats.subheads}`,
 );

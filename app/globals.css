@@ -97,8 +97,32 @@ button:focus-visible,
 }
 
 .prose-editorial p {
-  margin: 0 0 1.25em;
+  margin: 0 0 1.45em;
   max-width: 68ch;
+}
+
+/* Most of these posts are an unbroken run of paragraphs — Bill wrote them that
+   way. A larger opening paragraph gives the reader a way in. */
+.prose-editorial > p:first-child {
+  font-size: 1.14em;
+  line-height: 1.62;
+  color: var(--color-basalt);
+  margin-bottom: 1.6em;
+}
+
+/* Bill's own emphasis, used as a key statement rather than a section label
+   (the short ones are promoted to real headings in normalize-post-bodies).
+   Given air and a rule so it breaks the wall instead of thickening it. */
+.prose-editorial p:has(> strong:only-child) {
+  margin: 2em 0;
+  padding: 0.1em 0 0.1em 1.15rem;
+  border-left: 2px solid var(--color-moss);
+  max-width: 62ch;
+}
+
+.prose-editorial p:has(> strong:only-child) strong {
+  font-weight: 600;
+  line-height: 1.55;
 }
 
 .prose-editorial h2 {
@@ -112,7 +136,14 @@ button:focus-visible,
 .prose-editorial h3 {
   font-family: var(--font-display), serif;
   font-size: var(--text-h3);
-  margin: 2em 0 0.5em;
+  line-height: 1.25;
+  margin: 2.4em 0 0.6em;
+}
+
+/* A heading straight after a figure belongs to what follows, not what precedes */
+.prose-editorial figure + h3,
+.prose-editorial figure + h2 {
+  margin-top: 2em;
 }
 
 .prose-editorial a {
